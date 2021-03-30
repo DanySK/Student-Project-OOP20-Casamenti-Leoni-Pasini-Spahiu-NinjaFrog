@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
- <layer id="1" name="Livello tile 1" width="240" height="13">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="2">
+ <tileset firstgid="1" source="Level2background.tsx"/>
+ <tileset firstgid="561" source="NinjaFrogAsset.tsx"/>
+ <layer id="1" name="background" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAC+BjDAAAE=
+   eJzt2mPb0HcYx+Eb2ZiypmxPWVO2p6wp21sta8r2lDVle8qasmvnXsL/+e84rvPR9eTzAr6xMTExccSTgIQkIjFJSEoykpOClKQiNWlISzrS8wiP8hiP8wQZyEgmMpOFrGQjOznISa7QEBpCQ+SG3OQhL/nITwEKUojCFKEoxShOCUpSitKUoSzP8Twv8CIvUY7yVKAilahMFapSjerUCA2hITREbqhJLWpTh7rUoz4NaEgjGtOEpjSjOS1oSSta8wZv8hZv8w5taEs72tOBjnSiM13oSrfQEBpCQ+SG7vSgJ73oTR/60o/+DGAggxjMEIYyjOGMYCQf8TGjGM0njGEs4xjPBCYyiclMYSrTQkNoCA2RG6Yzg5nMYjZzmMs85rOAhSxiMUtYyjKWs4KVfMXXfMO3fMcqVrOGtaxjPRvYyCY2syU0hIbQELlhK9vYzg52sovd7GEv+9jPAQ5yiMMc4SjHOM4v/Mpv/M4fnOAkpzjNGc5yjvNc4CKXQkNoCA2RGy5zhatc4zo3uMktbnOHu9zjPg94SEysI454EpCQRCQmCUlJRnJSkJJUpCYNaUlH+tjQEBpCQ9SGDP4ZyURmspCVbGQnBznJxZM8xdM8w7PkJg95yUd+ClCQQhSmCEUpRnFKUJJSlKYMZUNDaAgNkRvKUZ4KVKQSlalCVapRnRq8zCu8ymu8Tk1qUZs61KUe9WlAQxrRmCY0pRnNaUFLWtE6NISG0BC5oQ1taUd7OtCRTnSmC13pxru8x/t8wId0pwc96UVv+tCXfvRnAAMZxGCGMJRhDGcEI0NDaAgNkRvGMJZxjGcCE5nEZKYwlWl8ymd8zhd8yXRmMJNZzGYOc5nHfBawkEUsZglLWcZyVrAyNISG0BC5YRWrWcNa1rGeDWxkE5vZwvf8wI/8xM9sZRvb2cFOdrGbPexlH/s5wEEOcZgjHOUYx0NDaAgNkRtOcJJTnOYMZznHeS5wkUv8yV/8zT/8y2WucJVrXOcGN7nFbe5wl3vc5wEP+X94HUsc8XGhITSEhqgN/wE6gwzN
   </data>
  </layer>
+ <layer id="2" name="graphics" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztw9ENABAQBbAX++IT27s1RJs0AQAAAAAAAAAAAPhLb8lQnzvrqlt97qkXH5HbYQ==
+  </data>
+ </layer>
+ <objectgroup id="3" name="ground">
+  <object id="1" x="0" y="176" width="3840" height="32"/>
+ </objectgroup>
+ <objectgroup id="4" name="fruitbox"/>
+ <objectgroup id="5" name="brick"/>
+ <objectgroup id="6" name="groundobject"/>
 </map>

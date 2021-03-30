@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
- <layer id="1" name="Livello tile 1" width="240" height="13">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="4">
+ <tileset firstgid="1" source="Level1background.tsx"/>
+ <tileset firstgid="859" source="NinjaFrogAsset.tsx"/>
+ <layer id="1" name="background" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAC+BjDAAAE=
+   eJztztW2FlQAhdFzQESkQaQbFJXubhAsQsEAAZHu7u5GulMUlRIMShBQUenu7u5O5xP4v8AeY82rdfNViYqKqko1qvMhH1GDmnzMJ3zKZ9SiNp9Th7rU4wvq8yUNaEgjGtOEpjSjOS1oSSta04a2tKM9HehIldAW2kLb/7Z1ojNd6Eo3utODnvSiN33oSz/6M4CBDGIwQxjKMIYzgpGMYjRfMYaxjGM8E5jIJCYzhalMY3poC22hLWLbDGYyi9nMYS5fM49v+Jb5fMf3/MACFrKIxSzhR5ayjJ/4mV/4leWsYCWrWM1vrGEtv7OO9Wzgj9AW2kJbxLY/+YuN/M0//MsmNrOFrWxjOzvYyS52s4e97GM/BzjIIQ5zhKMc4zgnOMkpTnOGs5zjPBe4yKXQFtpCW8S2y1zhKte4zg1ucovb3OEu97jPAx7yiMc84SnPeE5UtBGDmLxALF4kNi8Rh5eJSzzik4CEJCJxdGgLbaEtUlsSX1JeIRmvkpwUpCQVqUlDWtKRngxkJBOZyUJWXuN1svEGb/IW2clBTnKRmzzkJR/5KUBBClE4OrSFttAWqa0IRSlGcUpQklKUpgxlKUd5KlCRt6lEZd7hXd7jfT6gClWpRnU+5CNqUJOP+YRP+Yxa1OZz6lA3tIW20BaxrR5fUJ8vaUBDGtGYJjSlGc1pQUta0Zo2tKUd7elARzrRmS50pRvd6UFPetGbPvSlH/0ZwEAGhbbQFtoitg1mCEMZxnBGMJJRjOYrxjCWcYxnAhOZxGSmMJVpTGcGM5nFbOYwl6+Zxzd8y3y+43t+YAELWRTaQltoi9i2mCX8yFKW8RM/8wu/spwVrGQVq/mNNazld9axng38wZ/8xUb+5h/+ZROb2cJWtrGdHexkF7vZE9pCW2iL2LaXfeznAAc5xGGOcJRjHOcEJznFac5wlnOc5wIXucRlrnCVa1znBje5xW3ucJd73OcBD3nE49AW2kJbxLYnPOUZz4mKERUVTQxi8gKxeJHYvEQcXiYu8YhPAhKSiMQkISmvkIxXSU4KUpKK1KQhLelITwYykilGaAttoS1SW2aykJXXeJ1svMGbvEV2cpCTXOQmD3nJR34KUJBCFKYIRSlGcUpQklKUpgxlKUd5KlCRt6lE5dAW2kJbxLb/AH/eI0Q=
   </data>
  </layer>
+ <layer id="2" name="graphics" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztw9ENABAQBbCX2BOf2H8At4ZokyYAAAAAAAAAAAAAf+ktGepzZ111q8899QJzZMEh
+  </data>
+ </layer>
+ <objectgroup id="3" name="ground">
+  <object id="3" x="0" y="176" width="3840" height="32"/>
+ </objectgroup>
+ <objectgroup id="4" name="fruitbox"/>
+ <objectgroup id="5" name="brick"/>
+ <objectgroup id="6" name="groundobject"/>
 </map>
