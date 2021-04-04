@@ -1,5 +1,8 @@
 package it.unibo.ninjafrog.utilities;
 
+/**
+ * Utility class which contains all the constants of the game.
+ */
 public final class GameConst {
 
     /**
