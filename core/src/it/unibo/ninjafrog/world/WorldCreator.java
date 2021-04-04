@@ -5,7 +5,7 @@ package it.unibo.ninjafrog.world;
  */
 public interface WorldCreator {
     /**
-     * Method to be called in order to create the solid world from the tiled Map.
+     * Method to be called in order to create the solid world from the tiled map.
      */
     void createWorld();
 }
