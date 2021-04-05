@@ -3,8 +3,8 @@ package it.unibo.ninjafrog.utilities;
 /**
  * A standard generic Pair<X,Y>, with getters, hashCode, equals and toString.
  * 
- * @param <X> First object of the pair.
- * @param <Y> Second object of the pair.
+ * @param <X> First type parameter.
+ * @param <Y> Second type parameter.
  */
 public final class Pair<X, Y> {
 
