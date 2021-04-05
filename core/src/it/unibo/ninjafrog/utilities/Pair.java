@@ -1,23 +1,40 @@
 package it.unibo.ninjafrog.utilities;
-/*
- * A standard generic Pair<X,Y>, with getters, hashCode, equals, and toString well implemented. 
- */
 
+/**
+ * A standard generic Pair<X,Y>, with getters, hashCode, equals and toString.
+ * 
+ * @param <X> First object of the pair.
+ * @param <Y> Second object of the pair.
+ */
 public final class Pair<X, Y> {
 
     private final X x;
     private final Y y;
 
+    /**
+     * Public constructor of a generic Pair<X,Y>.
+     * 
+     * @param x first component of the pair.
+     * @param y second component of the pair.
+     */
     public Pair(final X x, final Y y) {
         super();
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * First parameter getter.
+     * @return the first component of the pair.
+     */
     public X getX() {
         return x;
     }
 
+    /**
+     * Second parameter getter.
+     * @return the second component of the pair.
+     */
     public Y getY() {
         return y;
     }
