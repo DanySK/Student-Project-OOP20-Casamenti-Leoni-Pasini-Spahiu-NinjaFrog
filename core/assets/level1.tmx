@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="134">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="135">
  <tileset firstgid="1" source="Level1background.tsx"/>
  <tileset firstgid="859" source="NinjaFrogAsset.tsx"/>
  <layer id="1" name="background" width="240" height="13">
@@ -135,7 +135,6 @@
   <object id="113" x="2928" y="80" width="192" height="16"/>
   <object id="130" x="3184" y="144" width="48" height="64"/>
   <object id="131" x="3440" y="144" width="48" height="64"/>
-  <object id="133" x="3632" y="0" width="208" height="176"/>
  </objectgroup>
  <objectgroup id="7" name="finish">
   <object id="8" x="3590" y="167" width="36" height="8.95652"/>
@@ -144,6 +143,7 @@
   <object id="12" x="3593.04" y="148.913" width="29.913" height="3.08696"/>
   <object id="13" x="3583.96" y="129.957" width="47.9565" height="19.087"/>
   <object id="14" x="3591.04" y="128" width="33.9565" height="1.95652"/>
+  <object id="134" x="3632" y="0" width="208" height="176"/>
  </objectgroup>
  <objectgroup id="8" name="rino">
   <object id="30" x="576" y="160" width="16" height="16"/>
