@@ -1,25 +1,47 @@
 package it.unibo.ninjafrog.world;
 
+import java.util.Optional;
+
 import com.badlogic.gdx.maps.MapObject;
 
+import it.unibo.ninjafrog.screens.PlayScreen;
+import it.unibo.ninjafrog.utilities.GameConst;
+
 public final class NonInteractiveBuilderImpl implements NonInteractiveBuilder {
+    private MapObject object;
+    private final PlayScreen screen;
+    private Optional<Short> bit = Optional.empty();
+
+    public NonInteractiveBuilderImpl(final PlayScreen screen) {
+        this.screen = screen;
+    }
 
     @Override
     public NonInteractiveBuilder selectObject(final MapObject object) {
-        // TODO Auto-generated method stub
-        return null;
+        this.object = object;
+        return this;
     }
 
     @Override
     public NonInteractiveBuilder chooseCategoryBit(final short bit) {
-        // TODO Auto-generated method stub
-        return null;
+        this.bit = Optional.of(bit).filter(b -> b.equals(GameConst.GROUND)
+                || b.equals(GameConst.GROUND_OBJECT)
+                || b.equals(GameConst.FINISH));
+        return this;
     }
 
     @Override
     public NonInteractiveObject build() {
-        // TODO Auto-generated method stub
-        return null;
+        if (this.object == null) {
+            throw new IllegalStateException("Object can't be null.");
+        }
+        if (this.screen == null) {
+            throw new IllegalStateException("Screen can't be null.");
+        }
+        if (!this.bit.isPresent()) {
+            throw new IllegalStateException("Illegal category-bit input.");
+        }
+        return new NonInteractiveObject(this.screen, this.object, this.bit.get());
     }
 
 }
