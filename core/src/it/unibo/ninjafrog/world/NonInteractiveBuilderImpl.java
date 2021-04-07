@@ -7,11 +7,18 @@ import com.badlogic.gdx.maps.MapObject;
 import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
 
+/**
+ * Definition of NonInteractiveBuilder implementation.
+ */
 public final class NonInteractiveBuilderImpl implements NonInteractiveBuilder {
     private MapObject object;
     private final PlayScreen screen;
     private Optional<Short> bit = Optional.empty();
 
+    /**
+     * Public constructor of a NonInteractiveBuilderImpl.
+     * @param screen The PlayScreen which contains the game world.
+     */
     public NonInteractiveBuilderImpl(final PlayScreen screen) {
         this.screen = screen;
     }
