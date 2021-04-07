@@ -43,6 +43,15 @@ public interface PlayScreen {
      */
     void setGameOverScreen();
     /**
+     * Set the MenuScreen.
+     */
+    void setMenuScreen();
+    /**
+     * Getter of the ninja X-axis position in the world.
+     * @return The Ninja X-axis float value.
+     */
+    float getNinjaXPosition();
+    /**
      * Getter of the TiledMap.
      * @return The TiledMap used by the PlayScreen.
      */
