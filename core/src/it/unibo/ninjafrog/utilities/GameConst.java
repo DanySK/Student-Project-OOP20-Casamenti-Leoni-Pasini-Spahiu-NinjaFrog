@@ -15,6 +15,10 @@ public final class GameConst {
     public static final int HEIGHT = 208;
 
     /**
+     * Bonus duration.
+     */
+    public static final int BONUSTIMER = 15;
+    /**
      * Box2D scale value. Acronym of Pixel Per Meters.
      */
     public static final float PPM = 100;
