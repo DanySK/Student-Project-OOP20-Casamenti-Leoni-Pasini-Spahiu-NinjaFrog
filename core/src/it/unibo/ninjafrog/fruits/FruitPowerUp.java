@@ -7,15 +7,15 @@ import it.unibo.ninjafrog.world.Collidable;
 /**
  * Definition of FruitPowerUp interface.
  */
-public interface FruitPowerUp extends Collidable{
+public interface FruitPowerUp extends Collidable {
     /**
      * Method that draw FruitPowerUp object on the screen.
-     * @param batch 
+     * @param batch game Batch 
      */
     void draw(Batch batch);
     /**
      * Method that update FruitPowerUP object every frame.
-     * @param dt
+     * @param dt delta time
      */
     void update(float dt);
 }
