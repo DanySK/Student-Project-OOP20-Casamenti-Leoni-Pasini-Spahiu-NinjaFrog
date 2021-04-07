@@ -11,12 +11,21 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
 
+/**
+ * NonInteractiveObject class definition.
+ */
 public class NonInteractiveObject {
     private static final int HALF = 2;
     private final PlayScreen screen;
     private final Rectangle object;
     private final short bit;
 
+    /**
+     * Public constructor of a NonInteractiveObject object.
+     * @param screen The PlayScreen which contains the game world.
+     * @param object The MapObject object which is going to be defined.
+     * @param bit The short to be set as category bit of the object.
+     */
     public NonInteractiveObject(final PlayScreen screen, final MapObject object, final short bit) {
         this.screen = screen;
         this.object = ((RectangleMapObject) object).getRectangle();
