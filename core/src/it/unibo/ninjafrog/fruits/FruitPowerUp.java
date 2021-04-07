@@ -18,4 +18,8 @@ public interface FruitPowerUp extends Collidable {
      * @param dt delta time
      */
     void update(float dt);
+    /**
+     * Method that reverse velocity's value.
+     */
+    void reverseVelocity();
 }
