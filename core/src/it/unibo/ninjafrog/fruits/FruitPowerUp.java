@@ -1,0 +1,21 @@
+package it.unibo.ninjafrog.fruits;
+
+import com.badlogic.gdx.graphics.g2d.Batch;
+
+import it.unibo.ninjafrog.world.Collidable;
+
+/**
+ * Definition of FruitPowerUp interface.
+ */
+public interface FruitPowerUp extends Collidable{
+    /**
+     * Method that draw FruitPowerUp object on the screen.
+     * @param batch 
+     */
+    void draw(Batch batch);
+    /**
+     * Method that update FruitPowerUP object every frame.
+     * @param dt
+     */
+    void update(float dt);
+}
