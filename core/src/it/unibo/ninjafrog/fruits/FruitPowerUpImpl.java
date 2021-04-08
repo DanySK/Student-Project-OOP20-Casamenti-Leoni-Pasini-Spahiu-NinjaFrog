@@ -26,7 +26,7 @@ public class FruitPowerUpImpl implements FruitPowerUp {
      * @param type FruitType of fruit.
      */
     public FruitPowerUpImpl(final PlayScreen screen, final float x, final float y, final FruitType type) {
-        
+       
     }
     @Override
     public void collide() {
