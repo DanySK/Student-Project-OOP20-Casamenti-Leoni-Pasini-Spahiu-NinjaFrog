@@ -2,8 +2,7 @@ package it.unibo.ninjafrog.fruits;
 
 import it.unibo.ninjafrog.screens.PlayScreen;
 /**
- * 
- * @author giamm
+ * Definition of FruitBuillder implementation.
  *
  */
 public final class FruitBuilderImpl implements FruitBuilder {
@@ -11,15 +10,23 @@ public final class FruitBuilderImpl implements FruitBuilder {
     private float x; 
     private float y;
     private FruitType type;
+    /**
+     * private constructor of a FruitBuilderImpl. 
+     * 
+     */
     private FruitBuilderImpl() {
     }
-    public FruitBuilderImpl newBuilder() {
+    /**
+     * public static newBuilder that use FruitBuilderImpl.
+     * @return FruitBuilderImpl new FruitBuilder object.
+     */
+    public static FruitBuilderImpl newBuilder() {
         return new FruitBuilderImpl();
     }
     @Override
     public FruitBuilder selectScreen(final PlayScreen screen) {
         this.screen = screen;
-        return null;
+        return this;
     }
 
     @Override
