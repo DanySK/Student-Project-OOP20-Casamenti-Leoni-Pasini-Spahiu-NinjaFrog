@@ -8,7 +8,7 @@ import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
 
 /**
- * Definition of NonInteractiveBuilder implementation.
+ * Definition of a {@link NonInteractiveBuilder} implementation.
  */
 public final class NonInteractiveBuilderImpl implements NonInteractiveBuilder {
     private MapObject object;
@@ -17,7 +17,7 @@ public final class NonInteractiveBuilderImpl implements NonInteractiveBuilder {
 
     /**
      * Public constructor of a NonInteractiveBuilderImpl.
-     * @param screen The PlayScreen which contains the game world.
+     * @param screen The {@link PlayScreen} which contains the game world.
      */
     public NonInteractiveBuilderImpl(final PlayScreen screen) {
         this.screen = screen;

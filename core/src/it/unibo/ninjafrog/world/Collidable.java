@@ -2,7 +2,7 @@ package it.unibo.ninjafrog.world;
 
 /**
  * Definition of Collidable interface.
- * Every class which implements this interface has to define a collide() method.
+ * Every class which implements this interface has to define a {@link Collidable#collide()} method.
  */
 public interface Collidable {
     /**

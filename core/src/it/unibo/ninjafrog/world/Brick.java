@@ -1,7 +1,9 @@
 package it.unibo.ninjafrog.world;
 
 /**
- * Brick class definition. Implementation of Collidable interface.
+ * Brick class definition.
+ * A Brick is an {@link InteractiveObject} which is destroyed after you hit it with your head.
+ * Defines a {@link Collidable#collide()} method.
  */
 public class Brick extends InteractiveObject implements Collidable {
 

@@ -12,17 +12,17 @@ import it.unibo.ninjafrog.utilities.Pair;
 public interface PlayScreen {
     /**
      * Method to be called when a new Melon object has to be created.
-     * @param position A pair containing X and Y values where the new object will be created.
+     * @param position A {@link Pair} containing X and Y values where the new object will be created.
      */
     void spawnMelon(Pair<Float, Float> position);
     /**
      * Method to be called when a new Orange object has to be created.
-     * @param position A pair containing X and Y values where the new object will be created.
+     * @param position A {@link Pair} containing X and Y values where the new object will be created.
      */
     void spawnOrange(Pair<Float, Float> position);
     /**
      * Method to be called when a new Cherries object has to be created.
-     * @param position A pair containing X and Y values where the new object will be created.
+     * @param position A {@link Pair} containing X and Y values where the new object will be created.
      */
     void spawnCherries(Pair<Float, Float> position);
     /**
@@ -68,7 +68,7 @@ public interface PlayScreen {
     TextureAtlas getAtlas();
     /**
      * Getter of the Hud.
-     * @return The Hud used by the PlayScreen.
+     * @return The {@link Hud} used by the PlayScreen.
      */
     Hud getHud();
 }
