@@ -23,7 +23,7 @@ public class NonInteractiveObject {
 
     /**
      * Public constructor of a NonInteractiveObject object.
-     * @param screen The {@link PlayScreen} which contains the game world.
+     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen} which contains the game world.
      * @param object The MapObject object which is going to be defined.
      * @param bit The short to be set as category bit of the object.
      */
