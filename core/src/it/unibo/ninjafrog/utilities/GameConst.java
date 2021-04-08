@@ -77,6 +77,10 @@ public final class GameConst {
     public static final short FINISH = 4096;
 
     /**
+     * Index of the Graphics map layer in the TiledMap.
+     */
+    public static final int GRAPHICS_LAYER = 1;
+    /**
      * Index of the Ground map layer in the TiledMap.
      */
     public static final int GROUND_LAYER = 2;
