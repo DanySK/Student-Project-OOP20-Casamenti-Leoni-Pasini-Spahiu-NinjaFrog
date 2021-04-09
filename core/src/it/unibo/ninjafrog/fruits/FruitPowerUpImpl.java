@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 import it.unibo.ninjafrog.screens.PlayScreen;
@@ -16,6 +19,7 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private static final float FRUIT_RADIUS = 6 / GameConst.PPM;
     private static final float BOUNDS_WIDTH = 16 / GameConst.PPM;
     private static final float BOUNDS_HEIGHT = 12 / GameConst.PPM;
+    private static final String REGION = "NinjaAndEnemies";
     private PlayScreen screen;
     private World world;
     private Body body;
@@ -57,16 +61,51 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
        }
     }
     private void defineCherry() {
-        // TODO Auto-generated method stub
-        
+        setRegion(screen.getAtlas().findRegion("NinjaAndEnemies"), 455, 9, 19, 16);
+        BodyDef cherryBody = new BodyDef();
+        cherryBody.position.set(getX(),getY());
+        cherryBody.type = BodyDef.BodyType.DynamicBody;
+        body = world.createBody(cherryBody);
+        FixtureDef cherryFixture = new FixtureDef();
+        CircleShape cherryShape = new CircleShape();
+        cherryShape.setRadius(FRUIT_RADIUS);
+        cherryFixture.shape = cherryShape;
+        maskBits(cherryFixture);
+        body.createFixture(cherryFixture).setUserData(this);
     }
     private void defineOrange() {
-        // TODO Auto-generated method stub
-        
+        setRegion(screen.getAtlas().findRegion(REGION), 520, 9, 19, 16);
+        BodyDef orangeBody = new BodyDef();
+        orangeBody.position.set(getX(),getY());
+        orangeBody.type = BodyDef.BodyType.StaticBody;
+        body = world.createBody(orangeBody);
+        FixtureDef orangeFixture = new FixtureDef();
+        CircleShape orangeShape = new CircleShape();
+        orangeShape.setRadius(FRUIT_RADIUS);
+        orangeFixture.shape = orangeShape;
+        maskBits(orangeFixture);
+        body.createFixture(orangeFixture).setUserData(this);
     }
     private void defineMelon() {
-        // TODO Auto-generated method stub
-        
+        setRegion(screen.getAtlas().findRegion(REGION), 486, 9, 19, 16);
+        BodyDef melonBody = new BodyDef();
+        melonBody.position.set(getX(), getY());
+        melonBody.type = BodyDef.BodyType.DynamicBody;
+        body = world.createBody(melonBody);
+        FixtureDef melonFixture = new FixtureDef();
+        CircleShape melonShape = new CircleShape();
+        melonShape.setRadius(FRUIT_RADIUS);
+        melonFixture.shape = melonShape;
+        maskBits(melonFixture);
+        body.createFixture(melonFixture).setUserData(this);
+    }
+    private void maskBits(final FixtureDef fruitFixture) {
+        fruitFixture.filter.categoryBits = NinjaFrog.ITEM_BIT;
+        fruitFixture.filter.maskBits = NinjaFrog.NINJA_BIT |
+                        NinjaFrog.GROUND_BIT |
+                        NinjaFrog.GROUNDOBJECT_BIT |
+                        NinjaFrog.BRICK_BIT |
+                        NinjaFrog.COIN_BIT ;
     }
     @Override
     public void collide() {
