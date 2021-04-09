@@ -3,6 +3,7 @@ package it.unibo.ninjafrog.world;
 import com.badlogic.gdx.maps.MapObject;
 /**
  * Definition of the NonInteractiveBuilder interface.
+ * Creates a {@link it.unibo.ninjafrog.world.NonInteractiveObject NonInteractiveObject}.
  */
 public interface NonInteractiveBuilder {
     /**
@@ -19,7 +20,7 @@ public interface NonInteractiveBuilder {
     NonInteractiveBuilder chooseCategoryBit(short bit);
     /**
      * Build method to be called when you have set the previous two parameters.
-     * @return A new NonInteractiveObject.
+     * @return A new {@link it.unibo.ninjafrog.world.NonInteractiveObject NonInteractiveObject}.
      */
     NonInteractiveObject build();
 }
