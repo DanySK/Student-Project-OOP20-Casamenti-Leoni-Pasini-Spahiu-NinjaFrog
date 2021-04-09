@@ -16,6 +16,11 @@ public final class Brick extends InteractiveObject implements Collidable {
     private static final int ANIMATION_TIME = 100;
     private final TiledMapTileSet tileSet;
     private int destroyedTile = InteractiveObject.CELL_NOT_SET;
+    /**
+     * Public constructor of a Brick object.
+     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen} which contains the game world.
+     * @param object The MapObject object which is going to be defined.
+     */
     public Brick(final PlayScreen screen, final MapObject object) {
         super(screen, object);
         this.tileSet = this.getMap().getTileSets().getTileSet(InteractiveObject.ASSET_NAME);
