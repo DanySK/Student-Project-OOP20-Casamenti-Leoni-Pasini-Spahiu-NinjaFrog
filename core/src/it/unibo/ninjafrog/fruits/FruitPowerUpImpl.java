@@ -2,6 +2,7 @@ package it.unibo.ninjafrog.fruits;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -19,7 +20,6 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private static final float FRUIT_RADIUS = 6 / GameConst.PPM;
     private static final float BOUNDS_WIDTH = 16 / GameConst.PPM;
     private static final float BOUNDS_HEIGHT = 12 / GameConst.PPM;
-    private static final String REGION = "NinjaAndEnemies";
     private PlayScreen screen;
     private World world;
     private Body body;
@@ -27,6 +27,10 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private boolean destroyed;
     private Vector2 velocity;
     private FruitType type;
+    private BodyDef fruitBody;
+    private FixtureDef fruitFixture;
+    private CircleShape fruitShape;
+    private TextureRegion region;
     /**
      * Public constructor of a FruitPowerUpImpl object.
      * @param screen PlayScreen of the game. 
@@ -40,10 +44,19 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
        this.type = type;
        toDestroy = false;
        destroyed = false;
+       region = new TextureRegion(screen.getAtlas().findRegion("NinjaAndEnemies"));
        velocity = new Vector2(0.8f,  -1.5f);
        setPosition(x, y);
        setBounds(getX(), getY(), BOUNDS_WIDTH, BOUNDS_HEIGHT);
+       fruitBody = new BodyDef();
+       fruitBody.position.set(getX(), getY());
        defineItem(this.type);
+       body = world.createBody(fruitBody);
+       fruitFixture = new FixtureDef();
+       fruitShape = new CircleShape();
+       fruitShape.setRadius(FRUIT_RADIUS);
+       maskBits(fruitFixture);
+       body.createFixture(fruitFixture).setUserData(type);
     }
     /**
      * Implements collide method that is part of Collidable interface.
@@ -58,12 +71,10 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
             break;
         case ORANGE:
             destroy();
-            defineOrange();
             //Hud.addScore(GameConst.ORANGE_SCORE);
             break;
         case CHERRY:
             destroy();
-            defineCherry();
             //ninja.addlife();
             //Hud.addScore(GameConst.CHERRY_SCORE);
             break;
@@ -103,56 +114,20 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private void defineItem(final FruitType type) {
         switch (type) {
         case MELON:
-            defineMelon();
+            setRegion(region, 486, 9, 19, 16);
+            fruitBody.type = BodyDef.BodyType.DynamicBody;
             break;
         case ORANGE:
-            defineOrange();
+            setRegion(region, 520, 9, 19, 16);
+            fruitBody.type = BodyDef.BodyType.DynamicBody;
             break;
         case CHERRY:
-            defineCherry();
+            setRegion(region, 455, 9, 19, 16);
+            fruitBody.type = BodyDef.BodyType.DynamicBody;
             break;
         default:
              break;
         }
-     }
-     private void defineCherry() {
-         setRegion(screen.getAtlas().findRegion("NinjaAndEnemies"), 455, 9, 19, 16);
-         BodyDef cherryBody = new BodyDef();
-         cherryBody.position.set(getX(), getY());
-         cherryBody.type = BodyDef.BodyType.DynamicBody;
-         body = world.createBody(cherryBody);
-         FixtureDef cherryFixture = new FixtureDef();
-         CircleShape cherryShape = new CircleShape();
-         cherryShape.setRadius(FRUIT_RADIUS);
-         cherryFixture.shape = cherryShape;
-         maskBits(cherryFixture);
-         body.createFixture(cherryFixture).setUserData(this);
-     }
-     private void defineOrange() {
-         setRegion(screen.getAtlas().findRegion(REGION), 520, 9, 19, 16);
-         BodyDef orangeBody = new BodyDef();
-         orangeBody.position.set(getX(), getY());
-         orangeBody.type = BodyDef.BodyType.StaticBody;
-         body = world.createBody(orangeBody);
-         FixtureDef orangeFixture = new FixtureDef();
-         CircleShape orangeShape = new CircleShape();
-         orangeShape.setRadius(FRUIT_RADIUS);
-         orangeFixture.shape = orangeShape;
-         maskBits(orangeFixture);
-         body.createFixture(orangeFixture).setUserData(this);
-     }
-     private void defineMelon() {
-         setRegion(screen.getAtlas().findRegion(REGION), 486, 9, 19, 16);
-         BodyDef melonBody = new BodyDef();
-         melonBody.position.set(getX(), getY());
-         melonBody.type = BodyDef.BodyType.DynamicBody;
-         body = world.createBody(melonBody);
-         FixtureDef melonFixture = new FixtureDef();
-         CircleShape melonShape = new CircleShape();
-         melonShape.setRadius(FRUIT_RADIUS);
-         melonFixture.shape = melonShape;
-         maskBits(melonFixture);
-         body.createFixture(melonFixture).setUserData(this);
      }
      private void maskBits(final FixtureDef fruitFixture) {
          fruitFixture.filter.categoryBits = GameConst.FRUIT;
