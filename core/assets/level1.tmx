@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="135">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="138">
  <tileset firstgid="1" source="Level1background.tsx"/>
  <tileset firstgid="859" source="NinjaFrogAsset.tsx"/>
  <layer id="1" name="background" width="240" height="13">
@@ -29,6 +29,8 @@
   <object id="127" x="3136" y="176" width="48" height="32"/>
   <object id="128" x="3232" y="176" width="208" height="32"/>
   <object id="129" x="3488" y="176" width="352" height="32"/>
+  <object id="135" x="1696" y="96" width="144" height="16"/>
+  <object id="137" x="2928" y="80" width="192" height="16"/>
  </objectgroup>
  <objectgroup id="4" name="fruitbox">
   <object id="52" x="944" y="112" width="16" height="16">
@@ -122,7 +124,6 @@
   <object id="34" x="1168" y="144" width="48" height="64"/>
   <object id="55" x="1536" y="112" width="48" height="96"/>
   <object id="56" x="1488" y="0" width="16" height="128"/>
-  <object id="67" x="1696" y="96" width="144" height="16"/>
   <object id="85" x="2160" y="112" width="48" height="16"/>
   <object id="86" x="2240" y="64" width="80" height="16"/>
   <object id="87" x="2352" y="112" width="48" height="16"/>
@@ -132,7 +133,6 @@
   <object id="104" x="2624" y="144" width="32" height="64"/>
   <object id="105" x="2832" y="144" width="32" height="64"/>
   <object id="106" x="2864" y="160" width="16" height="48"/>
-  <object id="113" x="2928" y="80" width="192" height="16"/>
   <object id="130" x="3184" y="144" width="48" height="64"/>
   <object id="131" x="3440" y="144" width="48" height="64"/>
  </objectgroup>

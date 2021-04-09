@@ -1,8 +1,10 @@
 package it.unibo.ninjafrog.world;
 
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 
 import it.unibo.ninjafrog.screens.PlayScreen;
+import it.unibo.ninjafrog.utilities.GameConst;
 
 /**
  * Brick class definition.
@@ -10,17 +12,38 @@ import it.unibo.ninjafrog.screens.PlayScreen;
  * which is destroyed after you hit it with your head.
  * Defines a {@link it.unibo.ninjafrog.world.Collidable#collide() collide()} method.
  */
-public class Brick extends InteractiveObject implements Collidable {
-
-    public Brick(PlayScreen screen, MapObject object) {
+public final class Brick extends InteractiveObject implements Collidable {
+    private static final int ANIMATION_TIME = 100;
+    private final TiledMapTileSet tileSet;
+    private int destroyedTile = InteractiveObject.CELL_NOT_SET;
+    /**
+     * Public constructor of a Brick object.
+     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen} which contains the game world.
+     * @param object The MapObject object which is going to be defined.
+     */
+    public Brick(final PlayScreen screen, final MapObject object) {
         super(screen, object);
-        // TODO Auto-generated constructor stub
+        this.tileSet = this.getMap().getTileSets().getTileSet(InteractiveObject.ASSET_NAME);
+        this.getFixture().setUserData(this);
+        this.setCategoryFilter(GameConst.BRICK);
     }
 
     @Override
     public void collide() {
-        // TODO Auto-generated method stub
-
+        this.setCategoryFilter(GameConst.DESTROYED);
+        if (this.destroyedTile == InteractiveObject.CELL_NOT_SET) {
+            this.destroyedTile = this.getCell().getTile().getId() + InteractiveObject.NEXT_TILE;
+        }
+        this.getCell().setTile(this.tileSet.getTile(this.destroyedTile));
+        new Thread(() -> {
+            try {
+                Thread.sleep(ANIMATION_TIME);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            this.getCell().setTile(null);
+        }).start();
+        this.getScreen().getHud().addScore(GameConst.BRICK_SCORE);
     }
 
 }

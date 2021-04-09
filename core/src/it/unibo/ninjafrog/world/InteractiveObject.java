@@ -48,7 +48,7 @@ public class InteractiveObject {
     private final PlayScreen screen;
     /**
      * Public constructor of a InteractiveObject.
-     * @param screen screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen} which contains the game world.
+     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen} which contains the game world.
      * @param object The MapObject object which is going to be defined.
      */
     public InteractiveObject(final PlayScreen screen, final MapObject object) {

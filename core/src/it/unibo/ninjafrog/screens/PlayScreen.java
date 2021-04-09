@@ -35,6 +35,10 @@ public interface PlayScreen {
      */
     void addLife();
     /**
+     * Remove a life from the player.
+     */
+    void removeLife();
+    /**
      * Set the WinScreen.
      */
     void setWinScreen();
