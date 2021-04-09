@@ -2,8 +2,7 @@ package it.unibo.ninjafrog.fruits;
 
 import it.unibo.ninjafrog.screens.PlayScreen;
 /**
- * Definition of FruitBuillder implementation.
- *
+ * Definition of {@link it.unibo.ninjafrog.fruits.FruitBuilder FruitBuilder} implementation.
  */
 public final class FruitBuilderImpl implements FruitBuilder {
     private PlayScreen screen;
