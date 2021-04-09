@@ -17,6 +17,11 @@ public final class FruitBox extends InteractiveObject implements Collidable {
     private final TiledMapTileSet tileSet;
     private boolean active;
     private int emptyTile = InteractiveObject.CELL_NOT_SET;
+    /**
+     * Public constructor of a FruitBox object.
+     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen} which contains the game world.
+     * @param object The MapObject object which is going to be defined.
+     */
     public FruitBox(final PlayScreen screen, final MapObject object) {
         super(screen, object);
         this.tileSet = this.getMap().getTileSets().getTileSet(InteractiveObject.ASSET_NAME);
