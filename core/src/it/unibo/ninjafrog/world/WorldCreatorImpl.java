@@ -6,15 +6,22 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
-
+/**
+ * Definition of a {@link it.unibo.ninjafrog.world.WorldCreator WorldCreator} implementation.
+ */
 public final class WorldCreatorImpl implements WorldCreator {
-
     private final PlayScreen screen;
     private final NonInteractiveBuilder builder;
+    /**
+     * Public constructor of the WorldCreatorImpl.
+     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen}
+     * where the world is going to be created.
+     */
     public WorldCreatorImpl(final PlayScreen screen) {
         this.screen = screen;
         this.builder = new NonInteractiveBuilderImpl(screen);
     }
+
     @Override
     public void createWorld() {
         final TiledMap map = this.screen.getMap();
