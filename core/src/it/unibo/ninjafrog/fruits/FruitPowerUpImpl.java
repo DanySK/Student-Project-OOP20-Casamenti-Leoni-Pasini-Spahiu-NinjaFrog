@@ -45,7 +45,6 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
        toDestroy = false;
        destroyed = false;
        region = new TextureRegion(screen.getAtlas().findRegion("NinjaAndEnemies"));
-       velocity = new Vector2(0.8f,  -1.5f);
        setPosition(x, y);
        setBounds(getX(), getY(), BOUNDS_WIDTH, BOUNDS_HEIGHT);
        fruitBody = new BodyDef();
@@ -66,7 +65,7 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
         switch (type) {
         case MELON:
             destroy();
-            //ninja.setdoublejump();
+            screen.setDoubleJumpAbility(true);
             //Hud.addScore(GameConst.MELON_SCORE)
             break;
         case ORANGE:
@@ -75,7 +74,7 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
             break;
         case CHERRY:
             destroy();
-            //ninja.addlife();
+            screen.addLife();
             //Hud.addScore(GameConst.CHERRY_SCORE);
             break;
         default:
@@ -114,14 +113,17 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private void defineItem(final FruitType type) {
         switch (type) {
         case MELON:
+            velocity = new Vector2(0.8f, -1.5f);
             setRegion(region, 486, 9, 19, 16);
             fruitBody.type = BodyDef.BodyType.DynamicBody;
             break;
         case ORANGE:
+            velocity = new Vector2(0, -1.5f);
             setRegion(region, 520, 9, 19, 16);
-            fruitBody.type = BodyDef.BodyType.DynamicBody;
+            fruitBody.type = BodyDef.BodyType.StaticBody;
             break;
         case CHERRY:
+            velocity = new Vector2(-0.8f, -1.5f);
             setRegion(region, 455, 9, 19, 16);
             fruitBody.type = BodyDef.BodyType.DynamicBody;
             break;
@@ -131,11 +133,11 @@ public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
      }
      private void maskBits(final FixtureDef fruitFixture) {
          fruitFixture.filter.categoryBits = GameConst.FRUIT;
-         fruitFixture.filter.maskBits = GameConst.NINJA_BIT
-                         | GameConst.GROUND_BIT
-                         | GameConst.GROUNDOBJECT_BIT
-                         | GameConst.BRICK_BIT
-                         | GameConst.COIN_BIT;
+         fruitFixture.filter.maskBits = GameConst.NINJA
+                 | GameConst.GROUND
+                 | GameConst.GROUND_OBJECT
+                 | GameConst.BRICK
+                 | GameConst.FRUITBOX;
      }
      private void destroy() {
         toDestroy = true;
