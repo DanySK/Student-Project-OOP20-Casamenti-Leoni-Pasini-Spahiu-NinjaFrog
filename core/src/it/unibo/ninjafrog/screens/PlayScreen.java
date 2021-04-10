@@ -1,5 +1,6 @@
 package it.unibo.ninjafrog.screens;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
@@ -9,7 +10,7 @@ import it.unibo.ninjafrog.utilities.Pair;
 /**
  * Definition of the PlayScreen interface.
  */
-public interface PlayScreen {
+public interface PlayScreen extends Screen {
     /**
      * Method to be called when a new Melon object has to be created.
      * @param position A {@link it.unibo.ninjafrog.utilities.Pair Pair} containing X and Y values where the new object will be created.
