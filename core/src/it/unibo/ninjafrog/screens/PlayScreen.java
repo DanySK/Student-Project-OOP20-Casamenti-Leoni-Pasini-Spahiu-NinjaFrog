@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import it.unibo.ninjafrog.hud.Hud;
 import it.unibo.ninjafrog.utilities.Pair;
 /**
- * Definition of the PlayScreen interface.
+ * Definition of the PlayScreen interface, which extends {@link com.badlogic.gdx.Screen Screen}.
  */
 public interface PlayScreen extends Screen {
     /**
