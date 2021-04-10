@@ -11,6 +11,7 @@ import it.unibo.ninjafrog.utilities.Pair;
  * Implementation of the {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen}.
  */
 public final class PlayScreenImpl implements PlayScreen {
+    private final TextureAtlas atlas;
     private final NinjaFrogGame game;
     /**
      * Public constructor of the PlayScreenImpl.
@@ -19,6 +20,7 @@ public final class PlayScreenImpl implements PlayScreen {
      */
     public PlayScreenImpl(final NinjaFrogGame game, final Level level) {
         this.game = game;
+        this.atlas = new TextureAtlas("ninjaAndEnemies.pack");
     }
 
     @Override
@@ -137,8 +139,7 @@ public final class PlayScreenImpl implements PlayScreen {
 
     @Override
     public TextureAtlas getAtlas() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.atlas;
     }
 
     @Override
