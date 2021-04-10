@@ -58,17 +58,17 @@ public interface PlayScreen extends Screen {
     float getNinjaXPosition();
     /**
      * Getter of the TiledMap.
-     * @return The TiledMap used by the PlayScreen.
+     * @return The {@link com.badlogic.gdx.maps.tiled.TiledMap TiledMap} used by the PlayScreen.
      */
     TiledMap getMap();
     /**
      * Getter of the World.
-     * @return The World used by the PlayScreen.
+     * @return The {@link com.badlogic.gdx.physics.box2d.World World} used by the PlayScreen.
      */
     World getWorld();
     /**
      * Getter of the TextureAtlas.
-     * @return The TextureAtlas used by the PlayScreen.
+     * @return The {@link com.badlogic.gdx.graphics.g2d.TextureAtlas TextureAtlas} used by the PlayScreen.
      */
     TextureAtlas getAtlas();
     /**
