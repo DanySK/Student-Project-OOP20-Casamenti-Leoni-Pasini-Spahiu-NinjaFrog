@@ -15,7 +15,7 @@ import it.unibo.ninjafrog.utilities.GameConst;
 /**
  * Definition of a {@link it.unibo.ninjafrog.fruits.FruitPowerUp FruitPowerUp} implementation.
  */
-public class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
+public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private static final float FRUIT_RADIUS = 6 / GameConst.PPM;
     private static final float BOUNDS_WIDTH = 16 / GameConst.PPM;
     private static final float BOUNDS_HEIGHT = 12 / GameConst.PPM;
