@@ -90,21 +90,16 @@ public class HudImpl implements Hud {
     public Stage getStage() {
         return this.stage;
     }
-
-    @Override
-    public void resetTimer() {
-        if (this.canInit) {
-            this.countdownLabel.setText(String.format("%02d", this.bonusTimer));
-            this.canInit = false;
-        }
-    }
-
     @Override
     public boolean isTimerOn() {
         return this.timerOn;
     }
     @Override
     public void update(final float dt) {
+        if (this.canInit) {
+            this.countdownLabel.setText(String.format("%02d", this.bonusTimer));
+            this.canInit = false;
+        }
         this.timeCount += dt;
         this.bonusTimer--;
         if (this.timeCount >= 1) {
