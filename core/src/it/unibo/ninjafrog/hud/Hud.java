@@ -29,11 +29,6 @@ public interface Hud {
     Stage getStage();
 
     /**
-     * reset the doublejump's timer.
-     */
-    void resetTimer();
-
-    /**
      * @return true if the timer is over
      */
     boolean isTimerOn();
