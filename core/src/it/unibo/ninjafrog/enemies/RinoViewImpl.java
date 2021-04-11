@@ -1,5 +1,5 @@
 package it.unibo.ninjafrog.enemies;
 
-public interface EnemyModel {
+public class RinoView {
 
 }
