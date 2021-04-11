@@ -6,6 +6,8 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
+import it.unibo.ninjafrog.enemies.EnemyController;
+import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
 /**
  * Definition of the WorldCollisionListener class,
@@ -13,7 +15,17 @@ import it.unibo.ninjafrog.utilities.GameConst;
  * Implementation of the {@link com.badlogic.gdx.physics.box2d.ContactListener ContactListener} interface.
  */
 public final class WorldCollisionListener implements ContactListener {
-
+    private final EnemyController enemies;
+    private final PlayScreen screen;
+    /**
+     * Public constructor of the {@link it.unibo.ninjafrog.world.WorldCollisionListener listener}.
+     * @param enemies The {@link it.unibo.ninjafrog.enemies.EnemyController enemies controller}.
+     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen} where the world is defined.
+     */
+    public WorldCollisionListener(final EnemyController enemies, final PlayScreen screen) {
+        this.enemies = enemies;
+        this.screen = screen;
+    }
     @Override
     public void beginContact(final Contact contact) {
         final Fixture fixtureA = contact.getFixtureA();
