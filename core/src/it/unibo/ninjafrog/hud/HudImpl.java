@@ -20,22 +20,26 @@ public class HudImpl implements Hud {
     private Viewport viewport;
 
     private Integer score;
-    private Integer life;
+    private Integer life = 1;
     private Integer bonusTimer;
     private float timeCount;
+    private boolean canInit;
+    private boolean timerOn;
 
-    private Label countdownLabel;
-    private Label pointLabel;
-    private Label bonusLabel;
-    private Label levelLabel;
-    private Label lifeLabel;
-    private Label scoreLabel;
+    private final Label countdownLabel;
+    private final Label pointLabel;
+    private final Label bonusLabel;
+    private final Label lifeCounterLabel;
+    private final Label lifeLabel;
+    private final Label scoreLabel;
 
 
     public HudImpl(final SpriteBatch sb) {
 
         this.timeCount = 0;
         this.score = 0;
+        this.canInit = true;
+        this.timerOn = false;
         this.bonusTimer = GameConst.BONUSTIMER;
         this.viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         this.stage = new Stage(this.viewport, sb);
@@ -45,7 +49,7 @@ public class HudImpl implements Hud {
         table.setFillParent(true);
         this.countdownLabel = new Label(String.format("%02d", 00), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.pointLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.levelLabel = new Label(String.format("%02d", getLife()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        this.lifeCounterLabel = new Label(String.format("%02d", life), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.bonusLabel = new Label("BONUS", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.scoreLabel = new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.lifeLabel = new Label("LIFE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -55,7 +59,7 @@ public class HudImpl implements Hud {
         table.add(this.bonusLabel).expandX().padTop(10);
         table.row();
         table.add(this.pointLabel).expandX();
-        table.add(this.levelLabel).expandX();
+        table.add(this.lifeCounterLabel).expandX();
         table.add(this.countdownLabel).expandX();
 
         stage.addActor(table);
@@ -66,49 +70,51 @@ public class HudImpl implements Hud {
         score += value;
         scoreLabel.setText(String.format("%06d", score));
     }
-
+    @Override
+    public Integer getScore() {
+        return this.score;
+    }
     @Override
     public void addLife() {
-
+        life += 1;
+        lifeCounterLabel.setText(String.format("%02d", life));
     }
 
     @Override
     public void removeLife() {
-
+        life -= 1;
+        lifeCounterLabel.setText(String.format("%02d", life));
     }
 
     @Override
     public Stage getStage() {
         return this.stage;
     }
-
     @Override
-    public void resetTimer() {
-        if(this.isTimerOver()) {
+    public boolean isTimerOn() {
+        return this.timerOn;
+    }
+    @Override
+    public void update(final float dt) {
+        if (this.canInit) {
             this.countdownLabel.setText(String.format("%02d", this.bonusTimer));
+            this.canInit = false;
         }
+        this.timeCount += dt;
+        this.bonusTimer--;
+        if (this.timeCount >= 1) {
+            this.bonusTimer--;
+            this.countdownLabel.setText(String.format("%02d", this.bonusTimer));
+            this.timeCount = 0;
+            if (this.bonusTimer == 0) {
+                this.bonusTimer = GameConst.BONUSTIMER;
+                this.canInit = true;
+                this.timerOn = false;
+                return;
+            }
+        }
+        this.timerOn = true;
     }
 
-    @Override
-    public Integer getLife() {
-        return null;
-    }
-
-    @Override
-    public boolean isTimerOver() {
-        return false;
-    }
-
-    @Override
-    public void dispose() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean update(float dt) {
-        // TODO Auto-generated method stub
-        return false;
-    }
 
 }

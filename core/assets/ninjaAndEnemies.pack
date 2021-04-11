@@ -1,0 +1,12 @@
+
+ninjaAndEnemies.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ninjaAndEnemies
+  rotate: false
+  xy: 1, 1
+  size: 640, 124
+  orig: 640, 124
+  offset: 0, 0
+  index: -1
