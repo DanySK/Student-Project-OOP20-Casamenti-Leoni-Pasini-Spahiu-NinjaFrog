@@ -19,14 +19,6 @@ public interface FrogModel {
      */
     void defineFrog();
     /**
-     * define the double jump frog.
-     */
-    void defineDoubleJumpFrog();
-    /**
-     * set frog's head.
-     */
-    void setFrogHead();
-    /**
      * @return frog's state.
      */
     FrogState getState();
