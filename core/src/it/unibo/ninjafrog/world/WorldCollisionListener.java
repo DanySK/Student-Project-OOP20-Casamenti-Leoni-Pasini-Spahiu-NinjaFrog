@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import it.unibo.ninjafrog.enemies.EnemyController;
 import it.unibo.ninjafrog.enemies.RinoModel;
+import it.unibo.ninjafrog.enemies.TurtleModel;
 import it.unibo.ninjafrog.fruits.FruitPowerUp;
 import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
@@ -46,9 +47,48 @@ public final class WorldCollisionListener implements ContactListener {
                 break;
             case GameConst.NINJA | GameConst.RINO_HEAD:
             case GameConst.NINJA | GameConst.TURTLE_HEAD:
+                if (bitOf(fixtureA) == GameConst.NINJA) {
+                    if (bitOf(fixtureB) == GameConst.RINO_HEAD) {
+                        enemies.collide((RinoModel) fixtureB.getUserData());
+                    } else {
+                        enemies.collide((TurtleModel) fixtureB.getUserData());
+                    }
+                } else {
+                    if (bitOf(fixtureA) == GameConst.RINO_HEAD) {
+                        enemies.collide((RinoModel) fixtureA.getUserData());
+                    } else {
+                        enemies.collide((TurtleModel) fixtureA.getUserData());
+                    }
+                }
                 break;
             case GameConst.NINJA | GameConst.RINO:
             case GameConst.NINJA | GameConst.TURTLE:
+                if (bitOf(fixtureA) == GameConst.RINO
+                || bitOf(fixtureA) == GameConst.TURTLE) {
+                    if (bitOf(fixtureA) == GameConst.RINO) {
+                        if (!enemies.isSetToDestroy((RinoModel) fixtureA.getUserData())) {
+                            this.screen.removeLife();
+                            enemies.collide((RinoModel) fixtureA.getUserData());
+                        }
+                    } else {
+                        if (!enemies.isSetToDestroy((TurtleModel) fixtureA.getUserData())) {
+                            this.screen.removeLife();
+                            enemies.collide((TurtleModel) fixtureA.getUserData());
+                        }
+                    }
+                } else {
+                    if (bitOf(fixtureB) == GameConst.RINO) {
+                        if (!enemies.isSetToDestroy((RinoModel) fixtureB.getUserData())) {
+                            this.screen.removeLife();
+                            enemies.collide((RinoModel) fixtureB.getUserData());
+                        }
+                    } else {
+                        if (!enemies.isSetToDestroy((TurtleModel) fixtureB.getUserData())) {
+                            this.screen.removeLife();
+                            enemies.collide((TurtleModel) fixtureB.getUserData());
+                        }
+                    }
+                }
                 break;
             case GameConst.RINO | GameConst.TURTLE:
             case GameConst.RINO | GameConst.GROUND_OBJECT:
@@ -88,14 +128,17 @@ public final class WorldCollisionListener implements ContactListener {
 
     @Override
     public void endContact(final Contact contact) {
+        //unused
     }
 
     @Override
     public void preSolve(final Contact contact, final Manifold oldManifold) {
+        //unused
     }
 
     @Override
     public void postSolve(final Contact contact, final ContactImpulse impulse) {
+        //unused
     }
 
 }
