@@ -121,8 +121,4 @@ public class FrogModelImpl implements FrogModel {
     public void update(final float dt) {
     }
 
-    @Override
-    public void hit(final EnemyModel enemy) {
-    }
-
 }

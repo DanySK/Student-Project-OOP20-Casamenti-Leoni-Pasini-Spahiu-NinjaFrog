@@ -61,10 +61,6 @@ public interface FrogModel {
      */
     boolean isRunningRight();
     /**
-     * @param enemy the enemy;
-     */
-    void hit(EnemyModel enemy);
-    /**
      * add one life to the frog.
      */
     void addLife();
