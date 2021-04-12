@@ -2,6 +2,7 @@ package it.unibo.ninjafrog.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -17,10 +18,14 @@ import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.utilities.GameConst;
 /**
  * Definition of a MainMenu, which is an implementation of Screen.
- *
+ * MainMenu is the general menu and the first one that you launch when the game started.
  */
-public final class MainMenu implements Menu {
-    private NinjaFrogGame game;
+public final class MainMenu implements Screen {
+    private static final int SELECTOR_WIDTH = 150;
+    private static final int SELECTOR_HEIGHT_FIRST = 115;
+    private static final int SELECTOR_HEIGHT_SECOND = 95;
+    private static final int SELECTOR_HEIGHT_THIRD = 70; 
+    private final NinjaFrogGame game;
     private final Stage stage;
     private final Viewport viewport;
     private final Label playLabel;
@@ -29,10 +34,9 @@ public final class MainMenu implements Menu {
     private int currentLabel;
     private final Texture background;
     private final Texture selector;
-    private Label.LabelStyle font;
    /**
-    * 
-    * @param game
+    * Public constructor of MainMenu object.
+    * @param game NinjaFrogGame
     */
     public MainMenu(final NinjaFrogGame game) {
         this.game = game;
@@ -42,7 +46,7 @@ public final class MainMenu implements Menu {
         Gdx.input.setInputProcessor(stage);
         background = new Texture("Menu1background.png");
         selector = new Texture("Selector.png");
-        font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+        final Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         currentLabel = 1;
         playLabel = new Label("Play", font);
         settingsLabel = new Label("Setting", font);
@@ -58,11 +62,7 @@ public final class MainMenu implements Menu {
         table.add(quitLabel);
         stage.addActor(table);
     }
-    @Override
-    public void show() {
-        // TODO Auto-generated method stub
 
-    }
     @Override
     public void render(final float delta) {
         handleInput();
@@ -75,19 +75,19 @@ public final class MainMenu implements Menu {
             playLabel.setColor(Color.RED);
             settingsLabel.setColor(Color.WHITE);
             quitLabel.setColor(Color.WHITE);
-            game.getBatch().draw(selector, playLabel.getHeight() + 130, playLabel.getHeight() + 130);
+            game.getBatch().draw(selector, SELECTOR_WIDTH, SELECTOR_HEIGHT_FIRST);
             break;
         case 2:
             playLabel.setColor(Color.WHITE);
             settingsLabel.setColor(Color.RED);
             quitLabel.setColor(Color.WHITE);
-            game.getBatch().draw(selector, playLabel.getHeight() + 130, playLabel.getHeight() + 67);
+            game.getBatch().draw(selector, SELECTOR_WIDTH, SELECTOR_HEIGHT_SECOND);
             break;
         case 3:
             playLabel.setColor(Color.WHITE);
             settingsLabel.setColor(Color.WHITE);
             quitLabel.setColor(Color.RED);
-            game.getBatch().draw(selector, playLabel.getHeight() + 130, playLabel.getHeight() + 48);
+            game.getBatch().draw(selector, SELECTOR_WIDTH, SELECTOR_HEIGHT_THIRD);
             break;
          default:
              break;
@@ -100,28 +100,29 @@ public final class MainMenu implements Menu {
     public void resize(final int width, final int height) {
         this.viewport.update(width, height);
     }
+
+    @Override
+    public void show() {
+    }
+
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-
     }
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
 
     }
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-
     }
+
     @Override
     public void dispose() {
         game.getBatch().dispose();
         stage.dispose();
     }
-    @Override
-    public void handleInput() {
+
+    private void handleInput() {
         if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
             switch (currentLabel) {
             case 1:
@@ -156,14 +157,14 @@ public final class MainMenu implements Menu {
             setMenu();
         }
     }
-    @Override
-    public void setMenu() {
+
+    private void setMenu() {
        switch (currentLabel) {
        case 1:
-          //this.game.setScreen(new MapsMenu(this.game));
+          this.game.setScreen(new LevelsMenu(this.game));
           break;
        case 2:
-           //this.game.setScreen(new SettingsMenu(this.game));
+           this.game.setScreen(new SettingsMenu(this.game));
            break;
        case 3:
            Gdx.app.exit();
