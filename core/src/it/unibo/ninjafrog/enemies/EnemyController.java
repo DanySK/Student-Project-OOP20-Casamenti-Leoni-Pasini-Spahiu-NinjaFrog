@@ -1,20 +1,38 @@
 package it.unibo.ninjafrog.enemies;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.Body;
 
 public interface EnemyController {
-
-    void update(float dt);
     
-    void draw(SpriteBatch batch);
+    void update (float dt);
+    
+    void draw (SpriteBatch batch);
     
     void collide(RinoModel rino);
     
     boolean isSetToDestroy(RinoModel rino);
     
-    void reverseVelocity(RinoModel enemy);
+    void reverseVelocity(RinoModel rino);
     
-    void collide(TurtleModel turtle);
+    float getX(RinoModel rinoModel);
     
-    boolean isSetToDestroy(TurtleModel turtle);
+    float getY (RinoModel rinoModel);
+    
+    boolean isDestroyed(RinoView rinoView);
+    
+    float getStateTime(RinoView rinoView);
+    
+    void setDeathRegion (RinoModel rinoModel, Body b2body,float dt);
+    
+    void upadeView (RinoModel rinoModel, Body b2body, float dt);
+    
+    boolean isRunningLeft(RinoView rinoView);
+    
+    void setRunningLeft(RinoView rinoView, boolean b);
+    
+    void collide (TurtleModel turtleModel);
+    
+    boolean isSetToDestroy (TurtleModel turtleModel);
+    
 }
