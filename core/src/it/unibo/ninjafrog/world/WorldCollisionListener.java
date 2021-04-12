@@ -33,13 +33,17 @@ public final class WorldCollisionListener implements ContactListener {
         final int collisionBit = bitOf(fixtureA) | bitOf(fixtureB);
         switch (collisionBit) {
             case GameConst.NINJA_HEAD | GameConst.BRICK:
-                break;
             case GameConst.NINJA_HEAD | GameConst.FRUITBOX:
+            case GameConst.NINJA | GameConst.FRUIT:
+                if (bitOf(fixtureA) == GameConst.NINJA_HEAD
+                || bitOf(fixtureA) == GameConst.NINJA) {
+                    ((Collidable) fixtureB.getUserData()).collide();
+                } else {
+                    ((Collidable) fixtureA.getUserData()).collide();
+                }
                 break;
             case GameConst.NINJA | GameConst.RINO_HEAD:
             case GameConst.NINJA | GameConst.TURTLE_HEAD:
-                break;
-            case GameConst.NINJA | GameConst.FRUIT:
                 break;
             case GameConst.NINJA | GameConst.RINO:
             case GameConst.NINJA | GameConst.TURTLE:
