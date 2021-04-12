@@ -1,7 +1,9 @@
 package it.unibo.ninjafrog.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,7 +19,7 @@ import it.unibo.ninjafrog.utilities.GameConst;
  * Definition of a MainMenu, which is an implementation of Screen.
  *
  */
-public class MainMenu implements Menu {
+public final class MainMenu implements Menu {
     private NinjaFrogGame game;
     private final Stage stage;
     private final Viewport viewport;
@@ -56,50 +58,119 @@ public class MainMenu implements Menu {
         table.add(quitLabel);
         stage.addActor(table);
     }
-@Override
-public void show() {
-    // TODO Auto-generated method stub
-    
-}
-@Override
-public void render(float delta) {
-    // TODO Auto-generated method stub
-    
-}
-@Override
-public void resize(int width, int height) {
-    // TODO Auto-generated method stub
-    
-}
-@Override
-public void pause() {
-    // TODO Auto-generated method stub
-    
-}
-@Override
-public void resume() {
-    // TODO Auto-generated method stub
-    
-}
-@Override
-public void hide() {
-    // TODO Auto-generated method stub
-    
-}
-@Override
-public void dispose() {
-    // TODO Auto-generated method stub
-    
-}
-@Override
-public void handleInput() {
-    // TODO Auto-generated method stub
-    
-}
-@Override
-public void setMenu() {
-    // TODO Auto-generated method stub
-    
-}
-  
+    @Override
+    public void show() {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void render(final float delta) {
+        handleInput();
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        game.getBatch().begin();
+        game.getBatch().draw(background, 0, 0, GameConst.WIDTH, GameConst.HEIGHT);
+        switch (currentLabel) {
+        case 1:
+            playLabel.setColor(Color.RED);
+            settingsLabel.setColor(Color.WHITE);
+            quitLabel.setColor(Color.WHITE);
+            game.getBatch().draw(selector, playLabel.getHeight() + 130, playLabel.getHeight() + 130);
+            break;
+        case 2:
+            playLabel.setColor(Color.WHITE);
+            settingsLabel.setColor(Color.RED);
+            quitLabel.setColor(Color.WHITE);
+            game.getBatch().draw(selector, playLabel.getHeight() + 130, playLabel.getHeight() + 67);
+            break;
+        case 3:
+            playLabel.setColor(Color.WHITE);
+            settingsLabel.setColor(Color.WHITE);
+            quitLabel.setColor(Color.RED);
+            game.getBatch().draw(selector, playLabel.getHeight() + 130, playLabel.getHeight() + 48);
+            break;
+         default:
+             break;
+        }
+        game.getBatch().end();
+        stage.act();
+        stage.draw();
+    }
+    @Override
+    public void resize(final int width, final int height) {
+        this.viewport.update(width, height);
+    }
+    @Override
+    public void pause() {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void resume() {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void hide() {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void dispose() {
+        game.getBatch().dispose();
+        stage.dispose();
+    }
+    @Override
+    public void handleInput() {
+        if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+            switch (currentLabel) {
+            case 1:
+                currentLabel = 2;
+                break;
+            case 2:
+                currentLabel = 3;
+                break;
+            case 3:
+                currentLabel = 1;
+                break;
+            default:
+                break;
+            }
+        }
+        if (Gdx.input.isKeyJustPressed(Keys.UP)) {
+            switch (currentLabel) {
+            case 1:
+                currentLabel = 3;
+                break;
+            case 2:
+                currentLabel = 1;
+                break;
+            case 3:
+                currentLabel = 2;
+                break;
+            default:
+                break;
+            }
+        }
+        if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+            setMenu();
+        }
+    }
+    @Override
+    public void setMenu() {
+       switch (currentLabel) {
+       case 1:
+          //this.game.setScreen(new MapsMenu(this.game));
+          break;
+       case 2:
+           //this.game.setScreen(new SettingsMenu(this.game));
+           break;
+       case 3:
+           Gdx.app.exit();
+           break;
+       default:
+           break;
+       }
+
+    }
 }
