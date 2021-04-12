@@ -3,6 +3,8 @@ package it.unibo.ninjafrog.frog;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import it.unibo.ninjafrog.enemies.EnemyModel;
+
 public interface FrogModel {
 
     /**
@@ -14,6 +16,18 @@ public interface FrogModel {
      */
     Vector2 getPos();
     /**
+     * define the frog.
+     */
+    void defineFrog();
+    /**
+     * define the double jump frog.
+     */
+    void defineDoubleJumpFrog();
+    /**
+     * set frog's head.
+     */
+    void setFrogHead();
+    /**
      * @return frog's state.
      */
     FrogState getState();
@@ -22,22 +36,30 @@ public interface FrogModel {
      */
     void setState();
     /**
+     * the frog jump.
+     */
+    void jump();
+    /**
+     * @param direction the direction;
+     */
+    void move(float direction);
+    /**
+     * the frog double jump.
+     */
+    void doubleJump();
+    /**
      * @return true if the doublejump is active.
      */
     boolean isDoubleJumpActive();
     /**
      *  set the double jump.
-     *  @param b 
+     *  @param isDoubleJump set the double jump.
      */
-    void setDoubleJump(boolean b);
+    void setDoubleJump(boolean isDoubleJump);
     /**
      * @return true if the frog is moving to the right.
      */
     boolean isRunningRight();
-    /**
-     * @return the frog's lives.
-     */
-    Integer getLife();
     /**
      * add one life to the frog.
      */
@@ -50,7 +72,13 @@ public interface FrogModel {
      * @return true if the game is paused.
      */
     boolean isPaused();
-    
+    /**
+     * update the model
+     * .
+     * @param dt delta of time.
+     */
+    void update(float dt);
+
 
 
 }

@@ -1,5 +1,6 @@
 package it.unibo.ninjafrog.screens;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
@@ -7,9 +8,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import it.unibo.ninjafrog.hud.Hud;
 import it.unibo.ninjafrog.utilities.Pair;
 /**
- * Definition of the PlayScreen interface.
+ * Definition of the PlayScreen interface, which extends {@link com.badlogic.gdx.Screen Screen}.
  */
-public interface PlayScreen {
+public interface PlayScreen extends Screen {
     /**
      * Method to be called when a new Melon object has to be created.
      * @param position A {@link it.unibo.ninjafrog.utilities.Pair Pair} containing X and Y values where the new object will be created.
@@ -57,17 +58,17 @@ public interface PlayScreen {
     float getNinjaXPosition();
     /**
      * Getter of the TiledMap.
-     * @return The TiledMap used by the PlayScreen.
+     * @return The {@link com.badlogic.gdx.maps.tiled.TiledMap TiledMap} used by the PlayScreen.
      */
     TiledMap getMap();
     /**
      * Getter of the World.
-     * @return The World used by the PlayScreen.
+     * @return The {@link com.badlogic.gdx.physics.box2d.World World} used by the PlayScreen.
      */
     World getWorld();
     /**
      * Getter of the TextureAtlas.
-     * @return The TextureAtlas used by the PlayScreen.
+     * @return The {@link com.badlogic.gdx.graphics.g2d.TextureAtlas TextureAtlas} used by the PlayScreen.
      */
     TextureAtlas getAtlas();
     /**
