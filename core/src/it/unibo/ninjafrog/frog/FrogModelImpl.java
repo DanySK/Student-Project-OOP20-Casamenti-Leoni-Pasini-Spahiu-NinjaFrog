@@ -1,11 +1,10 @@
 package it.unibo.ninjafrog.frog;
 
 import com.badlogic.gdx.math.Vector2;
+
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
-import it.unibo.ninjafrog.enemies.EnemyModel;
-import it.unibo.ninjafrog.hud.HudImpl;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class FrogModelImpl implements FrogModel {
@@ -13,6 +12,7 @@ public class FrogModelImpl implements FrogModel {
     private Integer life = 1;
     private boolean isDoubleJump;
     private boolean runningRight;
+    private boolean paused;
     private PlayScreen screen;
 
     private final FrogState currentState;
@@ -27,8 +27,7 @@ public class FrogModelImpl implements FrogModel {
         this.currentState = FrogState.STANDING;
         this.isDoubleJump = false;
         this.runningRight = true;
-        
-        
+        this.paused = false;
 
     }
     @Override
@@ -58,7 +57,6 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public void setState() {
-   
     }
 
     @Override
@@ -102,7 +100,7 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public boolean isPaused() {
-        return this.isPaused();
+        return this.paused;
     }
 
     @Override

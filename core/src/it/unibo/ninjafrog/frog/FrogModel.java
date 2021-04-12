@@ -1,9 +1,8 @@
 package it.unibo.ninjafrog.frog;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 
-import it.unibo.ninjafrog.enemies.EnemyModel;
+import com.badlogic.gdx.physics.box2d.Body;
 
 public interface FrogModel {
 
