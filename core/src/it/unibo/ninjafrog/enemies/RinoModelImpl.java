@@ -99,5 +99,33 @@ public class RinoModelImpl implements RinoModel{
         return setToDestroy;
     }
 
+    @Override
+    public void collide() {
+        this.screen.getHud().addScore(GameConst.RINO_SCORE);
+        setToDestroy = true;
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return this.destroyed;
+    }
+
+    @Override
+    public float getStateTime() {
+        // TODO Auto-generated method stub
+        return this.stateTime;
+    }
+
+    @Override
+    public boolean isRunningLeft() {
+        // TODO Auto-generated method stub
+        return this.isRunningLeft();
+    }
+
+    @Override
+    public void setRunningLeft(boolean b) {
+            this.runningLeft = b;
+    }
+
 
 }
