@@ -23,16 +23,16 @@ public interface EnemyController {
     
     float getStateTime(RinoView rinoView);
     
-    void setDeathRegion (RinoModel rinoModel, Body b2body,float dt);
+    void setDeathRegion (RinoModel rinoModel);
     
     void upadeView (RinoModel rinoModel, Body b2body, float dt);
-    
-    boolean isRunningLeft(RinoView rinoView);
-    
-    void setRunningLeft(RinoView rinoView, boolean b);
     
     void collide (TurtleModel turtleModel);
     
     boolean isSetToDestroy (TurtleModel turtleModel);
+    
+    boolean isRunningLeft(RinoView rinoView);
+    
+    void setRunningLeft(RinoView rinoView, boolean b);
     
 }
