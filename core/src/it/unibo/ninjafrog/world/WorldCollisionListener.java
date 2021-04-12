@@ -7,6 +7,8 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import it.unibo.ninjafrog.enemies.EnemyController;
+import it.unibo.ninjafrog.enemies.RinoModel;
+import it.unibo.ninjafrog.fruits.FruitPowerUp;
 import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
 /**
@@ -49,16 +51,30 @@ public final class WorldCollisionListener implements ContactListener {
             case GameConst.NINJA | GameConst.TURTLE:
                 break;
             case GameConst.RINO | GameConst.TURTLE:
-                break;
             case GameConst.RINO | GameConst.GROUND_OBJECT:
+                if (bitOf(fixtureA) == GameConst.RINO) {
+                    enemies.reverseVelocity((RinoModel) fixtureA.getUserData());
+                } else {
+                    enemies.reverseVelocity((RinoModel) fixtureB.getUserData());
+                }
                 break;
             case GameConst.RINO | GameConst.RINO:
+                enemies.reverseVelocity((RinoModel) fixtureA.getUserData());
+                enemies.reverseVelocity((RinoModel) fixtureB.getUserData());
                 break;
             case GameConst.FRUIT | GameConst.GROUND_OBJECT:
+                if (bitOf(fixtureA) == GameConst.FRUIT) {
+                    ((FruitPowerUp) fixtureA.getUserData()).reverseVelocity();
+                } else {
+                    ((FruitPowerUp) fixtureB.getUserData()).reverseVelocity();
+                }
                 break;
             case GameConst.FRUIT | GameConst.FRUIT:
+                ((FruitPowerUp) fixtureA.getUserData()).reverseVelocity();
+                ((FruitPowerUp) fixtureB.getUserData()).reverseVelocity();
                 break;
             case GameConst.NINJA | GameConst.FINISH:
+                this.screen.setWinScreen();
                 break;
             default:
                 //unused
