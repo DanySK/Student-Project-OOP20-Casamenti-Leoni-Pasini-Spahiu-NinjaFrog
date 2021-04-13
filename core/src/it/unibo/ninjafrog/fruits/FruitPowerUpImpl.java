@@ -62,20 +62,18 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
 
     @Override
     public void collide() {
+        screen.addScore(this);
         switch (type) {
         case MELON:
             destroy();
             screen.setDoubleJumpAbility(true);
-            screen.addScore(this);
             break;
         case ORANGE:
             destroy();
-            screen.addScore(this);
             break;
         case CHERRY:
             destroy();
             screen.addLife();
-            screen.addScore(this);
             break;
         default:
              break;
