@@ -3,59 +3,93 @@ package it.unibo.ninjafrog.enemies;
 import java.util.HashMap;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
+
+import it.unibo.ninjafrog.screens.PlayScreen;
+import it.unibo.ninjafrog.utilities.GameConst;
 
 public class EnemyControllerImpl implements EnemyController {
     
     private HashMap<RinoModel, RinoView > rinos; 
+    
+    private PlayScreen screen;
     
     private boolean runningLeft;
 
     private boolean isDestroyed;
     
     private float stateTime;
+    
 
+    public EnemyControllerImpl(PlayScreen screen ) {
+        this.screen = screen;
+        this.spawnEnemies();
+    }
+    private void spawnEnemies() {
+        TiledMap map = this.screen.getMap();
+        rinos = new HashMap<RinoModel, RinoView>();
+        for(MapObject object : map.getLayers().get(GameConst.RINO_LAYER).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject)object).getRectangle();
+            rinos.put(new RinoModelImpl(screen,this),
+                      new RinoViewImpl(screen ,rect.getX()/GameConst.PPM, rect.getY()/GameConst.PPM,this));
+        }
+        rinos.keySet().forEach(r-> r.defineEnemy());
+        }
     @Override
     public void update(float dt) {
-        // TODO Auto-generated method stub
+       rinos.forEach((r,v)->r.update(dt)); 
         
     }
 
     @Override
     public void draw(SpriteBatch batch) {
-        // TODO Auto-generated method stub
-        
+        rinos.forEach((r,v)->v.draw(batch));
     }
 
     @Override
     public void collide(RinoModel rino) {
-        // TODO Auto-generated method stub
-        
+        if(!this.rinos.keySet().contains(rino)) {
+            throw new IllegalArgumentException();
+        }
+        rino.collide();
     }
 
     @Override
     public boolean isSetToDestroy(RinoModel rino) {
-        // TODO Auto-generated method stub
-        return false;
+        if(!this.rinos.keySet().contains(rino)) {
+            throw new IllegalArgumentException();
+        }
+
+        return rino.isSetToDestroy();
 
     }
 
     @Override
     public void reverseVelocity(RinoModel rino) {
-        // TODO Auto-generated method stub
-        
+        if(!this.rinos.keySet().contains(rino)) {
+            throw new IllegalArgumentException();
+        }
+        rino.reverseVelocity(true, false);
     }
 
     @Override
     public float getX(RinoModel rinoModel) {
-        // TODO Auto-generated method stub
-        return 0;
+        if(!this.rinos.keySet().contains(rinoModel)) {
+            throw new IllegalArgumentException();
+        }
+        return this.rinos.get(rinoModel).getX();
     }
 
     @Override
     public float getY(RinoModel rinoModel) {
-        // TODO Auto-generated method stub
-        return 0;
+        if(!this.rinos.keySet().contains(rinoModel)) {
+            throw new IllegalArgumentException();
+        }
+        return this.rinos.get(rinoModel).getY();
     }
 
     @Override
@@ -86,14 +120,21 @@ public class EnemyControllerImpl implements EnemyController {
 
     @Override
     public void setDeathRegion(RinoModel rinoModel) {
-        // TODO Auto-generated method stub
-        
+           if(!this.rinos.keySet().contains(rinoModel)) {
+               throw new IllegalArgumentException();
+           }
+           this.rinos.get(rinoModel).setDeathRegion();
     }
 
     @Override
     public void upadeView(RinoModel rinoModel, Body b2body, float dt) {
-        // TODO Auto-generated method stub
-        
+        if(!this.rinos.keySet().contains(rinoModel)) {
+            throw new IllegalArgumentException();
+        }
+        else {
+            this.rinos.get(rinoModel).update(b2body, dt);
+
+        }
     }
 
     @Override
