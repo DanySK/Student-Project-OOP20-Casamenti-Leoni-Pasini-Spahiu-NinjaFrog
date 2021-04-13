@@ -13,6 +13,6 @@ public interface RinoView {
     
     float getY();
     
-    void seDeathRegion();
+    void setDeathRegion();
 
 }

@@ -49,7 +49,7 @@ public class RinoViewImpl extends Sprite implements RinoView {
     }
 
     @Override
-    public void seDeathRegion() {
+    public void setDeathRegion() {
         setRegion(new TextureRegion(screen.getAtlas().findRegion("NinjaAndEnemies"),417,68,50,30));
         
     }
