@@ -21,6 +21,9 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private static final float BOUNDS_HEIGHT = 12 / GameConst.PPM;
     private static final float SPEED_X = 0.8f;
     private static final float SPEED_Y = -1.5f;
+    private static final int MELON_SCORE = 150;
+    private static final int ORANGE_SCORE = 100;
+    private static final int CHERRY_SCORE = 200;
     private final PlayScreen screen;
     private final World world;
     private final  Body body;
@@ -63,21 +66,20 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
         case MELON:
             destroy();
             screen.setDoubleJumpAbility(true);
-            screen.getHud().addScore(GameConst.MELON_SCORE);
+            screen.addScore(this);
             break;
         case ORANGE:
             destroy();
-            screen.getHud().addScore(GameConst.ORANGE_SCORE);
+            screen.addScore(this);
             break;
         case CHERRY:
             destroy();
             screen.addLife();
-            screen.getHud().addScore(GameConst.CHERRIES_SCORE);
+            screen.addScore(this);
             break;
         default:
              break;
         }
-
     }
 
     @Override
@@ -133,5 +135,25 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
      private void destroy() {
         toDestroy = true;
      }
+
+    @Override
+    public int getScore() {
+        int score;
+        switch (type) {
+        case MELON:
+            score =  MELON_SCORE;
+            break;
+        case ORANGE:
+            score = ORANGE_SCORE;
+            break;
+        case CHERRY:
+            score =  CHERRY_SCORE;
+            break;
+        default:
+            score = 0;
+            break;
+        }
+        return score;
+    }
 
 }
