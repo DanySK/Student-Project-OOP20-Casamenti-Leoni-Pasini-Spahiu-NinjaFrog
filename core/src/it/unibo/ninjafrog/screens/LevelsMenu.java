@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -39,6 +40,20 @@ public class LevelsMenu implements Screen {
         Gdx.input.setInputProcessor(stage);
         final Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         selector = new Texture("Selector.png");
+        background = new Texture("Menu2backgorund");
+        level1 = new Label("Level 1", font);
+        level2 = new Label("Level 2", font);
+        exit = new Label("Back", font);
+        currentLabel = 1;
+        final Table table = new Table();
+        table.center();
+        table.setFillParent(true);
+        table.add(level1);
+        table.row();
+        table.add(level2);
+        table.row();
+        table.add(exit);
+        stage.addActor(table);
     }
 
     @Override
