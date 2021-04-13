@@ -1,18 +1,15 @@
 package it.unibo.ninjafrog.screens;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import it.unibo.ninjafrog.game.NinjaFrogGame;
-
 /**
- * Definition of a WinScreen, which is an implementation of Screen.
- * WinScreen is launched when you finish the level, without dying.
+ * Definition of a GameOverScreen, which is an implementation of Screen.
+ * GameOverScreen is launched when the player died during the game.
  */
-public class WinScreen implements Screen{
-    private final Stage stage;
+public class GameOverScreen implements Screen{
     
-    public WinScreen(final NinjaFrogGame game) {
+    public GameOverScreen(final NinjaFrogGame game) {
         
     }
     @Override
