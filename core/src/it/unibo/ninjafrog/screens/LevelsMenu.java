@@ -1,8 +1,10 @@
 package it.unibo.ninjafrog.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,16 +20,20 @@ import it.unibo.ninjafrog.utilities.GameConst;
  * Definition of a MainMenu, which is an implementation of Screen.
  * MapsMenu is a menu where you can choose the level.
  */
-public class LevelsMenu implements Screen {
+public final class LevelsMenu implements Screen {
+    private static final int SELECTOR_WIDTH = 150;
+    private static final int SELECTOR_HEIGHT_FIRST = 115;
+    private static final int SELECTOR_HEIGHT_SECOND = 95;
+    private static final int SELECTOR_HEIGHT_THIRD = 75;
     private final Stage stage;
-    private NinjaFrogGame game;
+    private final NinjaFrogGame game;
     private final Label level1;
     private final Label level2;
     private final Label exit;
     private final Viewport viewport;
     private int currentLabel;
-    private Texture background;
-    private Texture selector;
+    private final Texture background;
+    private final Texture selector;
     /**
      * Public constructor of a LevelsMenu object.
      * @param game NinjaFrogame
@@ -64,14 +70,93 @@ public class LevelsMenu implements Screen {
 
     @Override
     public void render(final float delta) {
-        // TODO Auto-generated method stub
+        handleInput();
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        game.getBatch().begin();
+        game.getBatch().draw(background, 0, 0, GameConst.WIDTH, GameConst.HEIGHT);
+        switch (currentLabel) {
+        case 1:
+            level1.setColor(Color.RED);
+            level2.setColor(Color.WHITE);
+            exit.setColor(Color.WHITE);
+            game.getBatch().draw(selector, SELECTOR_WIDTH, SELECTOR_HEIGHT_FIRST);
+            break;
+        case 2:
+            level1.setColor(Color.WHITE);
+            level2.setColor(Color.RED);
+            exit.setColor(Color.WHITE);
+            game.getBatch().draw(selector, SELECTOR_WIDTH, SELECTOR_HEIGHT_SECOND);
+            break;
+        case 3:
+            level1.setColor(Color.WHITE);
+            level2.setColor(Color.WHITE);
+            exit.setColor(Color.RED);
+            game.getBatch().draw(selector, SELECTOR_WIDTH, SELECTOR_HEIGHT_THIRD);
+            break;
+        default:
+            break;
+        }
+        game.getBatch().end();
+        stage.act();
+        stage.draw();
+    }
 
+    private void handleInput() {
+       if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+           switch (currentLabel) {
+           case 1:
+               currentLabel = 2;
+               break;
+           case 2:
+               currentLabel = 3;
+               break;
+           case 3:
+               currentLabel = 1;
+               break;
+           default:
+               break;
+           }
+       }
+       if (Gdx.input.isKeyJustPressed(Keys.UP)) {
+           switch (currentLabel) {
+           case 1:
+               currentLabel = 3;
+               break;
+           case 2:
+               currentLabel = 1;
+               break;
+           case 3:
+               currentLabel = 2;
+               break;
+           default:
+               break;
+           }
+       }
+       if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+           setStatus();
+       }
+    }
+
+    private void setStatus() {
+        switch (currentLabel) {
+        case 1:
+            this.game.setScreen(new PlayScreenImpl(this.game, Level.ONE));
+            break;
+        case 2:
+            this.game.setScreen(new PlayScreenImpl(this.game, Level.TWO));
+            break;
+        case 3:
+            this.game.setScreen(new MainMenu(this.game));
+            break;
+        default:
+            break;
+        }
     }
 
     @Override
     public void resize(final int width, final int height) {
-        // TODO Auto-generated method stub
-
+        this.viewport.update(width, height);
     }
 
     @Override
@@ -94,8 +179,8 @@ public class LevelsMenu implements Screen {
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
-
+        stage.dispose();
+        game.getBatch().dispose();
     }
 
 }
