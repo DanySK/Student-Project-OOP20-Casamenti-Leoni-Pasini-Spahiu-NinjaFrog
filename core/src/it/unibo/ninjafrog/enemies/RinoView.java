@@ -1,16 +1,18 @@
 package it.unibo.ninjafrog.enemies;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 
 public interface RinoView {
-    void update(Body b2body, float dt);
-
-    void setDeathRegion();
-
-    float getY();
-
+    
+    void update(Body body, float dt);
+    
+    void draw(SpriteBatch batch);
+    
     float getX();
+    
+    float getY();
+    
+    void seDeathRegion();
 
-    void draw(Batch batch);
 }

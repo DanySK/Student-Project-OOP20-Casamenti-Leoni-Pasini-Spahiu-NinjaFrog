@@ -1,6 +1,8 @@
 package it.unibo.ninjafrog.enemies;
 
-public interface RinoModel {
+import it.unibo.ninjafrog.world.Collidable;
+
+public interface RinoModel extends Collidable{
     
     void defineEnemy();
 
@@ -10,5 +12,12 @@ public interface RinoModel {
     
     boolean isSetToDestroy();
     
+    boolean isDestroyed();
     
+    float getStateTime();
+    
+    boolean isRunningLeft();
+    
+    void setRunningLeft(boolean b);
+       
 }

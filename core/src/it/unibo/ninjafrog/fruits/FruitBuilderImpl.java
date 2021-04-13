@@ -22,6 +22,7 @@ public final class FruitBuilderImpl implements FruitBuilder {
     public static FruitBuilderImpl newBuilder() {
         return new FruitBuilderImpl();
     }
+
     @Override
     public FruitBuilder selectScreen(final PlayScreen screen) {
         this.screen = screen;
