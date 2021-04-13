@@ -17,8 +17,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.utilities.GameConst;
 /**
- * Definition of a MainMenu, which is an implementation of Screen.
- * MapsMenu is a menu where you can choose the level.
+ * Definition of a LevelsMenu, which is an implementation of Screen.
+ * LevelsMenu is a menu where you can choose the level.
  */
 public final class LevelsMenu implements Screen {
     private static final int SELECTOR_WIDTH = 150;
@@ -63,12 +63,6 @@ public final class LevelsMenu implements Screen {
     }
 
     @Override
-    public void show() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void render(final float delta) {
         handleInput();
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -102,56 +96,9 @@ public final class LevelsMenu implements Screen {
         stage.draw();
     }
 
-    private void handleInput() {
-       if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
-           switch (currentLabel) {
-           case 1:
-               currentLabel = 2;
-               break;
-           case 2:
-               currentLabel = 3;
-               break;
-           case 3:
-               currentLabel = 1;
-               break;
-           default:
-               break;
-           }
-       }
-       if (Gdx.input.isKeyJustPressed(Keys.UP)) {
-           switch (currentLabel) {
-           case 1:
-               currentLabel = 3;
-               break;
-           case 2:
-               currentLabel = 1;
-               break;
-           case 3:
-               currentLabel = 2;
-               break;
-           default:
-               break;
-           }
-       }
-       if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
-           setStatus();
-       }
-    }
 
-    private void setStatus() {
-        switch (currentLabel) {
-        case 1:
-            this.game.setScreen(new PlayScreenImpl(this.game, Level.ONE));
-            break;
-        case 2:
-            this.game.setScreen(new PlayScreenImpl(this.game, Level.TWO));
-            break;
-        case 3:
-            this.game.setScreen(new MainMenu(this.game));
-            break;
-        default:
-            break;
-        }
+    @Override
+    public void show() {
     }
 
     @Override
@@ -161,20 +108,14 @@ public final class LevelsMenu implements Screen {
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -182,5 +123,57 @@ public final class LevelsMenu implements Screen {
         stage.dispose();
         game.getBatch().dispose();
     }
+
+    private void handleInput() {
+        if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+            switch (currentLabel) {
+            case 1:
+                currentLabel = 2;
+                break;
+            case 2:
+                currentLabel = 3;
+                break;
+            case 3:
+                currentLabel = 1;
+                break;
+            default:
+                break;
+            }
+        }
+        if (Gdx.input.isKeyJustPressed(Keys.UP)) {
+            switch (currentLabel) {
+            case 1:
+                currentLabel = 3;
+                break;
+            case 2:
+                currentLabel = 1;
+                break;
+            case 3:
+                currentLabel = 2;
+                break;
+            default:
+                break;
+            }
+        }
+        if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+            setStatus();
+        }
+     }
+
+     private void setStatus() {
+         switch (currentLabel) {
+         case 1:
+             this.game.setScreen(new PlayScreenImpl(this.game, Level.ONE));
+             break;
+         case 2:
+             this.game.setScreen(new PlayScreenImpl(this.game, Level.TWO));
+             break;
+         case 3:
+             this.game.setScreen(new MainMenu(this.game));
+             break;
+         default:
+             break;
+         }
+     }
 
 }
