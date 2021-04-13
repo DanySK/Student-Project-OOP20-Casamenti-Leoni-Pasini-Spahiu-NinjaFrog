@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
 
-import it.unibo.ninjafrog.hud.Hud;
 import it.unibo.ninjafrog.utilities.Pair;
+import it.unibo.ninjafrog.world.Collidable;
 /**
  * Definition of the PlayScreen interface, which extends {@link com.badlogic.gdx.Screen Screen}.
  */
@@ -31,6 +31,12 @@ public interface PlayScreen extends Screen {
      * @param b True if you want to enable it, false otherwise.
      */
     void setDoubleJumpAbility(boolean b);
+    /**
+     * Method to be called in order to add a score to global score count.
+     * @param entity a {@link it.unibo.ninjafrog.world.Collidable Collidable} entity,
+     * which defines a {@link it.unibo.ninjafrog.world.Collidable#getScore() getScore()} method. 
+     */
+    void addScore(Collidable entity);
     /**
      * Add a new life to the player.
      */
@@ -71,9 +77,4 @@ public interface PlayScreen extends Screen {
      * @return The {@link com.badlogic.gdx.graphics.g2d.TextureAtlas TextureAtlas} used by the PlayScreen.
      */
     TextureAtlas getAtlas();
-    /**
-     * Getter of the Hud.
-     * @return The {@link it.unibo.ninjafrog.hud.Hud Hud} used by the PlayScreen.
-     */
-    Hud getHud();
 }

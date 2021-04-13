@@ -21,6 +21,15 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private static final float BOUNDS_HEIGHT = 12 / GameConst.PPM;
     private static final float SPEED_X = 0.8f;
     private static final float SPEED_Y = -1.5f;
+    private static final int MELON_SCORE = 150;
+    private static final int ORANGE_SCORE = 100;
+    private static final int CHERRY_SCORE = 200;
+    private static final int MELON_REGION_X = 486;
+    private static final int CHERRY_REGION_X = 455;
+    private static final int ORANGE_REGION_X = 520;
+    private static final int FRUIT_REGION_Y = 9;
+    private static final int FRUIT_WIDTH = 19;
+    private static final int FRUIT_HEIGHT = 16;
     private final PlayScreen screen;
     private final World world;
     private final  Body body;
@@ -59,25 +68,20 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
 
     @Override
     public void collide() {
+        screen.addScore(this);
+        destroy();
         switch (type) {
         case MELON:
-            destroy();
             screen.setDoubleJumpAbility(true);
-            screen.getHud().addScore(GameConst.MELON_SCORE);
             break;
         case ORANGE:
-            destroy();
-            screen.getHud().addScore(GameConst.ORANGE_SCORE);
             break;
         case CHERRY:
-            destroy();
             screen.addLife();
-            screen.getHud().addScore(GameConst.CHERRIES_SCORE);
             break;
         default:
-             break;
+            throw new IllegalStateException("Illegal FruitType state");
         }
-
     }
 
     @Override
@@ -101,27 +105,29 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     public void reverseVelocity() {
         velocity.x = velocity.x * (-1);
     }
+
     private void defineItem(final FruitType type) {
         switch (type) {
         case MELON:
             velocity = new Vector2(SPEED_X, SPEED_Y);
-            setRegion(region, 486, 9, 19, 16);
+            setRegion(region, MELON_REGION_X, FRUIT_REGION_Y, FRUIT_WIDTH, FRUIT_HEIGHT);
             fruitBody.type = BodyDef.BodyType.DynamicBody;
             break;
         case ORANGE:
             velocity = new Vector2(0, SPEED_Y);
-            setRegion(region, 520, 9, 19, 16);
+            setRegion(region, ORANGE_REGION_X, FRUIT_REGION_Y, FRUIT_WIDTH, FRUIT_HEIGHT);
             fruitBody.type = BodyDef.BodyType.StaticBody;
             break;
         case CHERRY:
             velocity = new Vector2(SPEED_X, SPEED_Y);
-            setRegion(region, 455, 9, 19, 16);
+            setRegion(region, CHERRY_REGION_X, FRUIT_REGION_Y, FRUIT_WIDTH, FRUIT_HEIGHT);
             fruitBody.type = BodyDef.BodyType.DynamicBody;
             break;
         default:
              break;
         }
      }
+
      private void maskBits(final FixtureDef fruitFixture) {
          fruitFixture.filter.categoryBits = GameConst.FRUIT;
          fruitFixture.filter.maskBits = GameConst.NINJA
@@ -130,8 +136,28 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
                  | GameConst.BRICK
                  | GameConst.FRUITBOX;
      }
+
      private void destroy() {
         toDestroy = true;
      }
+
+    @Override
+    public int getScore() {
+        int score = 0;
+        switch (type) {
+        case MELON:
+            score =  MELON_SCORE;
+            break;
+        case ORANGE:
+            score = ORANGE_SCORE;
+            break;
+        case CHERRY:
+            score =  CHERRY_SCORE;
+            break;
+        default:
+            throw new IllegalStateException("Illegal FruitType state");
+        }
+        return score;
+    }
 
 }

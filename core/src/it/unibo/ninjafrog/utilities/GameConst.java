@@ -109,35 +109,6 @@ public final class GameConst {
      */
     public static final int TURTLE_LAYER = 8;
 
-    /**
-     * Score earned when colliding with an orange.
-     */
-    public static final int ORANGE_SCORE = 100;
-    /**
-     * Score earned when colliding with a melon.
-     */
-    public static final int MELON_SCORE = 150;
-    /**
-     * Score earned when colliding with a cherry.
-     */
-    public static final int CHERRIES_SCORE = 200;
-    /**
-     * Score earned when destroying a brick.
-     */
-    public static final int BRICK_SCORE = 25;
-    /**
-     * Score earned when hitting a FruitBox.
-     */
-    public static final int FRUITBOX_SCORE = 50;
-    /**
-     * Score earned when stomping on a Rino.
-     */
-    public static final int RINO_SCORE = 150;
-    /**
-     * Score earned when stomping on a Turtle.
-     */
-    public static final int TURTLE_SCORE = 200;
-
     private GameConst() {
     }
 }

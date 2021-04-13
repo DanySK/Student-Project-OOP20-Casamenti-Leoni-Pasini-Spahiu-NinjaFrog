@@ -13,6 +13,7 @@ import it.unibo.ninjafrog.utilities.GameConst;
  * Defines a {@link it.unibo.ninjafrog.world.Collidable#collide() collide()} method.
  */
 public final class Brick extends InteractiveObject implements Collidable {
+    private static final int BRICK_SCORE = 25;
     private static final int ANIMATION_TIME = 100;
     private final TiledMapTileSet tileSet;
     private int destroyedTile = InteractiveObject.CELL_NOT_SET;
@@ -43,7 +44,12 @@ public final class Brick extends InteractiveObject implements Collidable {
             }
             this.getCell().setTile(null);
         }).start();
-        this.getScreen().getHud().addScore(GameConst.BRICK_SCORE);
+        this.getScreen().addScore(this);
+    }
+
+    @Override
+    public int getScore() {
+        return BRICK_SCORE;
     }
 
 }
