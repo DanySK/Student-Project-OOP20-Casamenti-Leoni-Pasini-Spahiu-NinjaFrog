@@ -1,5 +1,6 @@
 package it.unibo.ninjafrog.frog;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.Body;
 
 public interface FrogController {
@@ -14,11 +15,17 @@ public interface FrogController {
     void update(float dt);
     /**
      * draw the frog.
+     * @param batch the batch;
      */
-    void draw();
+    void draw(Batch batch);
     /**
      * handle the keyboard's input.
      */
     void handleInput();
+
+    /**
+     * @return the frog's model.
+     */
+    FrogModel getModel();
 
 }
