@@ -9,11 +9,11 @@ public interface EnemyController {
     
     void draw (SpriteBatch batch);
     
-    void collide(RinoModel rino);
+    void collide(RinoModel rinoModel);
     
-    boolean isSetToDestroy(RinoModel rino);
+    boolean isSetToDestroy(RinoModel rinoModel);
     
-    void reverseVelocity(RinoModel rino);
+    void reverseVelocity(RinoModel rinoModel);
     
     float getX(RinoModel rinoModel);
     
@@ -34,5 +34,11 @@ public interface EnemyController {
     boolean isRunningLeft(RinoView rinoView);
     
     void setRunningLeft(RinoView rinoView, boolean b);
+
+    void setDeathRegion(TurtleModel turtleModel);
+
+    void upadeView(TurtleModel turtleModel, Body body, float dt);
+    
+    
     
 }

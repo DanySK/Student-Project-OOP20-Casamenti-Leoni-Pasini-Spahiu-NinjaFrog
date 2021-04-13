@@ -15,6 +15,7 @@ import it.unibo.ninjafrog.utilities.GameConst;
 public class EnemyControllerImpl implements EnemyController {
     
     private HashMap<RinoModel, RinoView > rinos; 
+    private HashMap<TurtleView,TurtleModel> turtles;
     
     private PlayScreen screen;
     
@@ -166,6 +167,18 @@ public class EnemyControllerImpl implements EnemyController {
          }
          
      }
+    @Override
+    public void setDeathRegion(TurtleModel turtleModel) {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public void upadeView(TurtleModel turtleModel, Body body, float dt) {
+        // TODO Auto-generated method stub
+        
+    }
+    
+  
 }
 
 
