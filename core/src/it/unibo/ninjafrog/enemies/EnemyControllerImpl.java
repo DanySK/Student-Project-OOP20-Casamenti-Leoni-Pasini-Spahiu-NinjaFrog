@@ -69,34 +69,26 @@ public class EnemyControllerImpl implements EnemyController {
     }
 
     @Override
-    public void reverseVelocity(RinoModel rino) {
-        if(!this.rinos.keySet().contains(rino)) {
-            throw new IllegalArgumentException();
-        }
-        rino.reverseVelocity(true, false);
+    public void reverseVelocity(RinoModel rinoModel) {
+        checkModel(rinoModel);
+        rinoModel.reverseVelocity(true, false);
     }
 
     @Override
     public float getX(RinoModel rinoModel) {
-        if(!this.rinos.keySet().contains(rinoModel)) {
-            throw new IllegalArgumentException();
-        }
+        checkModel(rinoModel);
         return this.rinos.get(rinoModel).getX();
     }
 
     @Override
     public float getY(RinoModel rinoModel) {
-        if(!this.rinos.keySet().contains(rinoModel)) {
-            throw new IllegalArgumentException();
-        }
+       checkModel(rinoModel);
         return this.rinos.get(rinoModel).getY();
     }
 
     @Override
     public boolean isDestroyed(RinoView rinoView) {
-        if(!this.rinos.values().contains(rinoView)) {
-            throw new IllegalArgumentException();
-        }
+        checkView(rinoView);
         this.rinos.forEach((m,v)->{
             if(v.equals(rinoView)) {
                 this.isDestroyed = m.isDestroyed();
@@ -107,9 +99,7 @@ public class EnemyControllerImpl implements EnemyController {
 
     @Override
     public float getStateTime(RinoView rinoView) {
-        if(!this.rinos.values().contains(rinoView)) {
-            throw new IllegalArgumentException();
-        }
+        checkView(rinoView);
         this.rinos.forEach((m,v)->{
             if(v.equals(rinoView)) {
                 this.stateTime = m.getStateTime();
@@ -120,22 +110,16 @@ public class EnemyControllerImpl implements EnemyController {
 
     @Override
     public void setDeathRegion(RinoModel rinoModel) {
-           if(!this.rinos.keySet().contains(rinoModel)) {
-               throw new IllegalArgumentException();
-           }
+           checkModel(rinoModel);
            this.rinos.get(rinoModel).setDeathRegion();
     }
 
     @Override
     public void upadeView(RinoModel rinoModel, Body b2body, float dt) {
-        if(!this.rinos.keySet().contains(rinoModel)) {
-            throw new IllegalArgumentException();
+         checkModel(rinoModel);
+         this.rinos.get(rinoModel).update(b2body, dt);
         }
-        else {
-            this.rinos.get(rinoModel).update(b2body, dt);
-
-        }
-    }
+    
 
     @Override
     public void collide(TurtleModel turtleModel) {
@@ -151,9 +135,7 @@ public class EnemyControllerImpl implements EnemyController {
 
     @Override
     public boolean isRunningLeft(RinoView rinoView) {
-        if(!this.rinos.values().contains(rinoView)) {
-            throw new IllegalArgumentException();
-        }
+        checkView(rinoView);
         this.rinos.forEach((m,v)->{
             if(v.equals(rinoView)) {
                 this.runningLeft = m.isRunningLeft();
@@ -164,17 +146,28 @@ public class EnemyControllerImpl implements EnemyController {
 
     @Override
     public void setRunningLeft(RinoView rinoView, boolean b) {
-        
-        if(!this.rinos.values().contains(rinoView)) {
-            throw new IllegalArgumentException();
-        }
+        checkView (rinoView);
         this.rinos.forEach((m,v)->{
             if(v.equals(rinoView)) {
                 m.setRunningLeft(b);
             }
         });
     }
-
-
-
+    
+    private void checkModel (RinoModel rinoModel) {
+        if(!this.rinos.keySet().contains(rinoModel)) {
+            throw new IllegalArgumentException();
+        }
+    }
+        
+     private void checkView (RinoView rinoView) {
+         if(!this.rinos.values().contains(rinoView)) {
+             throw new IllegalArgumentException();
+         }
+         
+     }
 }
+
+
+
+
