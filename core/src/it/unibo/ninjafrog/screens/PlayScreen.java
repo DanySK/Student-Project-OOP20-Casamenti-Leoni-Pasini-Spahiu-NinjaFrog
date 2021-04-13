@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
 
-import it.unibo.ninjafrog.hud.Hud;
 import it.unibo.ninjafrog.utilities.Pair;
 /**
  * Definition of the PlayScreen interface, which extends {@link com.badlogic.gdx.Screen Screen}.
@@ -71,9 +70,4 @@ public interface PlayScreen extends Screen {
      * @return The {@link com.badlogic.gdx.graphics.g2d.TextureAtlas TextureAtlas} used by the PlayScreen.
      */
     TextureAtlas getAtlas();
-    /**
-     * Getter of the Hud.
-     * @return The {@link it.unibo.ninjafrog.hud.Hud Hud} used by the PlayScreen.
-     */
-    Hud getHud();
 }

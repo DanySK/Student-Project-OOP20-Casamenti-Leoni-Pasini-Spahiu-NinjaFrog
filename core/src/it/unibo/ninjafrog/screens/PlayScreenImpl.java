@@ -142,10 +142,4 @@ public final class PlayScreenImpl implements PlayScreen {
         return this.atlas;
     }
 
-    @Override
-    public Hud getHud() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }
