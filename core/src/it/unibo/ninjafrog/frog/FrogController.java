@@ -27,5 +27,17 @@ public interface FrogController {
      * @return the frog's model.
      */
     FrogModel getModel();
+    /**
+     * @return true if the frog is running right.
+     */
+    boolean isRunningRight();
+    /**
+     * @return true if the double jump is active.
+     */
+    boolean isDoubleJumpActive();
+    /**
+     * @return the frog's state.
+     */
+    FrogState getState();
 
 }

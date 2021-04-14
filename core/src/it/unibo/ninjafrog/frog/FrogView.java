@@ -4,11 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 
 public interface FrogView {
 
-    /**
-     * set the frog to the screen.
-     * @param frog model;
-     */
-    void setFrog(FrogModel frog);
+
     /**
      * update the view.
      * @param dt delta of time;

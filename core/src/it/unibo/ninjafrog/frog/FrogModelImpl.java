@@ -13,6 +13,7 @@ import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
 
 public class FrogModelImpl implements FrogModel {
+    private static final float VEL_MAX = 2.5f;
     private static final int RADIUS = 7;
     private static final int INIT_POS = 220;
 
@@ -20,14 +21,16 @@ public class FrogModelImpl implements FrogModel {
     private boolean isDoubleJump;
     private boolean runningRight;
     private boolean paused;
-    private PlayScreen screen;
+    private final PlayScreen screen;
 
     private FrogState currentState;
     private final FrogState prevState;
     private Body body;
     private final  World world;
+    private final FrogController frogController;
 
-    public FrogModelImpl(final PlayScreen screen) {
+    public FrogModelImpl(final PlayScreen screen, final FrogController frogController) {
+        this.frogController = frogController;
         this.screen = screen;
         this.world = screen.getWorld();
         this.prevState = FrogState.STANDING;
@@ -38,22 +41,22 @@ public class FrogModelImpl implements FrogModel {
 
     }
     @Override
-    public Body getBody() {
+    public final Body getBody() {
         return this.body;
     }
 
     @Override
-    public Vector2 getPos() {
+    public final Vector2 getPos() {
         return body.getPosition();
     }
 
     @Override
-    public FrogState getState() {
+    public final FrogState getState() {
         return this.currentState;
     }
 
     @Override
-    public void setState() {
+    public final void setState() {
         if (body.getLinearVelocity().y > 0 || (body.getLinearVelocity().y < 0 && prevState == FrogState.DOUBLEJUMPING) && this.isDoubleJump) {
             currentState = FrogState.DOUBLEJUMPING;
         } else if (body.getLinearVelocity().y > 0 || (body.getLinearVelocity().y < 0 && prevState == FrogState.JUMPING) && !this.isDoubleJump) {
@@ -68,14 +71,14 @@ public class FrogModelImpl implements FrogModel {
     }
 
     @Override
-    public void jump() {
+    public final void jump() {
         if (this.currentState != FrogState.JUMPING && this.currentState != FrogState.FALLING) {
             body.applyLinearImpulse(new Vector2(0, 4f), body.getWorldCenter(), true);
         }
     }
 
     @Override
-    public void doubleJump() {
+    public final void doubleJump() {
         if (isDoubleJumpActive() && !isDoubleJump) {
             isDoubleJump = true;
             if (body.getLinearVelocity().y < 0) {
@@ -89,7 +92,7 @@ public class FrogModelImpl implements FrogModel {
     }
 
     @Override
-    public void move(final float direction) {
+    public final void move(final float direction) {
         if (direction > 0) {
             runningRight = true;
             if (body.getLinearVelocity().x <= 2) {
@@ -104,39 +107,41 @@ public class FrogModelImpl implements FrogModel {
     }
 
     @Override
-    public boolean isDoubleJumpActive() {
+    public final boolean isDoubleJumpActive() {
         return this.isDoubleJump;
     }
 
     @Override
-    public void setDoubleJump(final boolean isDoubleJump) {
+    public final void setDoubleJump(final boolean isDoubleJump) {
         this.isDoubleJump = isDoubleJump;
     }
 
     @Override
-    public boolean isRunningRight() {
+    public final boolean isRunningRight() {
         return this.runningRight;
     }
     @Override
-    public void addLife() {
+    public final void addLife() {
         this.life++;
+        this.screen.addLife();
     }
 
     @Override
-    public void removeLife() {
+    public final void removeLife() {
         this.life -= 1;
+        this.screen.removeLife();
         if (this.life == 0) {
-            screen.setGameOverScreen();
+            this.screen.setGameOverScreen();
         }
     }
 
     @Override
-    public boolean isPaused() {
+    public final boolean isPaused() {
         return this.paused;
     }
 
     @Override
-    public void defineFrog() {
+    public final void defineFrog() {
         final BodyDef bdef = new BodyDef();
         bdef.position.set(INIT_POS / GameConst.PPM, INIT_POS / GameConst.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
@@ -171,10 +176,19 @@ public class FrogModelImpl implements FrogModel {
     }
 
     @Override
-    public void update(final float dt) {
+    public final void update(final float dt) {
+        if (body.getLinearVelocity().y < -VEL_MAX) {
+           body.setLinearVelocity(body.getLinearVelocity().x, -VEL_MAX);
+        }
         if (body.getPosition().y < 0) {
-            this.screen.setGameOverScreen();
+            if (this.life > 0) {
+                this.screen.removeLife();
+                this.world.destroyBody(this.body);
+                this.defineFrog();
+            } else {
+                this.screen.setGameOverScreen();
             }
         }
 
+    }
 }
