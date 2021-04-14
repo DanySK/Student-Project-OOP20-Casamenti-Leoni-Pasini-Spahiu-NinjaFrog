@@ -16,6 +16,7 @@ public class FrogModelImpl implements FrogModel {
     private static final float VEL_MAX = 2.5f;
     private static final int RADIUS = 7;
     private static final int INIT_POS = 220;
+    private static final int HEAD = 2;
 
     private Integer life = 1;
     private boolean isDoubleJump;
@@ -168,7 +169,7 @@ public class FrogModelImpl implements FrogModel {
          * define frog head
          */
         final EdgeShape head = new EdgeShape();
-        head.set(new Vector2(-2 / GameConst.PPM, RADIUS / GameConst.PPM), new Vector2(+2 / GameConst.PPM, RADIUS / GameConst.PPM));
+        head.set(new Vector2(-HEAD / GameConst.PPM, RADIUS / GameConst.PPM), new Vector2(HEAD / GameConst.PPM, RADIUS / GameConst.PPM));
         fdef.shape = head;
         fdef.isSensor = true;
         fdef.filter.categoryBits = GameConst.NINJA_HEAD;

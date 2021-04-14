@@ -58,7 +58,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
     }
     @Override
     public final void update(final float dt) {
-        setPosition(body.getPosition().x-getWidth()/2 ,body.getPosition().y - getHeight()/2);
+        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(dt));
     }
     @Override
