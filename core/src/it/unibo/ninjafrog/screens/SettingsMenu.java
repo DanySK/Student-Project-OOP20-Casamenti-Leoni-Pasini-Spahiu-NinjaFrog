@@ -38,7 +38,7 @@ public final class SettingsMenu implements Screen {
      */
     public SettingsMenu(final NinjaFrogGame game) {
         this.game = game;
-        viewport = new FitViewport(GameConst.WIDTH, GameConst.WIDTH, new OrthographicCamera());
+        viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
         stage = new Stage(viewport, game.getBatch());
         Gdx.input.setInputProcessor(stage);

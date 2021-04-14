@@ -52,7 +52,7 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
        this.type = type;
        toDestroy = false;
        destroyed = false;
-       region = new TextureRegion(screen.getAtlas().findRegion("NinjaAndEnemies"));
+       region = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"));
        setPosition(x, y);
        setBounds(getX(), getY(), BOUNDS_WIDTH, BOUNDS_HEIGHT);
        fruitBody = new BodyDef();

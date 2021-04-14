@@ -48,7 +48,7 @@ public final class LevelsMenu implements Screen {
         Gdx.input.setInputProcessor(stage);
         final Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         selector = new Texture("Selector.png");
-        background = new Texture("Menu2backgorund");
+        background = new Texture("Menu2background.png");
         level1 = new Label("Level 1", font);
         level2 = new Label("Level 2", font);
         exit = new Label("Back", font);
