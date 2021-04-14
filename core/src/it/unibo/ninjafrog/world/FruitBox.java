@@ -3,6 +3,7 @@ package it.unibo.ninjafrog.world;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 
+import it.unibo.ninjafrog.fruits.FruitType;
 import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
 import it.unibo.ninjafrog.utilities.Pair;
@@ -39,14 +40,17 @@ public final class FruitBox extends InteractiveObject implements Collidable {
         if (this.active) {
             this.getCell().setTile(this.tileSet.getTile(this.emptyTile));
             if (this.getObject().getProperties().containsKey("melon")) {
-                this.getScreen().spawnMelon(new Pair<Float, Float>(this.getBodyXPos(),
-                        this.getBodyYPos() + this.scale(InteractiveObject.WORLD_OBJ_DIM)));
+                this.getScreen().spawnFruit(new Pair<Float, Float>(this.getBodyXPos(),
+                        this.getBodyYPos() + this.scale(InteractiveObject.WORLD_OBJ_DIM)),
+                        FruitType.MELON);
             } else if (this.getObject().getProperties().containsKey("cherries")) {
-                this.getScreen().spawnCherries(new Pair<Float, Float>(this.getBodyXPos(),
-                        this.getBodyYPos() + this.scale(InteractiveObject.WORLD_OBJ_DIM)));
+                this.getScreen().spawnFruit(new Pair<Float, Float>(this.getBodyXPos(),
+                        this.getBodyYPos() + this.scale(InteractiveObject.WORLD_OBJ_DIM)),
+                        FruitType.CHERRY);
             } else {
-                this.getScreen().spawnOrange(new Pair<Float, Float>(this.getBodyXPos(),
-                        this.getBodyYPos() + this.scale(InteractiveObject.WORLD_OBJ_DIM)));
+                this.getScreen().spawnFruit(new Pair<Float, Float>(this.getBodyXPos(),
+                        this.getBodyYPos() + this.scale(InteractiveObject.WORLD_OBJ_DIM)),
+                        FruitType.ORANGE);
             }
             this.getScreen().addScore(this);
             this.active = false;
