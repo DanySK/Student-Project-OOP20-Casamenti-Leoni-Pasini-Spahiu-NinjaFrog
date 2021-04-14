@@ -38,6 +38,10 @@ public interface EnemyController {
     void setDeathRegion(TurtleModel turtleModel);
 
     void upadeView(TurtleModel turtleModel, Body body, float dt);
+
+    boolean isDestroyed(TurtleView turtleView);
+
+    double getStateTime(TurtleView turtleView);
     
     
     
