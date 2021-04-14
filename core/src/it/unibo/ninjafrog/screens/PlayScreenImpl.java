@@ -2,6 +2,7 @@ package it.unibo.ninjafrog.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.physics.box2d.World;
 
 import it.unibo.ninjafrog.fruits.FruitType;
@@ -16,6 +17,7 @@ public final class PlayScreenImpl implements PlayScreen {
     private final TextureAtlas atlas;
     private final NinjaFrogGame game;
     private Hud hud;
+    private final TiledMap map;
     /**
      * Public constructor of the PlayScreenImpl.
      * @param game The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
@@ -24,6 +26,7 @@ public final class PlayScreenImpl implements PlayScreen {
     public PlayScreenImpl(final NinjaFrogGame game, final Level level) {
         this.game = game;
         this.atlas = new TextureAtlas("ninjaAndEnemies.pack");
+        this.map = new TmxMapLoader().load(level.getMap());
     }
 
     @Override
