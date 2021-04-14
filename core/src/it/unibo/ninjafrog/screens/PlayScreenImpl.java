@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import it.unibo.ninjafrog.fruits.FruitType;
 import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.hud.Hud;
+import it.unibo.ninjafrog.screens.levels.Level;
 import it.unibo.ninjafrog.utilities.Pair;
 import it.unibo.ninjafrog.world.Collidable;
 /**
@@ -21,7 +22,7 @@ public final class PlayScreenImpl implements PlayScreen {
     /**
      * Public constructor of the PlayScreenImpl.
      * @param game The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
-     * @param level The {@link it.unibo.ninjafrog.screens.Level level} selected.
+     * @param level The {@link it.unibo.ninjafrog.screens.levels.Level level} selected.
      */
     public PlayScreenImpl(final NinjaFrogGame game, final Level level) {
         this.game = game;

@@ -1,7 +1,7 @@
-package it.unibo.ninjafrog.screens;
+package it.unibo.ninjafrog.screens.levels;
 /**
  * Level interface definition.
- * Every implementation of this interface has to define a {@link it.unibo.ninjafrog.screens.Level#getMap() getMap()} method.
+ * Every implementation of this interface has to define a {@link it.unibo.ninjafrog.screens.levels.Level#getMap() getMap()} method.
  */
 public interface Level {
     /**
