@@ -1,15 +1,12 @@
 package it.unibo.ninjafrog.screens;
 /**
- * Definition of Level Enumeration.
- * Represents the levels that can be selected.
+ * Level interface definition.
+ * Every implementation of this interface has to define a {@link it.unibo.ninjafrog.screens.Level#getMap() getMap()} method.
  */
-public enum Level {
+public interface Level {
     /**
-     * Level one.
+     * Getter of the map name.
+     * @return a String representation of the .tmx file name of the level.
      */
-    ONE,
-    /**
-     * Level two.
-     */
-    TWO
+    String getMap();
 }
