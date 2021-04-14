@@ -18,6 +18,7 @@ public class RinoModelImpl implements RinoModel{
     public Body body;
     public Vector2 velocity;
     private static final int CIRCCLE_RADIUS = 7;
+    private static final int RINO_SCORE = 150;
     private float stateTime;
     private boolean setToDestroy;
     private boolean destroyed;
@@ -101,7 +102,7 @@ public class RinoModelImpl implements RinoModel{
 
     @Override
     public void collide() {
-        this.screen.getHud().addScore(GameConst.RINO_SCORE);
+        this.screen.addScore(this);
         setToDestroy = true;
     }
 
@@ -112,19 +113,22 @@ public class RinoModelImpl implements RinoModel{
 
     @Override
     public float getStateTime() {
-        // TODO Auto-generated method stub
         return this.stateTime;
     }
 
     @Override
     public boolean isRunningLeft() {
-        // TODO Auto-generated method stub
         return this.isRunningLeft();
     }
 
     @Override
     public void setRunningLeft(boolean b) {
             this.runningLeft = b;
+    }
+
+    @Override
+    public int getScore() {
+        return RINO_SCORE;
     }
 
 
