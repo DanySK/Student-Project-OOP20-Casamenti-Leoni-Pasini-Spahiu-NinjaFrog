@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
 
+import it.unibo.ninjafrog.fruits.FruitType;
 import it.unibo.ninjafrog.utilities.Pair;
 import it.unibo.ninjafrog.world.Collidable;
 /**
@@ -12,20 +13,11 @@ import it.unibo.ninjafrog.world.Collidable;
  */
 public interface PlayScreen extends Screen {
     /**
-     * Method to be called when a new Melon object has to be created.
+     * Method to be called when a new fruit has to be created.
      * @param position A {@link it.unibo.ninjafrog.utilities.Pair Pair} containing X and Y values where the new object will be created.
+     * @param fruit The {@link it.unibo.ninjafrog.fruits.FruitType fruit} to be created.
      */
-    void spawnMelon(Pair<Float, Float> position);
-    /**
-     * Method to be called when a new Orange object has to be created.
-     * @param position A {@link it.unibo.ninjafrog.utilities.Pair Pair} containing X and Y values where the new object will be created.
-     */
-    void spawnOrange(Pair<Float, Float> position);
-    /**
-     * Method to be called when a new Cherries object has to be created.
-     * @param position A {@link it.unibo.ninjafrog.utilities.Pair Pair} containing X and Y values where the new object will be created.
-     */
-    void spawnCherries(Pair<Float, Float> position);
+    void spawnFruit(Pair<Float, Float> position, FruitType fruit);
     /**
      * Setter of the double jump ability.
      * @param b True if you want to enable it, false otherwise.

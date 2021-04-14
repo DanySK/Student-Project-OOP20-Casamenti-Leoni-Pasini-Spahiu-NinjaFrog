@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
 
+import it.unibo.ninjafrog.fruits.FruitType;
 import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.hud.Hud;
 import it.unibo.ninjafrog.utilities.Pair;
@@ -68,21 +69,8 @@ public final class PlayScreenImpl implements PlayScreen {
     }
 
     @Override
-    public void spawnMelon(final Pair<Float, Float> position) {
+    public void spawnFruit(final Pair<Float, Float> position, final FruitType fruit) {
         // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void spawnOrange(final Pair<Float, Float> position) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void spawnCherries(final Pair<Float, Float> position) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
