@@ -4,7 +4,7 @@ package it.unibo.ninjafrog.world;
  * Definition of Collidable interface.
  * Every class which implements this interface has to define a
  * {@link it.unibo.ninjafrog.world.Collidable#collide() collide()} method
- * and a {@link it.unibo.ninjafrog.world.Collidable#getScore() getter} of the score.
+ * and a {@link it.unibo.ninjafrog.world.Collidable#getScore() getter} of its score.
  */
 public interface Collidable {
     /**
