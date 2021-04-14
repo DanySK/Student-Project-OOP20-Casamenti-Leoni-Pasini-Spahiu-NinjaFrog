@@ -15,10 +15,6 @@ public final class GameConst {
     public static final int HEIGHT = 208;
 
     /**
-     * Bonus duration.
-     */
-    public static final int BONUSTIMER = 15;
-    /**
      * Box2D scale value. Acronym of Pixel Per Meters.
      */
     public static final float PPM = 100;
@@ -75,39 +71,6 @@ public final class GameConst {
      * A bit representation of a Finish Trophy object, used to define it and what it can collide with.
      */
     public static final short FINISH = 4096;
-
-    /**
-     * Index of the Graphics map layer in the TiledMap.
-     */
-    public static final int GRAPHICS_LAYER = 1;
-    /**
-     * Index of the Ground map layer in the TiledMap.
-     */
-    public static final int GROUND_LAYER = 2;
-    /**
-     * Index of the FruitBox map layer in the TiledMap.
-     */
-    public static final int FRUITBOX_LAYER = 3;
-    /**
-     * Index of the Brick map layer in the TiledMap.
-     */
-    public static final int BRICK_LAYER = 4;
-    /**
-     * Index of the GroundObject map layer in the TiledMap.
-     */
-    public static final int GROUND_OBJECT_LAYER = 5;
-    /**
-     * Index of the Finish Trophy map layer in the TiledMap.
-     */
-    public static final int FINISH_TROPHY_LAYER = 6;
-    /**
-     * Index of the Rino map layer in the TiledMap.
-     */
-    public static final int RINO_LAYER = 7;
-    /**
-     * Index of the Turtle map layer in the TiledMap.
-     */
-    public static final int TURTLE_LAYER = 8;
 
     private GameConst() {
     }
