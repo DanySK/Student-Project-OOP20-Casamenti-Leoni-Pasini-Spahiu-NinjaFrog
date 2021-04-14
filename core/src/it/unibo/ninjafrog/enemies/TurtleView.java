@@ -11,6 +11,8 @@ public interface TurtleView {
     
     boolean hasSpike();
     
+    void setDesthRegion();
+    
     float getX();
     
     float getY();

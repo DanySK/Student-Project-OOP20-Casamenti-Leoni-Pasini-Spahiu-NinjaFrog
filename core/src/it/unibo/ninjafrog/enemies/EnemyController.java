@@ -27,14 +27,16 @@ public interface EnemyController {
     
     void upadeView (RinoModel rinoModel, Body b2body, float dt);
     
-    void collide (TurtleModel turtleModel);
-    
-    boolean isSetToDestroy (TurtleModel turtleModel);
-    
     boolean isRunningLeft(RinoView rinoView);
     
     void setRunningLeft(RinoView rinoView, boolean b);
+    
+    //__________________________________________________
 
+    float getX(TurtleModel turtleModel);
+    
+    float getY(TurtleModel turtleModel);
+    
     void setDeathRegion(TurtleModel turtleModel);
 
     void upadeView(TurtleModel turtleModel, Body body, float dt);
@@ -42,6 +44,10 @@ public interface EnemyController {
     boolean isDestroyed(TurtleView turtleView);
 
     double getStateTime(TurtleView turtleView);
+    
+    void collide (TurtleModel turtleModel);
+    
+    boolean isSetToDestroy (TurtleModel turtleModel);
     
     
     
