@@ -10,6 +10,11 @@ import it.unibo.ninjafrog.utilities.GameConst;
  * Definition of a {@link it.unibo.ninjafrog.world.WorldCreator WorldCreator} implementation.
  */
 public final class WorldCreatorImpl implements WorldCreator {
+    private static final int GROUND_LAYER = 2;
+    private static final int FRUITBOX_LAYER = 3;
+    private static final int BRICK_LAYER = 4;
+    private static final int GROUND_OBJECT_LAYER = 5;
+    private static final int FINISH_TROPHY_LAYER = 6;
     private final PlayScreen screen;
     private final NonInteractiveBuilder builder;
     /**
@@ -25,28 +30,28 @@ public final class WorldCreatorImpl implements WorldCreator {
     @Override
     public void createWorld() {
         final TiledMap map = this.screen.getMap();
-        for (int i = GameConst.GROUND_LAYER; i <= GameConst.FINISH_TROPHY_LAYER; i++) {
+        for (int i = GROUND_LAYER; i <= FINISH_TROPHY_LAYER; i++) {
             for (final MapObject object : map.getLayers().get(i).getObjects().getByType(RectangleMapObject.class)) {
                 switch (i) {
-                case GameConst.GROUND_LAYER:
+                case GROUND_LAYER:
                     this.builder.selectObject(object)
                     .chooseCategoryBit(GameConst.GROUND)
                     .build();
                     break;
-                case GameConst.GROUND_OBJECT_LAYER:
+                case GROUND_OBJECT_LAYER:
                     this.builder.selectObject(object)
                     .chooseCategoryBit(GameConst.GROUND_OBJECT)
                     .build();
                     break;
-                case GameConst.FINISH_TROPHY_LAYER:
+                case FINISH_TROPHY_LAYER:
                     this.builder.selectObject(object)
                     .chooseCategoryBit(GameConst.FINISH)
                     .build();
                     break;
-                case GameConst.FRUITBOX_LAYER:
+                case FRUITBOX_LAYER:
                     new FruitBox(this.screen, object);
                     break;
-                case GameConst.BRICK_LAYER:
+                case BRICK_LAYER:
                     new Brick(this.screen, object);
                     break;
                 default:

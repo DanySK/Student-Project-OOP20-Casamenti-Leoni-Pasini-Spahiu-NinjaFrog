@@ -38,6 +38,7 @@ public class InteractiveObject {
      * Dimension of a box square in the map.
      */
     protected static final int WORLD_OBJ_DIM = 16;
+    private static final int GRAPHICS_LAYER = 1;
     private static final int HALF = 2;
     private final World world;
     private final TiledMap map;
@@ -98,7 +99,7 @@ public class InteractiveObject {
      * @return The cell itself.
      */
     protected TiledMapTileLayer.Cell getCell() {
-        final TiledMapTileLayer graphLayer = (TiledMapTileLayer) map.getLayers().get(GameConst.GRAPHICS_LAYER);
+        final TiledMapTileLayer graphLayer = (TiledMapTileLayer) map.getLayers().get(GRAPHICS_LAYER);
         return graphLayer.getCell(originalSizePos(this.body.getPosition().x),
                 originalSizePos(this.body.getPosition().y));
     }
