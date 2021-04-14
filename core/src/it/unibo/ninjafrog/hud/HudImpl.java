@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import it.unibo.ninjafrog.utilities.GameConst;
 
 public class HudImpl implements Hud {
-
+    private static final int BONUSTIMER = 10;
     private Stage stage;
     private Viewport viewport;
 
@@ -40,7 +40,7 @@ public class HudImpl implements Hud {
         this.score = 0;
         this.canInit = true;
         this.timerOn = false;
-        this.bonusTimer = GameConst.BONUSTIMER;
+        this.bonusTimer = BONUSTIMER;
         this.viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         this.stage = new Stage(this.viewport, sb);
 
@@ -107,7 +107,7 @@ public class HudImpl implements Hud {
             this.countdownLabel.setText(String.format("%02d", this.bonusTimer));
             this.timeCount = 0;
             if (this.bonusTimer == 0) {
-                this.bonusTimer = GameConst.BONUSTIMER;
+                this.bonusTimer = BONUSTIMER;
                 this.canInit = true;
                 this.timerOn = false;
                 return;
