@@ -13,6 +13,7 @@ public class TurtleModelImpl implements TurtleModel{
     public Body body;
     public Vector2 velocity;
     private static final int CIRCLE_RADIUS = 7;
+    private static final int TURTLE_SCORE = 200;
     private float stateTime;
     private boolean setToDestroy;
     private boolean destroyed;
@@ -66,13 +67,13 @@ public class TurtleModelImpl implements TurtleModel{
 
     @Override
     public void collide() {
-       // screen.hud.addScore(333);
+        screen.addScore(this);
         setToDestroy = true;
     }
 
     @Override
     public int getScore() {
-        return 0;
+        return TURTLE_SCORE;
     }
    
 
