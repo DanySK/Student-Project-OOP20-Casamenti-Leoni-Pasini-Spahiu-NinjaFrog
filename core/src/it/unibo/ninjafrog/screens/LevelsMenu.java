@@ -163,10 +163,10 @@ public final class LevelsMenu implements Screen {
      private void setStatus() {
          switch (currentLabel) {
          case 1:
-             this.game.setScreen(new PlayScreenImpl(this.game, Level.ONE));
+             this.game.setScreen(new PlayScreenImpl(this.game, new LevelOne()));
              break;
          case 2:
-             this.game.setScreen(new PlayScreenImpl(this.game, Level.TWO));
+             this.game.setScreen(new PlayScreenImpl(this.game, new LevelTwo()));
              break;
          case 3:
              this.game.setScreen(new MainMenu(this.game));
