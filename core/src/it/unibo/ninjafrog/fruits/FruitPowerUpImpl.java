@@ -96,9 +96,10 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
         if (toDestroy && !destroyed) {
             world.destroyBody(body);
             destroyed = true;
+        } else {
+            setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+            body.setLinearVelocity(velocity);
         }
-        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-        body.setLinearVelocity(velocity);
     }
 
     @Override
