@@ -15,13 +15,13 @@ import it.unibo.ninjafrog.utilities.GameConst;
 public class EnemyControllerImpl implements EnemyController {
     
     private HashMap<RinoModel, RinoView > rinos; 
-    private HashMap<TurtleView,TurtleModel> turtles;
+    private HashMap<TurtleModel,TurtleView> turtles;
     
     private PlayScreen screen;
     
     private boolean runningLeft;
 
-    private boolean isDestroyed;
+    private boolean destroyed;
     
     private float stateTime;
     
@@ -38,17 +38,26 @@ public class EnemyControllerImpl implements EnemyController {
             rinos.put(new RinoModelImpl(screen,this),
                       new RinoViewImpl(screen ,rect.getX()/GameConst.PPM, rect.getY()/GameConst.PPM,this));
         }
-        rinos.keySet().forEach(r-> r.defineEnemy());
+        rinos.keySet().forEach(m-> m.defineEnemy());
+        turtles = new HashMap<TurtleModel, TurtleView>();
+        for(MapObject object : map.getLayers().get(GameConst.TURTLE_LAYER).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject)object).getRectangle();
+            turtles.put(new TurtleModelImpl(screen,this),
+                    new TurtleViewImpl(screen, rect.getX()/GameConst.PPM,rect.getY()/GameConst.PPM,this));
+        }
+        turtles.keySet().forEach(m-> m.defineEnemy());
         }
     @Override
     public void update(float dt) {
-       rinos.forEach((r,v)->r.update(dt)); 
+       rinos.forEach((m,v)->m.update(dt)); 
+       turtles.forEach((m,v)->m.update(dt));
         
     }
 
     @Override
     public void draw(SpriteBatch batch) {
-        rinos.forEach((r,v)->v.draw(batch));
+        rinos.forEach((m,v)->v.draw(batch));
+        turtles.forEach((m,v)->v.draw(batch));
     }
 
     @Override
@@ -92,7 +101,7 @@ public class EnemyControllerImpl implements EnemyController {
         checkView(rinoView);
         this.rinos.forEach((m,v)->{
             if(v.equals(rinoView)) {
-                this.isDestroyed = m.isDestroyed();
+                this.destroyed = m.isDestroyed();
             }
         });
         return false;
@@ -120,19 +129,6 @@ public class EnemyControllerImpl implements EnemyController {
          checkModel(rinoModel);
          this.rinos.get(rinoModel).update(b2body, dt);
         }
-    
-
-    @Override
-    public void collide(TurtleModel turtleModel) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean isSetToDestroy(TurtleModel turtleModel) {
-        // TODO Auto-generated method stub
-        return false;
-    }
 
     @Override
     public boolean isRunningLeft(RinoView rinoView) {
@@ -166,17 +162,67 @@ public class EnemyControllerImpl implements EnemyController {
              throw new IllegalArgumentException();
          }
          
+         //_________________________________________________________________________________
+
      }
     @Override
-    public void setDeathRegion(TurtleModel turtleModel) {
+    public float getX(TurtleModel turtleModel) {
         // TODO Auto-generated method stub
-        
+        return this.turtles.get(turtleModel).getX();
+    }
+    @Override
+    public float getY(TurtleModel turtleModel) {
+        // TODO Auto-generated method stub
+        return this.turtles.get(turtleModel).getY();
+    }
+    @Override
+    public void setDeathRegion(TurtleModel turtleModel) {
+        this.turtles.get(turtleModel).setDesthRegion();
     }
     @Override
     public void upadeView(TurtleModel turtleModel, Body body, float dt) {
-        // TODO Auto-generated method stub
-        
+           this.turtles.get(turtleModel).update(body, dt);
     }
+    @Override
+    public boolean isDestroyed(TurtleView turtleView) {
+        // TODO Auto-generated method stub
+         this.turtles.forEach((m,v)->{
+            if(v.equals(turtleView)) {
+                this.destroyed = m.isDestroyed();
+            }
+        });
+         return this.destroyed;
+    }
+    @Override
+    public double getStateTime(TurtleView turtleView) {
+        this.turtles.forEach((m,v)->{
+            if(v.equals(turtleView)) {
+                this.stateTime = m.getSatateTime();
+            }
+        });
+        return this.stateTime;
+    }
+    
+    @Override
+    public void collide(TurtleModel turtleModel) {
+        if(this.turtles.keySet().contains(turtleModel)) {
+            if(this.turtles.get(turtleModel).hasSpike()) {
+                this.screen.removeLife();
+            }else {
+                turtleModel.collide();
+            }
+        }
+    }
+
+    @Override
+    public boolean isSetToDestroy(TurtleModel turtleModel) {
+        // TODO Auto-generated method stub
+        return turtleModel.isSetToDestroy();
+    }
+         
+         
+     
+   
     
   
 }
