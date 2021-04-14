@@ -102,7 +102,7 @@ public class RinoModelImpl implements RinoModel{
 
     @Override
     public void collide() {
-        this.screen.addScore(this);
+        screen.addScore(this);
         setToDestroy = true;
     }
 
