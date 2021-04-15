@@ -37,6 +37,7 @@ public final class PlayScreenImpl implements PlayScreen {
     private static final int HALF = 2;
     private final TextureAtlas atlas;
     private final NinjaFrogGame game;
+    private final SoundManager sound;
     private final Hud hud;
     private final TiledMap map;
     private final OrthographicCamera cam;
@@ -49,10 +50,12 @@ public final class PlayScreenImpl implements PlayScreen {
      * Public constructor of the PlayScreenImpl.
      * @param game The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
      * @param level The {@link it.unibo.ninjafrog.screens.levels.Level level} selected.
+     * @param sound The {@link it.unibo.ninjafrog.utilities.SoundManager SoundManager}.
      */
     public PlayScreenImpl(final NinjaFrogGame game, final Level level, final SoundManager sound) {
         this.game = game;
-        //sound.playGameSong();
+        this.sound = sound;
+        this.sound.playGameSong();
         this.atlas = new TextureAtlas("ninjaAndEnemies.pack");
         this.map = new TmxMapLoader().load(level.getMap());
         this.cam = new OrthographicCamera();
@@ -162,19 +165,17 @@ public final class PlayScreenImpl implements PlayScreen {
 
     @Override
     public void setWinScreen() {
-        // TODO Auto-generated method stub
-
+        this.game.setScreen(new WinScreen(this.game, this.hud.getScore(), this.sound));
     }
 
     @Override
     public void setGameOverScreen() {
-        // TODO Auto-generated method stub
-
+        this.game.setScreen(new GameOverScreen(this.game, this.hud.getScore(), this.sound));
     }
 
     @Override
     public void setMenuScreen() {
-        this.game.setScreen(new MainMenu(this.game));
+        this.game.setScreen(new MainMenu(this.game, this.sound));
     }
 
     @Override
