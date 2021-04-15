@@ -16,8 +16,8 @@ public interface RinoModel extends Collidable{
     
     float getStateTime();
     
-    boolean isRunningLeft();
+    boolean isRunningLeft();  
     
-    void setRunningLeft(boolean b);
+    void setRunningLeft(boolean b); 
        
 }

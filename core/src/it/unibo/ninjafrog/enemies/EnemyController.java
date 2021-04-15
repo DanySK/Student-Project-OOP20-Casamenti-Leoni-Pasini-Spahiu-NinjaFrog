@@ -25,7 +25,7 @@ public interface EnemyController {
     
     void setDeathRegion (RinoModel rinoModel);
     
-    void upadeView (RinoModel rinoModel, Body b2body, float dt);
+    void upadeView (RinoModel rinoModel, Body body, float dt);
     
     boolean isRunningLeft(RinoView rinoView);
     

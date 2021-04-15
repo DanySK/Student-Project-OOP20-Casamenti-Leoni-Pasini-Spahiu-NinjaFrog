@@ -65,20 +65,15 @@ public class EnemyControllerImpl implements EnemyController {
     }
 
     @Override
-    public void collide(RinoModel rino) {
-        if(!this.rinos.keySet().contains(rino)) {
-            throw new IllegalArgumentException();
-        }
-        rino.collide();
+    public void collide(RinoModel rinoModel) {
+        checkRinoModel(rinoModel);
+        rinoModel.collide();
     }
 
     @Override
-    public boolean isSetToDestroy(RinoModel rino) {
-        if(!this.rinos.keySet().contains(rino)) {
-            throw new IllegalArgumentException();
-        }
-
-        return rino.isSetToDestroy();
+    public boolean isSetToDestroy(RinoModel rinoModel) {
+       checkRinoModel(rinoModel);
+        return rinoModel.isSetToDestroy();
 
     }
 
@@ -108,7 +103,7 @@ public class EnemyControllerImpl implements EnemyController {
                 this.destroyed = m.isDestroyed();
             }
         });
-        return false;
+        return this.destroyed;
     }
 
     @Override
@@ -129,9 +124,9 @@ public class EnemyControllerImpl implements EnemyController {
     }
 
     @Override
-    public void upadeView(RinoModel rinoModel, Body b2body, float dt) {
+    public void upadeView(RinoModel rinoModel, Body body, float dt) {
          checkRinoModel(rinoModel);
-         this.rinos.get(rinoModel).update(b2body, dt);
+         this.rinos.get(rinoModel).update(body, dt);
         }
 
     @Override
@@ -215,13 +210,11 @@ public class EnemyControllerImpl implements EnemyController {
     @Override
     public void collide(TurtleModel turtleModel) {
         checkTurtleModel(turtleModel);
-        if(this.turtles.keySet().contains(turtleModel)) {
             if(this.turtles.get(turtleModel).hasSpike()) {
                 this.screen.removeLife();
             }else {
                 turtleModel.collide();
             }
-        }
     }
 
     @Override
