@@ -21,7 +21,7 @@ public class FrogModelImpl implements FrogModel {
     private Integer life = 1;
     private boolean isDoubleJump;
     private boolean runningRight;
-    private final boolean paused;
+    private boolean paused;
     private final PlayScreen screen;
 
     private FrogState currentState;
@@ -135,12 +135,6 @@ public class FrogModelImpl implements FrogModel {
             this.screen.setGameOverScreen();
         }
     }
-
-    @Override
-    public final boolean isPaused() {
-        return this.paused;
-    }
-
     @Override
     public final void defineFrog() {
         final BodyDef bdef = new BodyDef();
@@ -164,7 +158,7 @@ public class FrogModelImpl implements FrogModel {
                 | GameConst.FRUIT
                 | GameConst.FINISH;
         fdef.shape = shape;
-        body.createFixture(fdef).setUserData(this);
+        body.createFixture(fdef).setUserData(this); 
         /*
          * define frog head
          */

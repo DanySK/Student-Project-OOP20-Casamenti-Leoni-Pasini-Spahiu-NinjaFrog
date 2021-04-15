@@ -14,8 +14,6 @@ public class FrogControllerImpl implements FrogController {
     private PlayScreen screen;
     private final FrogModel frog;
     private final FrogView frogView;
-    private FrogState currrentState;
-    private FrogState previousState;
 
     public FrogControllerImpl(final PlayScreen screen) {
         this.frog = new FrogModelImpl(screen, this);
@@ -89,6 +87,10 @@ public class FrogControllerImpl implements FrogController {
     @Override
     public final boolean isRunningRight() {
         return this.frog.isRunningRight();
+    }
+    @Override
+    public final boolean isPaused() {
+        return this.pause;
     }
 
 }
