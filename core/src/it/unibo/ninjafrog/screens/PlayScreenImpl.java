@@ -13,6 +13,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import it.unibo.ninjafrog.enemies.EnemyController;
+import it.unibo.ninjafrog.enemies.EnemyControllerImpl;
+import it.unibo.ninjafrog.frog.FrogController;
+import it.unibo.ninjafrog.frog.FrogControllerImpl;
 import it.unibo.ninjafrog.fruits.FruitPowerUp;
 import it.unibo.ninjafrog.fruits.FruitType;
 import it.unibo.ninjafrog.game.NinjaFrogGame;
@@ -44,6 +48,8 @@ public final class PlayScreenImpl implements PlayScreen {
     private final Viewport viewport;
     private final OrthogonalTiledMapRenderer mapRenderer;
     private final World world;
+    private final FrogController playerController; 
+    private final EnemyController enemies;
     private final ArrayList<FruitPowerUp> fruits;
     private final LinkedList<Pair<Pair<Float, Float>, FruitType>> fruitsToSpawn;
     /**
@@ -76,16 +82,16 @@ public final class PlayScreenImpl implements PlayScreen {
         worldCreator.createWorld();
         /*
          * CREATE ENEMIES
-         * enemies = new EnemyControllerImpl(this);
          */
-        /*
-         * CREATE NINJA CONTROLLER
-         * this.playerController = new FrogControllerImpl(this);
-         */
+        this.enemies = new EnemyControllerImpl(this);
         /*
          * SET COLLISION LISTENER
-         * this.world.setContactListener(new WorldCollisionListener(this.enemies, this));
          */
+        this.world.setContactListener(new WorldCollisionListener(this.enemies, this));
+        /*
+         * CREATE NINJA CONTROLLER
+         */
+        this.playerController = new FrogControllerImpl(this);
         this.fruits = new ArrayList<>();
         this.fruitsToSpawn = new LinkedList<>();
     }
