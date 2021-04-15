@@ -28,18 +28,22 @@ public final class GameOverScreen implements Screen {
     /**
      * Public constructor of a GameOverScreenobject.
      * @param game NinjaFruitGame
+     * @param score int score of the game;
      */
-    public GameOverScreen(final NinjaFrogGame game) {
+    public GameOverScreen(final NinjaFrogGame game, final int score) {
         this.game = game;
         viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
         stage  = new Stage(viewport, game.getBatch());
         final Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         background = new Texture("GameOver_Screen.png");
+        final Label scoreLabel = new Label("SCORE:" + score, font);
         final Label exitLabel = new Label("Press Enter to continue", font);
         final Table table = new Table();
         table.center();
         table.setFillParent(true);
+        table.add(scoreLabel);
+        table.row();
         table.add(exitLabel);
         stage.addActor(table);
     }

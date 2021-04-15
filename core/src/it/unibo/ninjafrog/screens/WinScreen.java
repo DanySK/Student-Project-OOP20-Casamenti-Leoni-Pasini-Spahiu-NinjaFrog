@@ -29,15 +29,16 @@ public final class WinScreen implements Screen {
     /**
      * Public constructor of a WinScreen object.
      * @param game NinjaFruitGame
+     * @param score int score of the game.
      */
-    public WinScreen(final NinjaFrogGame game) {
+    public WinScreen(final NinjaFrogGame game, final int score) {
         this.game = game;
         viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
         stage  = new Stage(viewport, game.getBatch());
         final Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         background = new Texture("Win_Screen.png");
-        final Label scoreLabel = new Label("SCORE: ", font);
+        final Label scoreLabel = new Label("SCORE:" + score, font);
         final Label exitLabel = new Label("Prees Enter to play again", font);
         final Table table = new Table();
         table.center();
