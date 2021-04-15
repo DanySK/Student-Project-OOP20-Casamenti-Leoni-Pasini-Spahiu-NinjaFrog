@@ -134,6 +134,8 @@ public final class PlayScreenImpl implements PlayScreen {
                 }
             }
             this.cam.position.x = this.playerController.getBody().getPosition().x;
+            this.cam.update();
+            this.mapRenderer.setView(this.cam);
         }
     }
 
