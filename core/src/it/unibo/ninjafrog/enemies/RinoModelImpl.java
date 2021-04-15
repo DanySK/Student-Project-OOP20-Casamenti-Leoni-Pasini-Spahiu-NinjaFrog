@@ -38,32 +38,15 @@ public class RinoModelImpl implements RinoModel{
     @Override
     public void defineEnemy() {
      BodyDef bdef = new BodyDef();
-     bdef.position.set(controller.getX(this),controller.getY(this));
-     bdef.type = BodyDef.BodyType.DynamicBody;
-     body = world.createBody(bdef);
-     body.setActive(false);
      FixtureDef fdef = new FixtureDef();
      CircleShape shape = new CircleShape();
-     shape.setRadius(RinoModelImpl.CIRCCLE_RADIUS/GameConst.PPM);
-     fdef.filter.categoryBits = GameConst.RINO;
-     fdef.filter.categoryBits = GameConst.GROUND
-                              | GameConst.BRICK
-                              | GameConst.NINJA
-                              | GameConst.TURTLE
-                              | GameConst.GROUND_OBJECT;
-     fdef.shape = shape;
-     body.createFixture(fdef).setUserData(this);
      PolygonShape head = new PolygonShape();
      Vector2[] vertice = new Vector2[4];
-     vertice[0] = new Vector2(-6,10).scl(1/GameConst.PPM);
-     vertice[1] = new Vector2(+6,10).scl(1/GameConst.PPM);
-     vertice[2] = new Vector2(-5,7).scl(1/GameConst.PPM);
-     vertice[3] = new Vector2(+5,7).scl(1/GameConst.PPM);
-     head.set(vertice);
-     fdef.shape = head;
-     fdef.restitution = 1f;
-     fdef.filter.categoryBits = GameConst.RINO_HEAD;
-     body.createFixture(fdef).setUserData(this);
+     createBody(bdef);
+     fixtureBodyDefinition(fdef, shape);
+     createFixture(fdef);
+    fixtureHeadDefinition(vertice, shape, head, fdef);
+    createFixture(fdef);
     }
     
 
@@ -129,6 +112,39 @@ public class RinoModelImpl implements RinoModel{
     @Override
     public int getScore() {
         return RINO_SCORE;
+    }
+    
+    private void createBody(BodyDef bdef) {
+        bdef.position.set(controller.getX(this),controller.getY(this));
+        bdef.type = BodyDef.BodyType.DynamicBody;
+        body = world.createBody(bdef);
+        body.setActive(false);
+    }
+    
+    private void fixtureBodyDefinition(FixtureDef fdef, CircleShape shape) {
+        shape.setRadius(RinoModelImpl.CIRCCLE_RADIUS/GameConst.PPM);
+        fdef.filter.categoryBits = GameConst.RINO;
+        fdef.filter.categoryBits = GameConst.GROUND
+                                 | GameConst.BRICK
+                                 | GameConst.NINJA
+                                 | GameConst.TURTLE
+                                 | GameConst.GROUND_OBJECT;
+        fdef.shape = shape;
+    }
+    
+    private void createFixture(FixtureDef fdef) {
+        body.createFixture(fdef).setUserData(this);
+    }
+    
+    private void fixtureHeadDefinition(Vector2[] vertice, CircleShape shape, PolygonShape head, FixtureDef fdef) {
+        vertice[0] = new Vector2(-6,10).scl(1/GameConst.PPM);
+        vertice[1] = new Vector2(+6,10).scl(1/GameConst.PPM);
+        vertice[2] = new Vector2(-5,7).scl(1/GameConst.PPM);
+        vertice[3] = new Vector2(+5,7).scl(1/GameConst.PPM);
+        head.set(vertice);
+        fdef.shape = head;
+        fdef.restitution = 1f;
+        fdef.filter.categoryBits = GameConst.RINO_HEAD;
     }
 
 
