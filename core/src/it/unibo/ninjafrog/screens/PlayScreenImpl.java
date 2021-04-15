@@ -142,8 +142,11 @@ public final class PlayScreenImpl implements PlayScreen {
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
-
+        this.map.dispose();
+        this.mapRenderer.dispose();
+        this.world.dispose();
+        this.hud.getStage().dispose();
+        //this.b2debug.dispose();
     }
 
     @Override
