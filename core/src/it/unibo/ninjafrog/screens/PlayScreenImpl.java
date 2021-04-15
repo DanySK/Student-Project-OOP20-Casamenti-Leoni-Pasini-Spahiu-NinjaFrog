@@ -172,8 +172,7 @@ public final class PlayScreenImpl implements PlayScreen {
 
     @Override
     public void setMenuScreen() {
-        // TODO Auto-generated method stub
-
+        this.game.setScreen(new MainMenu(this.game));
     }
 
     @Override
@@ -184,14 +183,12 @@ public final class PlayScreenImpl implements PlayScreen {
 
     @Override
     public TiledMap getMap() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.map;
     }
 
     @Override
     public World getWorld() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.world;
     }
 
     @Override
@@ -201,7 +198,7 @@ public final class PlayScreenImpl implements PlayScreen {
 
     @Override
     public void addScore(final Collidable entity) {
-        //this.hud.addScore(entity.getScore());
+        this.hud.addScore(entity.getScore());
     }
 
 }
