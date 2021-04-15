@@ -131,6 +131,7 @@ public final class SettingsMenu implements Screen {
         switch (currentLabel) {
         case 1:
             this.sound.changeState();
+            setLabel();
             break;
         case 2:
             this.game.setScreen(new MainMenu(this.game, this.sound));
@@ -138,6 +139,14 @@ public final class SettingsMenu implements Screen {
         default:
             break;
         } 
+    }
+
+    private void setLabel() {
+       if (musicLabel.getText().equals("Music: ON")) {
+           musicLabel.setText("Music:OFF");
+       } else {
+           musicLabel.setText("Music: ON"); 
+       }
     }
 
 }
