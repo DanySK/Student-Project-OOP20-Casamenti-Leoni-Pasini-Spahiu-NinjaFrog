@@ -21,6 +21,7 @@ import it.unibo.ninjafrog.hud.HudImpl;
 import it.unibo.ninjafrog.screens.levels.Level;
 import it.unibo.ninjafrog.utilities.GameConst;
 import it.unibo.ninjafrog.utilities.Pair;
+import it.unibo.ninjafrog.utilities.SoundManager;
 import it.unibo.ninjafrog.world.Collidable;
 import it.unibo.ninjafrog.world.WorldCollisionListener;
 import it.unibo.ninjafrog.world.WorldCreator;
@@ -49,8 +50,9 @@ public final class PlayScreenImpl implements PlayScreen {
      * @param game The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
      * @param level The {@link it.unibo.ninjafrog.screens.levels.Level level} selected.
      */
-    public PlayScreenImpl(final NinjaFrogGame game, final Level level) {
+    public PlayScreenImpl(final NinjaFrogGame game, final Level level, final SoundManager sound) {
         this.game = game;
+        //sound.playGameSong();
         this.atlas = new TextureAtlas("ninjaAndEnemies.pack");
         this.map = new TmxMapLoader().load(level.getMap());
         this.cam = new OrthographicCamera();
@@ -61,7 +63,7 @@ public final class PlayScreenImpl implements PlayScreen {
                 this.halfOf(this.viewport.getWorldHeight()),
                 CAM_Z_COMPONENT);
         this.mapRenderer = new OrthogonalTiledMapRenderer(this.map, this.scale(UNIT));
-        this.world = new World(new Vector2(WORLD_X_GRAVITY, WORLD_Y_GRAVITY),true);
+        this.world = new World(new Vector2(WORLD_X_GRAVITY, WORLD_Y_GRAVITY), true);
         /*
          * BOX DEBUGGER IN CASE OF DEBUG.
          * this.b2debug = new Box2DDebugRenderer();
