@@ -21,7 +21,7 @@ public class FrogModelImpl implements FrogModel {
     private Integer life = 1;
     private boolean isDoubleJump;
     private boolean runningRight;
-    private boolean paused;
+    private final boolean paused;
     private final PlayScreen screen;
 
     private FrogState currentState;

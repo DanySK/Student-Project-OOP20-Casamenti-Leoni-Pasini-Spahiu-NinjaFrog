@@ -2,10 +2,10 @@ package it.unibo.ninjafrog.frog;
 
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 
 public class FrogViewImpl extends Sprite implements FrogView {
@@ -15,8 +15,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
     private static final int DJ_ANIM_END = 19;
     private static final int RUN_ANIM_END = 13;
 
-    private Body body;
-    private FrogController frogController;
+    private final FrogController frogController;
     private float stateTimer;
     private FrogState prevState;
     private FrogState currentState;
@@ -31,7 +30,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
     public FrogViewImpl(final FrogController frogController) {
         this.frogController = frogController;
         this.stateTimer = 0;
-        frogJump = new TextureRegion(getTexture(), 420 ,3,IMAGE_DIM,IMAGE_DIM);
+        frogJump = new TextureRegion(getTexture(), 420 , 3, IMAGE_DIM, IMAGE_DIM);
         frogStand = new TextureRegion(getTexture(), 4, 3, IMAGE_DIM, IMAGE_DIM);
         frogBonusJump = new TextureRegion(getTexture(), 420, 36, IMAGE_DIM, IMAGE_DIM);
         frogBonusStand = new TextureRegion(getTexture(), 4, 39, IMAGE_DIM, IMAGE_DIM);
@@ -58,7 +57,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
     }
     @Override
     public final void update(final float dt) {
-        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+        setPosition(frogController.getBody().getPosition().x - getWidth() / 2, frogController.getBody().getPosition().y - getHeight() / 2);
         setRegion(getFrame(dt));
     }
     @Override
