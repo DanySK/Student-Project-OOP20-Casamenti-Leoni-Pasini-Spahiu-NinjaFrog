@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import it.unibo.ninjafrog.screens.MainMenu;
+import it.unibo.ninjafrog.utilities.SoundManagerImpl;
 /**
  * Definition of the NinjaFrogGame class.
  * Main {@link com.badlogic.gdx.Game Game} class of the application.
@@ -15,7 +16,7 @@ public final class NinjaFrogGame extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        setScreen(new MainMenu(this));
+        setScreen(new MainMenu(this, new SoundManagerImpl()));
     }
 
     @Override

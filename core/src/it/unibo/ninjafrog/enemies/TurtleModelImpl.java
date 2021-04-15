@@ -81,7 +81,7 @@ public class TurtleModelImpl implements TurtleModel{
         bdef.position.set(controller.getX(this), controller.getY(this));
         bdef.type = BodyDef.BodyType.DynamicBody;
         body = world.createBody(bdef);
-        body.setActive(false);
+        body.setActive(true);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class TurtleModelImpl implements TurtleModel{
             this.destroyed = true;
             world.destroyBody(body);
             controller.setDeathRegion(this);
-            stateTime=0;
+            stateTime = 0;
         }else if(!this.destroyed) {
             body.setLinearVelocity(velocity);
             controller.upadeView(this, this.body, dt);
