@@ -24,7 +24,7 @@ public class RinoViewImpl extends Sprite implements RinoView {
         setPosition(x,y);
         frames = new Array<TextureRegion>();        
         for(int i=0; i<6;i++) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("NinjaAndEnemies"),i*52,68,50,30));
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"),i*52,68,50,30));
         }
         
         walkAnimation = new Animation<TextureRegion>(0.1f, frames);
@@ -46,7 +46,7 @@ public class RinoViewImpl extends Sprite implements RinoView {
 
     @Override
     public void setDeathRegion() {
-        setRegion(new TextureRegion(screen.getAtlas().findRegion("NinjaAndEnemies"),417,68,50,30));
+        setRegion(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"),417,68,50,30));
     }
     private TextureRegion getFrame(Body body, float dt) {
         TextureRegion region;
