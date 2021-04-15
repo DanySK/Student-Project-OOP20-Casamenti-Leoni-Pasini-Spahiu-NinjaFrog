@@ -2,6 +2,7 @@ package it.unibo.ninjafrog.screens;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -20,6 +21,7 @@ import it.unibo.ninjafrog.enemies.EnemyController;
 import it.unibo.ninjafrog.enemies.EnemyControllerImpl;
 import it.unibo.ninjafrog.frog.FrogController;
 import it.unibo.ninjafrog.frog.FrogControllerImpl;
+import it.unibo.ninjafrog.fruits.FruitBuilderImpl;
 import it.unibo.ninjafrog.fruits.FruitPowerUp;
 import it.unibo.ninjafrog.fruits.FruitType;
 import it.unibo.ninjafrog.game.NinjaFrogGame;
@@ -53,8 +55,10 @@ public final class PlayScreenImpl implements PlayScreen {
     private final World world;
     private final FrogController playerController; 
     private final EnemyController enemies;
-    private final ArrayList<FruitPowerUp> fruits;
-    private final LinkedList<Pair<Pair<Float, Float>, FruitType>> fruitsToSpawn;
+    private final List<FruitPowerUp> fruits;
+    private final List<Pair<Float, Float>> cherriesToSpawn;
+    private final List<Pair<Float, Float>> melonsToSpawn;
+    private final List<Pair<Float, Float>> orangesToSpawn;
     /**
      * Public constructor of the PlayScreenImpl.
      * @param game The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
@@ -96,7 +100,9 @@ public final class PlayScreenImpl implements PlayScreen {
          */
         this.playerController = new FrogControllerImpl(this);
         this.fruits = new ArrayList<>();
-        this.fruitsToSpawn = new LinkedList<>();
+        this.orangesToSpawn = new LinkedList<>();
+        this.cherriesToSpawn = new LinkedList<>();
+        this.melonsToSpawn = new LinkedList<>();
     }
 
     private float halfOf(final float value) {
@@ -108,7 +114,23 @@ public final class PlayScreenImpl implements PlayScreen {
     }
 
     private void update(final float dt) {
-        
+        this.playerController.handleInput();
+        if (!this.playerController.isPaused()) {
+            this.handleSpawningFruit();
+            this.world.step(1/60f, 6, 2);
+            this.playerController.update(dt);
+            this.enemies.update(dt);
+            for (final FruitPowerUp fruit: this.fruits) {
+                fruit.update(dt);
+            }
+            if (this.playerController.isDoubleJumpActive()) {
+                this.hud.update(dt);
+                if (!this.hud.isTimerOn()) {
+                    this.playerController.getModel().setDoubleJump(false);
+                }
+            }
+            this.cam.position.x = this.playerController.getBody().getPosition().x;
+        }
     }
 
     @Override
@@ -172,27 +194,51 @@ public final class PlayScreenImpl implements PlayScreen {
         //this.b2debug.dispose();
     }
 
-    @Override
-    public void spawnFruit(final Pair<Float, Float> position, final FruitType fruit) {
-        // TODO Auto-generated method stub
+    private void handleSpawningFruit() {
+        if (!this.orangesToSpawn.isEmpty()) {
+            final Pair<Float, Float> position = this.orangesToSpawn.remove(0);
+            this.fruits.add(FruitBuilderImpl.newBuilder()
+                    .selectFruitType(FruitType.ORANGE)
+                    .chooseXPosition(position.getX())
+                    .chooseYPosition(position.getY())
+                    .selectScreen(this)
+                    .build());
+        }
+        if (!this.cherriesToSpawn.isEmpty()) {
+            final Pair<Float, Float> position = this.cherriesToSpawn.remove(0);
+            this.fruits.add(FruitBuilderImpl.newBuilder()
+                    .selectFruitType(FruitType.CHERRY)
+                    .chooseXPosition(position.getX())
+                    .chooseYPosition(position.getY())
+                    .selectScreen(this)
+                    .build());
+        }
+        if (!this.melonsToSpawn.isEmpty()) {
+            final Pair<Float, Float> position = this.melonsToSpawn.remove(0);
+            this.fruits.add(FruitBuilderImpl.newBuilder()
+                    .selectFruitType(FruitType.MELON)
+                    .chooseXPosition(position.getX())
+                    .chooseYPosition(position.getY())
+                    .selectScreen(this)
+                    .build());
+        }
     }
 
     @Override
     public void setDoubleJumpAbility(final boolean b) {
-        // TODO Auto-generated method stub
-
+        this.playerController.getModel().setDoubleJump(b);
     }
 
     @Override
     public void addLife() {
-        // TODO Auto-generated method stub
-
+        this.hud.addLife();
+        this.playerController.getModel().addLife();
     }
 
     @Override
     public void removeLife() {
-        // TODO Auto-generated method stub
-
+        this.hud.removeLife();
+        this.playerController.getModel().removeLife();
     }
 
     @Override
@@ -212,8 +258,7 @@ public final class PlayScreenImpl implements PlayScreen {
 
     @Override
     public float getNinjaXPosition() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.playerController.getBody().getPosition().x;
     }
 
     @Override
@@ -234,6 +279,21 @@ public final class PlayScreenImpl implements PlayScreen {
     @Override
     public void addScore(final Collidable entity) {
         this.hud.addScore(entity.getScore());
+    }
+
+    @Override
+    public void spawnOrange(final Pair<Float, Float> position) {
+        this.orangesToSpawn.add(position);
+    }
+
+    @Override
+    public void spawnMelon(final Pair<Float, Float> position) {
+        this.melonsToSpawn.add(position);
+    }
+
+    @Override
+    public void spawnCherry(final Pair<Float, Float> position) {
+        this.cherriesToSpawn.add(position);
     }
 
 }
