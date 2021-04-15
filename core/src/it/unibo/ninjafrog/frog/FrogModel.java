@@ -60,10 +60,6 @@ public interface FrogModel {
      */
     void removeLife();
     /**
-     * @return true if the game is paused.
-     */
-    boolean isPaused();
-    /**
      * update the model
      * .
      * @param dt delta of time.

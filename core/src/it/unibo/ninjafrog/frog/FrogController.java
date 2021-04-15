@@ -14,6 +14,10 @@ public interface FrogController {
      */
     void update(float dt);
     /**
+     * @return true if the game is paused.
+     */
+    boolean isPaused();
+    /**
      * draw the frog.
      * @param batch the batch;
      */
