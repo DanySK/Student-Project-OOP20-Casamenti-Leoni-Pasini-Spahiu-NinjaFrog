@@ -3,7 +3,10 @@ package it.unibo.ninjafrog.screens;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -104,40 +107,60 @@ public final class PlayScreenImpl implements PlayScreen {
         return value / GameConst.PPM;
     }
 
-    @Override
-    public void show() {
-        // TODO Auto-generated method stub
-
+    private void update(final float dt) {
+        
     }
 
     @Override
     public void render(final float delta) {
-        // TODO Auto-generated method stub
-
+        this.update(delta);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        this.mapRenderer.render();
+        //thisb2debug.render(this.world, this.cam.combined);
+        this.game.getBatch().setProjectionMatrix(this.hud.getStage().getCamera().combined);
+        this.game.getBatch().setProjectionMatrix(this.cam.combined);
+        this.game.getBatch().begin();
+        this.playerController.draw(this.game.getBatch());
+        this.enemies.draw(this.game.getBatch());
+        for (final FruitPowerUp fruit : this.fruits) {
+            fruit.draw(this.game.getBatch());
+        }
+        this.game.getBatch().end();
+        this.hud.getStage().draw();
+        if (this.playerController.isPaused()) {
+            this.game.getBatch().begin();
+            final BitmapFont font = new BitmapFont();
+            font.draw(this.game.getBatch(), "GAME PAUSED", 150, 135);
+            font.draw(this.game.getBatch(), "PRESS SPACE TO RESUME", 105, 115);
+            font.draw(this.game.getBatch(), "GAME PAUSED", 50, 95);
+            this.game.getBatch().end();
+        }
     }
 
     @Override
     public void resize(final int width, final int height) {
-        // TODO Auto-generated method stub
+        this.viewport.update(width, height);
+    }
 
+    @Override
+    public void show() {
+        //unused
     }
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-
+        //unused
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-
+        //unused
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-
+        //unused
     }
 
     @Override
