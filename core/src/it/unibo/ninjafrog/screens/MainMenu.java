@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.utilities.GameConst;
+import it.unibo.ninjafrog.utilities.SoundManager;
 /**
  * Definition of a MainMenu, which is an implementation of Screen.
  * MainMenu is the general menu and the first one that you launch when the game started.
@@ -34,12 +35,16 @@ public final class MainMenu implements Screen {
     private int currentLabel;
     private final Texture background;
     private final Texture selector;
+    private final SoundManager sound;
    /**
     * Public constructor of MainMenu object.
     * @param game NinjaFrogGame
+    * @param sound SoundManager 
     */
-    public MainMenu(final NinjaFrogGame game) {
+    public MainMenu(final NinjaFrogGame game, final SoundManager sound) {
         this.game = game;
+        this.sound = sound;
+        sound.playMenuSong();
         viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
         stage = new Stage(viewport, game.getBatch());
@@ -161,10 +166,10 @@ public final class MainMenu implements Screen {
     private void setMenu() {
        switch (currentLabel) {
        case 1:
-          this.game.setScreen(new LevelsMenu(this.game));
+          this.game.setScreen(new LevelsMenu(this.game, this.sound));
           break;
        case 2:
-           this.game.setScreen(new SettingsMenu(this.game));
+           this.game.setScreen(new SettingsMenu(this.game, this.sound));
            break;
        case 3:
            Gdx.app.exit();

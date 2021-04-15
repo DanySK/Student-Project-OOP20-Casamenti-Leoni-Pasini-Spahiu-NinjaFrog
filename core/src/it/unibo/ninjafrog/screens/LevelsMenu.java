@@ -18,6 +18,7 @@ import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.screens.levels.LevelOne;
 import it.unibo.ninjafrog.screens.levels.LevelTwo;
 import it.unibo.ninjafrog.utilities.GameConst;
+import it.unibo.ninjafrog.utilities.SoundManager;
 /**
  * Definition of a LevelsMenu, which is an implementation of Screen.
  * LevelsMenu is a menu where you can choose the level.
@@ -36,12 +37,14 @@ public final class LevelsMenu implements Screen {
     private int currentLabel;
     private final Texture background;
     private final Texture selector;
+    private final SoundManager sound;
     /**
      * Public constructor of a LevelsMenu object.
      * @param game NinjaFrogame
      */
-    public LevelsMenu(final NinjaFrogGame game) {
+    public LevelsMenu(final NinjaFrogGame game, final SoundManager sound) {
         this.game = game;
+        this.sound = sound;
         viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
         stage = new Stage(viewport, game.getBatch());
@@ -165,13 +168,13 @@ public final class LevelsMenu implements Screen {
      private void setStatus() {
          switch (currentLabel) {
          case 1:
-             this.game.setScreen(new PlayScreenImpl(this.game, new LevelOne()));
+             this.game.setScreen(new PlayScreenImpl(this.game, new LevelOne(), this.sound));
              break;
          case 2:
-             this.game.setScreen(new PlayScreenImpl(this.game, new LevelTwo()));
+             this.game.setScreen(new PlayScreenImpl(this.game, new LevelTwo(), this.sound));
              break;
          case 3:
-             this.game.setScreen(new MainMenu(this.game));
+             this.game.setScreen(new MainMenu(this.game, this.sound));
              break;
          default:
              break;
