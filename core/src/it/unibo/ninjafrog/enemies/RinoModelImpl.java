@@ -54,7 +54,7 @@ public class RinoModelImpl implements RinoModel{
     public void update(float dt) {
         stateTime += dt;
         if(!this.destroyed && controller.getX(this) < this.screen.getNinjaXPosition() + 224/GameConst.PPM) {
-            body.setActive(destroyed);
+            body.setActive(true);
         }
         if(setToDestroy && !this.destroyed) {
             this.destroyed = true;
@@ -71,16 +71,16 @@ public class RinoModelImpl implements RinoModel{
     @Override
     public void reverseVelocity(boolean x, boolean y) {
         if(x) {
-            velocity.x = -velocity.x;
-            if(y) {
-                velocity.y = -velocity.y;
-            }
+                velocity.x = -velocity.x;
         }
+        if(y) {
+                velocity.y = -velocity.y;
+        }      
     }
 
     @Override
     public boolean isSetToDestroy() {
-        return setToDestroy;
+        return this.setToDestroy;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class RinoModelImpl implements RinoModel{
 
     @Override
     public boolean isRunningLeft() {
-        return this.isRunningLeft();
+        return this.runningLeft;
     }
 
     @Override
@@ -128,7 +128,8 @@ public class RinoModelImpl implements RinoModel{
                                  | GameConst.BRICK
                                  | GameConst.NINJA
                                  | GameConst.TURTLE
-                                 | GameConst.GROUND_OBJECT;
+                                 | GameConst.GROUND_OBJECT
+                                 | GameConst.FRUITBOX;
         fdef.shape = shape;
     }
     
@@ -146,6 +147,5 @@ public class RinoModelImpl implements RinoModel{
         fdef.restitution = 1f;
         fdef.filter.categoryBits = GameConst.RINO_HEAD;
     }
-
-
+    
 }
