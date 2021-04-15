@@ -39,6 +39,15 @@ import it.unibo.ninjafrog.world.WorldCreatorImpl;
  * Implementation of the {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen}.
  */
 public final class PlayScreenImpl implements PlayScreen {
+    private static final int LABEL3_Y = 95;
+    private static final int LABEL2_Y = 115;
+    private static final int LABEL1_Y = 135;
+    private static final int LABEL3_X = 50;
+    private static final int LABEL2_X = 105;
+    private static final int LABEL1_X = 150;
+    private static final int WORLD_POS_ITER = 2;
+    private static final int WORLD_VEL_ITER = 6;
+    private static final float WORLD_TIME_STEP = 1 / 60f;
     private static final int WORLD_X_GRAVITY = 0;
     private static final int WORLD_Y_GRAVITY = -10;
     private static final int UNIT = 1;
@@ -59,6 +68,10 @@ public final class PlayScreenImpl implements PlayScreen {
     private final List<Pair<Float, Float>> cherriesToSpawn;
     private final List<Pair<Float, Float>> melonsToSpawn;
     private final List<Pair<Float, Float>> orangesToSpawn;
+    /*
+     * BOX DEBUGGER IN CASE OF DEBUG.
+     * private final Box2DDebugRenderer b2debug;
+     */
     /**
      * Public constructor of the PlayScreenImpl.
      * @param game The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
@@ -87,17 +100,8 @@ public final class PlayScreenImpl implements PlayScreen {
         this.hud = new HudImpl(this.game.getBatch());
         final WorldCreator worldCreator = new WorldCreatorImpl(this);
         worldCreator.createWorld();
-        /*
-         * CREATE ENEMIES
-         */
         this.enemies = new EnemyControllerImpl(this);
-        /*
-         * SET COLLISION LISTENER
-         */
         this.world.setContactListener(new WorldCollisionListener(this.enemies, this));
-        /*
-         * CREATE NINJA CONTROLLER
-         */
         this.playerController = new FrogControllerImpl(this);
         this.fruits = new ArrayList<>();
         this.orangesToSpawn = new LinkedList<>();
@@ -117,7 +121,7 @@ public final class PlayScreenImpl implements PlayScreen {
         this.playerController.handleInput();
         if (!this.playerController.isPaused()) {
             this.handleSpawningFruit();
-            this.world.step(1/60f, 6, 2);
+            this.world.step(WORLD_TIME_STEP, WORLD_VEL_ITER, WORLD_POS_ITER);
             this.playerController.update(dt);
             this.enemies.update(dt);
             for (final FruitPowerUp fruit: this.fruits) {
@@ -139,7 +143,10 @@ public final class PlayScreenImpl implements PlayScreen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.mapRenderer.render();
-        //thisb2debug.render(this.world, this.cam.combined);
+        /*
+         * BOX DEBUGGER IN CASE OF DEBUG.
+         * thisb2debug.render(this.world, this.cam.combined);
+         */
         this.game.getBatch().setProjectionMatrix(this.hud.getStage().getCamera().combined);
         this.game.getBatch().setProjectionMatrix(this.cam.combined);
         this.game.getBatch().begin();
@@ -153,36 +160,11 @@ public final class PlayScreenImpl implements PlayScreen {
         if (this.playerController.isPaused()) {
             this.game.getBatch().begin();
             final BitmapFont font = new BitmapFont();
-            font.draw(this.game.getBatch(), "GAME PAUSED", 150, 135);
-            font.draw(this.game.getBatch(), "PRESS SPACE TO RESUME", 105, 115);
-            font.draw(this.game.getBatch(), "GAME PAUSED", 50, 95);
+            font.draw(this.game.getBatch(), "GAME PAUSED", LABEL1_X, LABEL1_Y);
+            font.draw(this.game.getBatch(), "PRESS SPACE TO RESUME", LABEL2_X, LABEL2_Y);
+            font.draw(this.game.getBatch(), "GAME PAUSED", LABEL3_X, LABEL3_Y);
             this.game.getBatch().end();
         }
-    }
-
-    @Override
-    public void resize(final int width, final int height) {
-        this.viewport.update(width, height);
-    }
-
-    @Override
-    public void show() {
-        //unused
-    }
-
-    @Override
-    public void pause() {
-        //unused
-    }
-
-    @Override
-    public void resume() {
-        //unused
-    }
-
-    @Override
-    public void hide() {
-        //unused
     }
 
     @Override
@@ -191,7 +173,30 @@ public final class PlayScreenImpl implements PlayScreen {
         this.mapRenderer.dispose();
         this.world.dispose();
         this.hud.getStage().dispose();
-        //this.b2debug.dispose();
+        /*
+         * BOX DEBUGGER IN CASE OF DEBUG.
+         * this.b2debug.dispose();
+         */
+    }
+
+    @Override
+    public void resize(final int width, final int height) {
+        this.viewport.update(width, height);
+    }
+
+    @Override
+    public void spawnOrange(final Pair<Float, Float> position) {
+        this.orangesToSpawn.add(position);
+    }
+
+    @Override
+    public void spawnMelon(final Pair<Float, Float> position) {
+        this.melonsToSpawn.add(position);
+    }
+
+    @Override
+    public void spawnCherry(final Pair<Float, Float> position) {
+        this.cherriesToSpawn.add(position);
     }
 
     private void handleSpawningFruit() {
@@ -242,6 +247,11 @@ public final class PlayScreenImpl implements PlayScreen {
     }
 
     @Override
+    public void addScore(final Collidable entity) {
+        this.hud.addScore(entity.getScore());
+    }
+
+    @Override
     public void setWinScreen() {
         this.game.setScreen(new WinScreen(this.game, this.hud.getScore(), this.sound));
     }
@@ -277,23 +287,22 @@ public final class PlayScreenImpl implements PlayScreen {
     }
 
     @Override
-    public void addScore(final Collidable entity) {
-        this.hud.addScore(entity.getScore());
+    public void show() {
+        //unused
     }
 
     @Override
-    public void spawnOrange(final Pair<Float, Float> position) {
-        this.orangesToSpawn.add(position);
+    public void pause() {
+        //unused
     }
 
     @Override
-    public void spawnMelon(final Pair<Float, Float> position) {
-        this.melonsToSpawn.add(position);
+    public void resume() {
+        //unused
     }
 
     @Override
-    public void spawnCherry(final Pair<Float, Float> position) {
-        this.cherriesToSpawn.add(position);
+    public void hide() {
+        //unused
     }
-
 }

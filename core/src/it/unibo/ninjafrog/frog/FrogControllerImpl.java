@@ -16,8 +16,9 @@ public class FrogControllerImpl implements FrogController {
     private final FrogView frogView;
 
     public FrogControllerImpl(final PlayScreen screen) {
+        
         this.frog = new FrogModelImpl(screen, this);
-        this.frogView = new FrogViewImpl(this);
+        this.frogView = new FrogViewImpl(this, screen);
         this.pause = false;
     }
 

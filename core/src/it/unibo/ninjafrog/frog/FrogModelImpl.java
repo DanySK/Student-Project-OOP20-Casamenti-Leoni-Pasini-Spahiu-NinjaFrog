@@ -21,13 +21,12 @@ public class FrogModelImpl implements FrogModel {
     private Integer life = 1;
     private boolean isDoubleJump;
     private boolean runningRight;
-    private boolean paused;
     private final PlayScreen screen;
 
     private FrogState currentState;
     private final FrogState prevState;
     private Body body;
-    private final  World world;
+    private final World world;
     private final FrogController frogController;
 
     public FrogModelImpl(final PlayScreen screen, final FrogController frogController) {
@@ -38,8 +37,7 @@ public class FrogModelImpl implements FrogModel {
         this.currentState = FrogState.STANDING;
         this.isDoubleJump = false;
         this.runningRight = true;
-        this.paused = false;
-
+        defineFrog();
     }
     @Override
     public final Body getBody() {
@@ -140,7 +138,8 @@ public class FrogModelImpl implements FrogModel {
         final BodyDef bdef = new BodyDef();
         bdef.position.set(INIT_POS / GameConst.PPM, INIT_POS / GameConst.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
-        body = world.createBody(bdef);
+        this.body = world.createBody(bdef);
+        System.out.println("1" + this.body);
 
         final FixtureDef fdef = new FixtureDef();
         final CircleShape  shape = new CircleShape();
@@ -172,7 +171,9 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public final void update(final float dt) {
-        if (body.getLinearVelocity().y < -VEL_MAX) {
+        System.out.println(body);
+
+        if (this.body.getLinearVelocity().y < -VEL_MAX) {
            body.setLinearVelocity(body.getLinearVelocity().x, -VEL_MAX);
         }
         if (body.getPosition().y < 0) {

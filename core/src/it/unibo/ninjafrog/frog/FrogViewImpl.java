@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
+import it.unibo.ninjafrog.screens.PlayScreen;
+
 public class FrogViewImpl extends Sprite implements FrogView {
     private static final int IMAGE_DIM = 32;
     private static final float ANIM_VEL = 0.1f;
@@ -27,7 +29,8 @@ public class FrogViewImpl extends Sprite implements FrogView {
     private final Animation<TextureRegion> frogBonusRun;
     private final Animation<TextureRegion> frogBonusDoubleJump;
 
-    public FrogViewImpl(final FrogController frogController) {
+    public FrogViewImpl(final FrogController frogController, final PlayScreen screen) {
+        super(screen.getAtlas().findRegion("ninjaAndEnemies")); 
         this.frogController = frogController;
         this.stateTimer = 0;
         frogJump = new TextureRegion(getTexture(), 420 , 3, IMAGE_DIM, IMAGE_DIM);
