@@ -41,6 +41,7 @@ public final class LevelsMenu implements Screen {
     /**
      * Public constructor of a LevelsMenu object.
      * @param game NinjaFrogame
+     * @param sound SoundManager audio of the game.
      */
     public LevelsMenu(final NinjaFrogGame game, final SoundManager sound) {
         this.game = game;

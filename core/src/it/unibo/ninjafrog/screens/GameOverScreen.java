@@ -30,7 +30,8 @@ public final class GameOverScreen implements Screen {
     /**
      * Public constructor of a GameOverScreenobject.
      * @param game NinjaFruitGame
-     * @param score Integer score of the game;
+     * @param score Integer score of the game.
+     * @param sound SoundManager audio of the game.
      */
     public GameOverScreen(final NinjaFrogGame game, final Integer score, final SoundManager sound) {
         this.game = game;

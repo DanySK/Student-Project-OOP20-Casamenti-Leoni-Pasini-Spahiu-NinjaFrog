@@ -39,7 +39,7 @@ public final class MainMenu implements Screen {
    /**
     * Public constructor of MainMenu object.
     * @param game NinjaFrogGame
-    * @param sound SoundManager 
+    * @param sound SoundManager audio of the game.
     */
     public MainMenu(final NinjaFrogGame game, final SoundManager sound) {
         this.game = game;

@@ -36,8 +36,8 @@ public final class SettingsMenu implements Screen {
     private final SoundManager sound;
     /**
      * Public constructor of a SettingsMenu object.
-     * @param game NinjaFroggame
-     * @param sound SoundManager 
+     * @param game NinjaFrogGame
+     * @param sound SoundManager audio of the game. 
      */
     public SettingsMenu(final NinjaFrogGame game, final SoundManager sound) {
         this.game = game;
