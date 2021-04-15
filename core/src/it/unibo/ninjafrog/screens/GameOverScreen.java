@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.utilities.GameConst;
+import it.unibo.ninjafrog.utilities.SoundManager;
 /**
  * Definition of a GameOverScreen, which is an implementation of Screen.
  * GameOverScreen is launched when the player died during the game.
@@ -25,13 +26,17 @@ public final class GameOverScreen implements Screen {
     private final NinjaFrogGame game;
     private final Viewport viewport;
     private final Texture background;
+    private final SoundManager sound;
     /**
      * Public constructor of a GameOverScreenobject.
      * @param game NinjaFruitGame
-     * @param score int score of the game;
+     * @param score Integer score of the game.
+     * @param sound SoundManager audio of the game.
      */
-    public GameOverScreen(final NinjaFrogGame game, final int score) {
+    public GameOverScreen(final NinjaFrogGame game, final Integer score, final SoundManager sound) {
         this.game = game;
+        this.sound = sound;
+        sound.playMenuSong();
         viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
         stage  = new Stage(viewport, game.getBatch());
@@ -87,7 +92,7 @@ public final class GameOverScreen implements Screen {
 
     private void handleInput() {
         if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
-            game.setScreen(new MainMenu(this.game));
+            game.setScreen(new MainMenu(this.game, this.sound));
         }
     }
 

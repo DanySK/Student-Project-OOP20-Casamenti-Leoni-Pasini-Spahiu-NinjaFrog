@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.utilities.GameConst;
+import it.unibo.ninjafrog.utilities.SoundManager;
 /**
  *  Definition of a SettingsMenu, which is an implementation of Screen.
  *  SettingsMenu is a menu where you can set the game music. 
@@ -32,12 +33,15 @@ public final class SettingsMenu implements Screen {
     private int currentLabel;
     private final Texture selector;
     private final Texture background;
+    private final SoundManager sound;
     /**
      * Public constructor of a SettingsMenu object.
-     * @param game NinjaFroggame
+     * @param game NinjaFrogGame
+     * @param sound SoundManager audio of the game. 
      */
-    public SettingsMenu(final NinjaFrogGame game) {
+    public SettingsMenu(final NinjaFrogGame game, final SoundManager sound) {
         this.game = game;
+        this.sound = sound;
         viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
         stage = new Stage(viewport, game.getBatch());
@@ -126,10 +130,10 @@ public final class SettingsMenu implements Screen {
     private void setStatus() {
         switch (currentLabel) {
         case 1:
-            //insert if(getStatMusic)...
+            this.sound.changeState();
             break;
         case 2:
-            this.game.setScreen(new MainMenu(this.game));
+            this.game.setScreen(new MainMenu(this.game, this.sound));
             break;
         default:
             break;
