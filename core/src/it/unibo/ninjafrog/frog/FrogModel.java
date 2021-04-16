@@ -23,10 +23,6 @@ public interface FrogModel {
      */
     FrogState getState();
     /**
-     * set frog's state.
-     */
-    void setState();
-    /**
      * the frog jump.
      */
     void jump();
