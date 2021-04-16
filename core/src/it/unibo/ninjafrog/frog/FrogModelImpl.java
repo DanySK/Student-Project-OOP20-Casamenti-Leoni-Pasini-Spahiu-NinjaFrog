@@ -51,21 +51,16 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public final FrogState getState() {
-        return this.currentState;
-    }
-
-    @Override
-    public final void setState() {
         if (body.getLinearVelocity().y > 0 || (body.getLinearVelocity().y < 0 && prevState == FrogState.DOUBLEJUMPING) && this.isDoubleJump) {
-            currentState = FrogState.DOUBLEJUMPING;
+            return FrogState.DOUBLEJUMPING;
         } else if (body.getLinearVelocity().y > 0 || (body.getLinearVelocity().y < 0 && prevState == FrogState.JUMPING) && !this.isDoubleJump) {
-            currentState = FrogState.JUMPING;
+            return FrogState.JUMPING;
         } else if (body.getLinearVelocity().y < 0) {
-            currentState = FrogState.FALLING;
+            return FrogState.FALLING;
         } else if (body.getLinearVelocity().x != 0) {
-            currentState = FrogState.RUNNING;
+            return FrogState.RUNNING;
         } else {
-            currentState = FrogState.STANDING;
+            return FrogState.STANDING;
         }
     }
 
@@ -122,7 +117,6 @@ public class FrogModelImpl implements FrogModel {
     @Override
     public final void addLife() {
         this.life++;
-        this.screen.addLife();
     }
 
     @Override
