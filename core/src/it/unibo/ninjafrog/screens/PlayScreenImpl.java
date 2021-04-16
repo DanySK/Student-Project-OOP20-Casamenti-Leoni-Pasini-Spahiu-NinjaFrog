@@ -161,12 +161,15 @@ public final class PlayScreenImpl implements PlayScreen {
         this.game.getBatch().end();
         this.hud.getStage().draw();
         if (this.playerController.isPaused()) {
+            this.sound.pauseGameSong();
             this.game.getBatch().begin();
             final BitmapFont font = new BitmapFont();
             font.draw(this.game.getBatch(), "GAME PAUSED", LABEL1_X, LABEL1_Y);
             font.draw(this.game.getBatch(), "PRESS ENTER TO RESUME", LABEL2_X, LABEL2_Y);
             font.draw(this.game.getBatch(), "PRESS ESCAPE TO GO TO THE MAIN MENU", LABEL3_X, LABEL3_Y);
             this.game.getBatch().end();
+        } else {
+            this.sound.playGameSong();
         }
     }
 
