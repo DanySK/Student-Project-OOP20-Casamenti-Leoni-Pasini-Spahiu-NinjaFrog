@@ -127,6 +127,7 @@ public class RinoModelImpl implements RinoModel{
         fdef.filter.categoryBits = GameConst.GROUND
                                  | GameConst.BRICK
                                  | GameConst.NINJA
+                                 | GameConst.RINO
                                  | GameConst.TURTLE
                                  | GameConst.GROUND_OBJECT
                                  | GameConst.FRUITBOX;
