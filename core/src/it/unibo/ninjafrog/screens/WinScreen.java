@@ -31,7 +31,7 @@ public final class WinScreen implements Screen {
     /**
      * Public constructor of a WinScreen object.
      * @param game NinjaFruitGame
-     * @param score int score of the game.
+     * @param score Integer score of the game.
      * @param sound SoundManager audio of the game.
      */
     public WinScreen(final NinjaFrogGame game, final Integer score, final SoundManager sound) {
