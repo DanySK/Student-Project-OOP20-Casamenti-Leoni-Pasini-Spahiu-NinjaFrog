@@ -139,7 +139,6 @@ public class FrogModelImpl implements FrogModel {
         bdef.position.set(INIT_POS / GameConst.PPM, INIT_POS / GameConst.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         this.body = world.createBody(bdef);
-        System.out.println("1" + this.body);
 
         final FixtureDef fdef = new FixtureDef();
         final CircleShape  shape = new CircleShape();
@@ -171,7 +170,6 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public final void update(final float dt) {
-        System.out.println(body);
 
         if (this.body.getLinearVelocity().y < -VEL_MAX) {
            body.setLinearVelocity(body.getLinearVelocity().x, -VEL_MAX);
