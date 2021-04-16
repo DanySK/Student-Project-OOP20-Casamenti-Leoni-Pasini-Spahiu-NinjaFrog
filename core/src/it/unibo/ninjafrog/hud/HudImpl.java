@@ -7,14 +7,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import it.unibo.ninjafrog.utilities.GameConst;
 
-public class HudImpl implements Hud {
+public final class HudImpl implements Hud {
     private static final int BONUSTIMER = 10;
     private Stage stage;
     private Viewport viewport;
@@ -68,7 +66,7 @@ public class HudImpl implements Hud {
     @Override
     public void addScore(final int value) {
         score += value;
-        scoreLabel.setText(String.format("%06d", score));
+        pointLabel.setText(String.format("%06d", score));
     }
     @Override
     public Integer getScore() {
