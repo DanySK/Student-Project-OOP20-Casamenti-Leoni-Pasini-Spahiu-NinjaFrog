@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -70,8 +71,8 @@ public final class PlayScreenImpl implements PlayScreen {
     private final List<Pair<Float, Float>> orangesToSpawn;
     /*
      * BOX DEBUGGER IN CASE OF DEBUG.
-     * private final Box2DDebugRenderer b2debug;
      */
+    private final Box2DDebugRenderer b2debug;
     /**
      * Public constructor of the PlayScreenImpl.
      * @param game The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
@@ -95,8 +96,8 @@ public final class PlayScreenImpl implements PlayScreen {
         this.world = new World(new Vector2(WORLD_X_GRAVITY, WORLD_Y_GRAVITY), true);
         /*
          * BOX DEBUGGER IN CASE OF DEBUG.
-         * this.b2debug = new Box2DDebugRenderer();
          */
+        this.b2debug = new Box2DDebugRenderer();
         this.hud = new HudImpl(this.game.getBatch());
         final WorldCreator worldCreator = new WorldCreatorImpl(this);
         worldCreator.createWorld();
@@ -147,8 +148,8 @@ public final class PlayScreenImpl implements PlayScreen {
         this.mapRenderer.render();
         /*
          * BOX DEBUGGER IN CASE OF DEBUG.
-         * thisb2debug.render(this.world, this.cam.combined);
          */
+        this.b2debug.render(this.world, this.cam.combined);
         this.game.getBatch().setProjectionMatrix(this.hud.getStage().getCamera().combined);
         this.game.getBatch().setProjectionMatrix(this.cam.combined);
         this.game.getBatch().begin();
@@ -177,8 +178,8 @@ public final class PlayScreenImpl implements PlayScreen {
         this.hud.getStage().dispose();
         /*
          * BOX DEBUGGER IN CASE OF DEBUG.
-         * this.b2debug.dispose();
          */
+        this.b2debug.dispose();
     }
 
     @Override
