@@ -61,9 +61,10 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
        body = world.createBody(fruitBody);
        final FixtureDef fruitFixture = new FixtureDef();
        final CircleShape fruitShape = new CircleShape();
+       fruitFixture.shape = fruitShape;
        fruitShape.setRadius(FRUIT_RADIUS);
        maskBits(fruitFixture);
-       body.createFixture(fruitFixture).setUserData(type);
+       body.createFixture(fruitFixture).setUserData(this);
     }
 
     @Override

@@ -64,6 +64,7 @@ public final class WinScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().begin();
         game.getBatch().draw(background, 0, 0, GameConst.WIDTH, GameConst.HEIGHT);
+        game.getBatch().end();
         stage.draw();
     }
 
