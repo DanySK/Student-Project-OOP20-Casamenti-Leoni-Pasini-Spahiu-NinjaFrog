@@ -65,4 +65,9 @@ public final class SoundManagerImpl implements SoundManager, Disposable {
     public boolean getState() {
         return this.state;
     }
+
+    @Override
+    public void pauseGameSong() {
+        this.musicGame.pause();
+    }
 }

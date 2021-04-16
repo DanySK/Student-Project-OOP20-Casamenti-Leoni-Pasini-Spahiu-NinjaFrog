@@ -18,8 +18,12 @@ public interface SoundManager {
      */
     void playMenuSong();
     /**
-     * play the game song.
+     * play the menu song.
      */
     void playGameSong();
+    /**
+     * stop the game song.
+     */
+    void pauseGameSong();
 }
 
