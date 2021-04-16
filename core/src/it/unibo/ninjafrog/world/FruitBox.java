@@ -28,7 +28,7 @@ public final class FruitBox extends InteractiveObject implements Collidable {
         this.tileSet = this.getMap().getTileSets().getTileSet(InteractiveObject.ASSET_NAME);
         this.getFixture().setUserData(this);
         this.setCategoryFilter(GameConst.FRUITBOX);
-        this.active = false;
+        this.active = true;
     }
 
     @Override
