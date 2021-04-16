@@ -95,11 +95,11 @@ public class FrogViewImpl extends Sprite implements FrogView {
                 }
                 break;
         }
-       /* if ((frogController.getBody().getLinearVelocity().x < 0 || !frogController.isRunningRight()) && !region.isFlipX()) {
+        if ((frogController.getBody().getLinearVelocity().x < 0 || !frogController.isRunningRight()) && !region.isFlipX()) {
             region.flip(true, false);
         } else if ((frogController.getBody().getLinearVelocity().x > 0 || frogController.isRunningRight()) && region.isFlipX()) {
             region.flip(true, false);
-        }*/
+        }
         this.stateTimer = currentState == prevState ? stateTimer + dt : 0;
         prevState = currentState;
 

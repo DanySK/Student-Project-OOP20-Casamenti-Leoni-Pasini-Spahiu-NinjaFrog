@@ -99,7 +99,7 @@ public class FrogModelImpl implements FrogModel {
             }
         } else {
             runningRight = false;
-            if (body.getLinearVelocity().x <= 2) {
+            if (body.getLinearVelocity().x >= -2) {
                 body.applyLinearImpulse(new Vector2(direction, 0), body.getWorldCenter(), true);
                 }
             }
@@ -128,7 +128,6 @@ public class FrogModelImpl implements FrogModel {
     @Override
     public final void removeLife() {
         this.life -= 1;
-        this.screen.removeLife();
         if (this.life == 0) {
             this.screen.setGameOverScreen();
         }

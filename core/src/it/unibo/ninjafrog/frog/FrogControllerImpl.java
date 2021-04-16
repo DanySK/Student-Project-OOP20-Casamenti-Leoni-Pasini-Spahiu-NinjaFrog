@@ -16,7 +16,7 @@ public class FrogControllerImpl implements FrogController {
     private final FrogView frogView;
 
     public FrogControllerImpl(final PlayScreen screen) {
-        
+        this.screen = screen;
         this.frog = new FrogModelImpl(screen, this);
         this.frogView = new FrogViewImpl(this, screen);
         this.pause = false;
@@ -47,11 +47,11 @@ public class FrogControllerImpl implements FrogController {
                     frog.jump();
                     }
                 }
-            if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 frog.move(VEL);
             }
-            if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-                frog.move(VEL);
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                frog.move(-VEL);
             }
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                 this.pause = !this.pause;
@@ -60,7 +60,7 @@ public class FrogControllerImpl implements FrogController {
             if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                 this.screen.setMenuScreen();
             }
-            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 this.pause = !this.pause;
             }
         }
