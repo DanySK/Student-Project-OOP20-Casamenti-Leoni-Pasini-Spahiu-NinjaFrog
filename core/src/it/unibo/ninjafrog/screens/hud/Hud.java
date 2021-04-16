@@ -1,4 +1,4 @@
-package it.unibo.ninjafrog.hud;
+package it.unibo.ninjafrog.screens.hud;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;

@@ -1,4 +1,4 @@
-package it.unibo.ninjafrog.hud;
+package it.unibo.ninjafrog.screens.hud;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
