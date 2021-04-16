@@ -34,6 +34,7 @@ public final class SettingsMenu implements Screen {
     private final Texture selector;
     private final Texture background;
     private final SoundManager sound;
+    private boolean soundOn;
     /**
      * Public constructor of a SettingsMenu object.
      * @param game NinjaFrogGame
@@ -47,6 +48,7 @@ public final class SettingsMenu implements Screen {
         stage = new Stage(viewport, game.getBatch());
         Gdx.input.setInputProcessor(stage);
         final Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+        soundOn = true;
         selector = new Texture("Selector.png");
         background = new Texture("Menu2background.png");
         musicLabel = new Label("Music: ON", font);
@@ -142,10 +144,12 @@ public final class SettingsMenu implements Screen {
     }
 
     private void setLabel() {
-       if (musicLabel.getText().equals("Music: ON")) {
+       if (soundOn == true) {
            musicLabel.setText("Music:OFF");
+           soundOn = false;
        } else {
            musicLabel.setText("Music: ON"); 
+           soundOn = true;
        }
     }
 
