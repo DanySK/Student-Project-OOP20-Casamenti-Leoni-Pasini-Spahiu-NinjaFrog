@@ -34,7 +34,6 @@ public final class SettingsMenu implements Screen {
     private final Texture selector;
     private final Texture background;
     private final SoundManager sound;
-    private boolean soundOn;
     /**
      * Public constructor of a SettingsMenu object.
      * @param game NinjaFrogGame
@@ -48,10 +47,9 @@ public final class SettingsMenu implements Screen {
         stage = new Stage(viewport, game.getBatch());
         Gdx.input.setInputProcessor(stage);
         final Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-        soundOn = true;
         selector = new Texture("Selector.png");
         background = new Texture("Menu2background.png");
-        musicLabel = new Label("Music: ON", font);
+        musicLabel = new Label("Music: ", font);
         exit = new Label("Back", font);
         currentLabel = 1;
         final Table table = new Table();
@@ -66,6 +64,7 @@ public final class SettingsMenu implements Screen {
     @Override
     public void render(final float delta) {
         handleInput();
+        updateMusicLabel();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.getBatch().begin();
@@ -129,11 +128,19 @@ public final class SettingsMenu implements Screen {
         }
     }
 
+    private void updateMusicLabel() {
+        if (sound.getState()) {
+            musicLabel.setText("Music: ON");
+        } else {
+            musicLabel.setText("Music:OFF"); 
+        }
+     }
+
     private void setStatus() {
         switch (currentLabel) {
         case 1:
             this.sound.changeState();
-            setLabel();
+            updateMusicLabel();
             break;
         case 2:
             this.game.setScreen(new MainMenu(this.game, this.sound));
@@ -141,16 +148,6 @@ public final class SettingsMenu implements Screen {
         default:
             break;
         } 
-    }
-
-    private void setLabel() {
-       if (soundOn == true) {
-           musicLabel.setText("Music:OFF");
-           soundOn = false;
-       } else {
-           musicLabel.setText("Music: ON"); 
-           soundOn = true;
-       }
     }
 
 }
