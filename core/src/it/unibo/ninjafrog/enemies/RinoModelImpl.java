@@ -124,7 +124,7 @@ public class RinoModelImpl implements RinoModel{
     private void fixtureBodyDefinition(FixtureDef fdef, CircleShape shape) {
         shape.setRadius(RinoModelImpl.CIRCCLE_RADIUS/GameConst.PPM);
         fdef.filter.categoryBits = GameConst.RINO;
-        fdef.filter.categoryBits = GameConst.GROUND
+        fdef.filter.maskBits = GameConst.GROUND
                                  | GameConst.BRICK
                                  | GameConst.NINJA
                                  | GameConst.RINO
