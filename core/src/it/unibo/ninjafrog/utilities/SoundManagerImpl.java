@@ -60,4 +60,9 @@ public final class SoundManagerImpl implements SoundManager, Disposable {
         musicMenu.dispose();
         musicGame.dispose();
     }
+
+    @Override
+    public boolean getState() {
+        return this.state;
+    }
 }

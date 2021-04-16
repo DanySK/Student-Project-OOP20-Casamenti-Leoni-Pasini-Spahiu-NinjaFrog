@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
 import it.unibo.ninjafrog.screens.PlayScreen;
+import it.unibo.ninjafrog.utilities.GameConst;
 
 public class FrogViewImpl extends Sprite implements FrogView {
     private static final int IMAGE_DIM = 32;
@@ -56,7 +57,8 @@ public class FrogViewImpl extends Sprite implements FrogView {
             frames.add(new TextureRegion(getTexture(), i * IMAGE_DIM, IMAGE_DIM, IMAGE_DIM, IMAGE_DIM));
         }
         frogBonusDoubleJump = new Animation<>(ANIM_VEL, frames);
-
+        frames.clear();
+        setBounds(0, 0, 18 / GameConst.PPM, 18 / GameConst.PPM);
     }
     @Override
     public final void update(final float dt) {

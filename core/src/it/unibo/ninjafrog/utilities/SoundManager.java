@@ -10,6 +10,10 @@ public interface SoundManager {
      */
     void changeState();
     /**
+     * @return the state.
+     */
+    boolean getState();
+    /**
      * play the menu song.
      */
     void playMenuSong();
