@@ -99,7 +99,7 @@ public class FrogModelImpl implements FrogModel {
             }
         } else {
             runningRight = false;
-            if (body.getLinearVelocity().x <= 2) {
+            if (body.getLinearVelocity().x >= -2) {
                 body.applyLinearImpulse(new Vector2(direction, 0), body.getWorldCenter(), true);
                 }
             }
@@ -128,7 +128,6 @@ public class FrogModelImpl implements FrogModel {
     @Override
     public final void removeLife() {
         this.life -= 1;
-        this.screen.removeLife();
         if (this.life == 0) {
             this.screen.setGameOverScreen();
         }
@@ -139,7 +138,6 @@ public class FrogModelImpl implements FrogModel {
         bdef.position.set(INIT_POS / GameConst.PPM, INIT_POS / GameConst.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         this.body = world.createBody(bdef);
-        System.out.println("1" + this.body);
 
         final FixtureDef fdef = new FixtureDef();
         final CircleShape  shape = new CircleShape();
@@ -171,7 +169,6 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public final void update(final float dt) {
-        System.out.println(body);
 
         if (this.body.getLinearVelocity().y < -VEL_MAX) {
            body.setLinearVelocity(body.getLinearVelocity().x, -VEL_MAX);
