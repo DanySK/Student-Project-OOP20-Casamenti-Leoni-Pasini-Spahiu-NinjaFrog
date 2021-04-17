@@ -147,7 +147,7 @@ public final class PlayScreenImpl implements PlayScreen {
             if (this.playerController.isDoubleJumpActive()) {
                 this.hud.update(dt);
                 if (!this.hud.isTimerOn()) {
-                    this.playerController.getModel().setDoubleJump(false);
+                    this.setDoubleJumpAbility(false);
                 }
             }
             this.cam.position.x = this.playerController.getBody().getPosition().x;
