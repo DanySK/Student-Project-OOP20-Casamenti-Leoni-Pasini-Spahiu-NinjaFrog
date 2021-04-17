@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -40,6 +41,18 @@ import it.unibo.ninjafrog.world.WorldCreatorImpl;
  * Implementation of the {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen}.
  */
 public final class PlayScreenImpl implements PlayScreen {
+    private static final double BLANK_TIME = 0.5;
+    private static final int TEXT_TIME = 1;
+    private static final int BG3_X = 135;
+    private static final int BG2_X = 300;
+    private static final int BG1_X = 440;
+    private static final int BG3_Y = 240;
+    private static final int BG2_Y = 300;
+    private static final int BG1_Y = 360;
+    private static final int BG3_WIDTH = 950;
+    private static final int BG2_WIDTH = 615;
+    private static final int BG1_WIDTH = 338;
+    private static final int BG_HEIGHT = 58;
     private static final int LABEL3_Y = 95;
     private static final int LABEL2_Y = 115;
     private static final int LABEL1_Y = 135;
@@ -69,6 +82,8 @@ public final class PlayScreenImpl implements PlayScreen {
     private final List<Pair<Float, Float>> cherriesToSpawn;
     private final List<Pair<Float, Float>> melonsToSpawn;
     private final List<Pair<Float, Float>> orangesToSpawn;
+    private float pauseTime;
+    private final ShapeRenderer textBackground;
     /*
      * BOX DEBUGGER IN CASE OF DEBUG.
      */
@@ -108,6 +123,7 @@ public final class PlayScreenImpl implements PlayScreen {
         this.orangesToSpawn = new LinkedList<>();
         this.cherriesToSpawn = new LinkedList<>();
         this.melonsToSpawn = new LinkedList<>();
+        this.textBackground = new ShapeRenderer();
     }
 
     private float halfOf(final float value) {
@@ -162,15 +178,32 @@ public final class PlayScreenImpl implements PlayScreen {
         this.hud.getStage().draw();
         if (this.playerController.isPaused()) {
             this.sound.pauseGameSong();
-            this.game.getBatch().begin();
-            final BitmapFont font = new BitmapFont();
-            font.draw(this.game.getBatch(), "GAME PAUSED", LABEL1_X, LABEL1_Y);
-            font.draw(this.game.getBatch(), "PRESS ENTER TO RESUME", LABEL2_X, LABEL2_Y);
-            font.draw(this.game.getBatch(), "PRESS ESCAPE TO GO TO THE MAIN MENU", LABEL3_X, LABEL3_Y);
-            this.game.getBatch().end();
+            this.pauseTime += delta;
+            if (this.pauseTime < TEXT_TIME) {
+                this.drawBackground(BG1_X, BG1_Y, BG1_WIDTH, BG_HEIGHT);
+                this.drawBackground(BG2_X, BG2_Y, BG2_WIDTH, BG_HEIGHT);
+                this.drawBackground(BG3_X, BG3_Y, BG3_WIDTH, BG_HEIGHT);
+                this.game.getBatch().begin();
+                final BitmapFont font = new BitmapFont();
+                font.draw(this.game.getBatch(), "GAME PAUSED", LABEL1_X, LABEL1_Y);
+                font.draw(this.game.getBatch(), "PRESS ENTER TO RESUME", LABEL2_X, LABEL2_Y);
+                font.draw(this.game.getBatch(), "PRESS ESCAPE TO GO TO THE MAIN MENU", LABEL3_X, LABEL3_Y);
+                this.game.getBatch().end();
+            } else {
+                if (this.pauseTime > TEXT_TIME + BLANK_TIME) {
+                    this.pauseTime = 0;
+                }
+            }
         } else {
             this.sound.playGameSong();
         }
+    }
+
+    private void drawBackground(final float x, final float y, final float width, final float height) {
+        this.textBackground.begin(ShapeRenderer.ShapeType.Filled); 
+        this.textBackground.setColor(0, 0, 0, 1);
+        this.textBackground.rect(x, y, width, height);
+        this.textBackground.end();
     }
 
     @Override
