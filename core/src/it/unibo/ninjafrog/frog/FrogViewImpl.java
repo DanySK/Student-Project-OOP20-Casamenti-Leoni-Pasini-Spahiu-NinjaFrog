@@ -17,6 +17,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
     private static final int DJ_ANIM_INIT = 13;
     private static final int DJ_ANIM_END = 19;
     private static final int RUN_ANIM_END = 13;
+    private static final int FROG_DIM = 18;
 
     private final FrogController frogController;
     private float stateTimer;
@@ -60,7 +61,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
         }
         frogBonusDoubleJump = new Animation<>(ANIM_VEL, frames);
         frames.clear();
-        setBounds(0, 0, 18 / GameConst.PPM, 18 / GameConst.PPM);
+        setBounds(0, 0, FROG_DIM / GameConst.PPM, FROG_DIM / GameConst.PPM);
     }
     @Override
     public final void update(final float dt) {

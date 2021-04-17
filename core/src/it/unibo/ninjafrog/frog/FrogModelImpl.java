@@ -2,6 +2,7 @@ package it.unibo.ninjafrog.frog;
 
 import com.badlogic.gdx.math.Vector2;
 
+
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -26,10 +27,8 @@ public class FrogModelImpl implements FrogModel {
     private final FrogState prevState;
     private Body body;
     private final World world;
-    private final FrogController frogController;
 
-    public FrogModelImpl(final PlayScreen screen, final FrogController frogController) {
-        this.frogController = frogController;
+    public FrogModelImpl(final PlayScreen screen) {
         this.screen = screen;
         this.world = screen.getWorld();
         this.prevState = FrogState.STANDING;
