@@ -46,7 +46,7 @@ public final class HudImpl implements Hud {
         table.top();
         table.setFillParent(true);
         this.countdownLabel = new Label(String.format("%02d", 00), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.pointLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        this.pointLabel = new Label(String.format("%06d", this.score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.lifeCounterLabel = new Label(String.format("%02d", life), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.bonusLabel = new Label("BONUS", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.scoreLabel = new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -66,7 +66,7 @@ public final class HudImpl implements Hud {
     @Override
     public void addScore(final int value) {
         score += value;
-        pointLabel.setText(String.format("%06d", score));
+        pointLabel.setText(String.format("%06d", this.score));
     }
     @Override
     public Integer getScore() {
@@ -99,7 +99,6 @@ public final class HudImpl implements Hud {
             this.canInit = false;
         }
         this.timeCount += dt;
-        this.bonusTimer--;
         if (this.timeCount >= 1) {
             this.bonusTimer--;
             this.countdownLabel.setText(String.format("%02d", this.bonusTimer));
