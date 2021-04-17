@@ -31,10 +31,6 @@ public interface FrogModel {
      */
     void move(float direction);
     /**
-     * the frog double jump.
-     */
-    void doubleJump();
-    /**
      * @return true if the doublejump is active.
      */
     boolean isDoubleJumpActive();
