@@ -41,11 +41,7 @@ public class FrogControllerImpl implements FrogController {
     public final void handleInput() {
         if (!this.pause) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-                if (frog.isDoubleJumpActive()) {
-                    frog.doubleJump();
-                } else {
-                    frog.jump();
-                    }
+                frog.jump();
                 }
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 frog.move(VEL);

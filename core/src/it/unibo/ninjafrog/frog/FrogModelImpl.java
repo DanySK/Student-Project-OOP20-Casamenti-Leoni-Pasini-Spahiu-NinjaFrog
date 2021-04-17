@@ -66,25 +66,21 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public final void jump() {
-        if (this.currentState != FrogState.JUMPING && this.currentState != FrogState.FALLING) {
-            body.applyLinearImpulse(new Vector2(0, 4f), body.getWorldCenter(), true);
-        }
-    }
+        if (getState() == FrogState.DOUBLEJUMPING) {
 
-    @Override
-    public final void doubleJump() {
-        if (isDoubleJumpActive() && !isDoubleJump) {
+    } else if (getState() != FrogState.JUMPING && getState() != FrogState.FALLING) {
+            body.applyLinearImpulse(new Vector2(0, 4f), body.getWorldCenter(), true);
+        } else if (isDoubleJumpActive() && !isDoubleJump) {
             isDoubleJump = true;
             if (body.getLinearVelocity().y < 0) {
-                if (!(this.currentState == FrogState.FALLING && prevState != FrogState.FALLING)) {
+                if (getState() != FrogState.FALLING && this.prevState != FrogState.FALLING) {
                     body.applyLinearImpulse(new Vector2(0, -body.getLinearVelocity().y + 4f), body.getWorldCenter(), true);
-                } else {
-                    body.applyLinearImpulse(new Vector2(0, 4f - body.getLinearVelocity().y), body.getWorldCenter(), true);
                 }
+            } else {
+                body.applyLinearImpulse(new Vector2(0, 4f - body.getLinearVelocity().y), body.getWorldCenter(), true);
             }
         }
     }
-
     @Override
     public final void move(final float direction) {
         if (direction > 0) {
