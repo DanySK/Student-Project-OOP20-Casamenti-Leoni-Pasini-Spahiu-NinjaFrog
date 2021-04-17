@@ -83,7 +83,7 @@ public class FrogControllerImpl implements FrogController {
 
     @Override
     public final boolean isRunningRight() {
-        return this.frog.isRunningRight();
+        return this.frogView.isRunningRight();
     }
     @Override
     public final boolean isPaused() {

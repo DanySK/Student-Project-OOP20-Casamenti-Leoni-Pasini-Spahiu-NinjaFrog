@@ -40,10 +40,6 @@ public interface FrogModel {
      */
     void setDoubleJump(boolean isDoubleJump);
     /**
-     * @return true if the frog is moving to the right.
-     */
-    boolean isRunningRight();
-    /**
      * add one life to the frog.
      */
     void addLife();

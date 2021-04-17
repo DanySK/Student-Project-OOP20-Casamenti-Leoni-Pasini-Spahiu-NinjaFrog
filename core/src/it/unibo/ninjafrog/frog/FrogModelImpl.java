@@ -20,9 +20,7 @@ public class FrogModelImpl implements FrogModel {
 
     private Integer life = 1;
     private boolean isDoubleJump;
-    private boolean runningRight;
     private final PlayScreen screen;
-
     private FrogState currentState;
     private final FrogState prevState;
     private Body body;
@@ -36,7 +34,6 @@ public class FrogModelImpl implements FrogModel {
         this.prevState = FrogState.STANDING;
         this.currentState = FrogState.STANDING;
         this.isDoubleJump = false;
-        this.runningRight = true;
         defineFrog();
     }
     @Override
@@ -84,12 +81,10 @@ public class FrogModelImpl implements FrogModel {
     @Override
     public final void move(final float direction) {
         if (direction > 0) {
-            runningRight = true;
             if (body.getLinearVelocity().x <= 2) {
                 body.applyLinearImpulse(new Vector2(direction, 0), body.getWorldCenter(), true);
             }
         } else {
-            runningRight = false;
             if (body.getLinearVelocity().x >= -2) {
                 body.applyLinearImpulse(new Vector2(direction, 0), body.getWorldCenter(), true);
                 }
@@ -104,11 +99,6 @@ public class FrogModelImpl implements FrogModel {
     @Override
     public final void setDoubleJump(final boolean isDoubleJump) {
         this.isDoubleJump = isDoubleJump;
-    }
-
-    @Override
-    public final boolean isRunningRight() {
-        return this.runningRight;
     }
     @Override
     public final void addLife() {
