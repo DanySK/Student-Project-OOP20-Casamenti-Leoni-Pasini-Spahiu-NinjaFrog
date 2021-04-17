@@ -15,7 +15,8 @@ import it.unibo.ninjafrog.utilities.GameConst;
 public class FrogModelImpl implements FrogModel {
     private static final float VEL_MAX = 2.5f;
     private static final int RADIUS = 7;
-    private static final int INIT_POS = 220;
+    private static final int X_INIT_POS = 240;
+    private static final int Y_INIT_POS = 240;
     private static final int HEAD = 2;
 
     private Integer life = 1;
@@ -115,7 +116,7 @@ public class FrogModelImpl implements FrogModel {
     @Override
     public final void defineFrog() {
         final BodyDef bdef = new BodyDef();
-        bdef.position.set(INIT_POS / GameConst.PPM, INIT_POS / GameConst.PPM);
+        bdef.position.set(X_INIT_POS / GameConst.PPM, Y_INIT_POS / GameConst.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         this.body = world.createBody(bdef);
 
