@@ -27,12 +27,12 @@ import it.unibo.ninjafrog.fruits.FruitBuilderImpl;
 import it.unibo.ninjafrog.fruits.FruitPowerUp;
 import it.unibo.ninjafrog.fruits.FruitType;
 import it.unibo.ninjafrog.game.NinjaFrogGame;
+import it.unibo.ninjafrog.game.utilities.GameConst;
+import it.unibo.ninjafrog.game.utilities.Pair;
+import it.unibo.ninjafrog.game.utilities.SoundManager;
 import it.unibo.ninjafrog.screens.hud.Hud;
 import it.unibo.ninjafrog.screens.hud.HudImpl;
 import it.unibo.ninjafrog.screens.levels.Level;
-import it.unibo.ninjafrog.utilities.GameConst;
-import it.unibo.ninjafrog.utilities.Pair;
-import it.unibo.ninjafrog.utilities.SoundManager;
 import it.unibo.ninjafrog.world.Collidable;
 import it.unibo.ninjafrog.world.WorldCollisionListener;
 import it.unibo.ninjafrog.world.WorldCreator;
@@ -92,7 +92,7 @@ public final class PlayScreenImpl implements PlayScreen {
      * Public constructor of the PlayScreenImpl.
      * @param game The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
      * @param level The {@link it.unibo.ninjafrog.screens.levels.Level level} selected.
-     * @param sound The {@link it.unibo.ninjafrog.utilities.SoundManager SoundManager}.
+     * @param sound The {@link it.unibo.ninjafrog.game.utilities.SoundManager SoundManager}.
      */
     public PlayScreenImpl(final NinjaFrogGame game, final Level level, final SoundManager sound) {
         this.game = game;

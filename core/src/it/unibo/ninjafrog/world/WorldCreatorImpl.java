@@ -4,8 +4,8 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
+import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
-import it.unibo.ninjafrog.utilities.GameConst;
 /**
  * Definition of a {@link it.unibo.ninjafrog.world.WorldCreator WorldCreator} implementation.
  */

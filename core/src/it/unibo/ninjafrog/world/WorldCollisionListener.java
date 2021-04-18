@@ -10,8 +10,8 @@ import it.unibo.ninjafrog.enemies.EnemyController;
 import it.unibo.ninjafrog.enemies.RinoModel;
 import it.unibo.ninjafrog.enemies.TurtleModel;
 import it.unibo.ninjafrog.fruits.FruitPowerUp;
+import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
-import it.unibo.ninjafrog.utilities.GameConst;
 /**
  * Definition of the WorldCollisionListener class,
  * it detects all collisions in the game and handles all the different cases.

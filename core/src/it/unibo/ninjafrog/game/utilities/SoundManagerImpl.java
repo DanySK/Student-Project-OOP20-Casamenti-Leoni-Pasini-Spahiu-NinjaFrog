@@ -1,4 +1,4 @@
-package it.unibo.ninjafrog.utilities;
+package it.unibo.ninjafrog.game.utilities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;

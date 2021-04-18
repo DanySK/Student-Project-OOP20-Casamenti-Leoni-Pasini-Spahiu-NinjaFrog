@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import it.unibo.ninjafrog.utilities.GameConst;
+import it.unibo.ninjafrog.game.utilities.GameConst;
 
 public final class HudImpl implements Hud {
     private static final int BONUSTIMER = 10;

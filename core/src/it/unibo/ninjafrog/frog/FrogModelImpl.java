@@ -10,8 +10,8 @@ import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
+import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
-import it.unibo.ninjafrog.utilities.GameConst;
 
 public class FrogModelImpl implements FrogModel {
     private static final float VEL_MAX = 2.5f;

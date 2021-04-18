@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
+import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
-import it.unibo.ninjafrog.utilities.GameConst;
 
 public class FrogViewImpl extends Sprite implements FrogView {
     private static final int IMAGE_DIM = 32;

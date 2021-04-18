@@ -15,8 +15,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import it.unibo.ninjafrog.game.NinjaFrogGame;
-import it.unibo.ninjafrog.utilities.GameConst;
-import it.unibo.ninjafrog.utilities.SoundManager;
+import it.unibo.ninjafrog.game.utilities.GameConst;
+import it.unibo.ninjafrog.game.utilities.SoundManager;
 /**
  *  Definition of a SettingsMenu, which is an implementation of Screen.
  *  SettingsMenu is a menu where you can set the game music. 

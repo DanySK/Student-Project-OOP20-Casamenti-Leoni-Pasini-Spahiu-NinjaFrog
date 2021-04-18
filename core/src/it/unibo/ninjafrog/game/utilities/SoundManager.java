@@ -1,4 +1,4 @@
-package it.unibo.ninjafrog.utilities;
+package it.unibo.ninjafrog.game.utilities;
 
 public interface SoundManager {
     /**

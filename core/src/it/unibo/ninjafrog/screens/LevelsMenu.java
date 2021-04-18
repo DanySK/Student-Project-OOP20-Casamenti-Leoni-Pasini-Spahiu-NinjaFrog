@@ -15,10 +15,10 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import it.unibo.ninjafrog.game.NinjaFrogGame;
+import it.unibo.ninjafrog.game.utilities.GameConst;
+import it.unibo.ninjafrog.game.utilities.SoundManager;
 import it.unibo.ninjafrog.screens.levels.LevelOne;
 import it.unibo.ninjafrog.screens.levels.LevelTwo;
-import it.unibo.ninjafrog.utilities.GameConst;
-import it.unibo.ninjafrog.utilities.SoundManager;
 /**
  * Definition of a LevelsMenu, which is an implementation of Screen.
  * LevelsMenu is a menu where you can choose the level.
