@@ -10,63 +10,56 @@ import com.badlogic.gdx.utils.Array;
 import it.unibo.ninjafrog.screens.PlayScreen;
 import it.unibo.ninjafrog.utilities.GameConst;
 
-public class TurtleViewImpl extends Sprite implements TurtleView{
-    
-    public TurtleState currentState;
-    public TurtleState previousState;
-    private EnemyController controller;
-    private PlayScreen screen;
+public class TurtleViewImpl extends Sprite implements TurtleView {
+    private TurtleState currentState;
+    private TurtleState previousState;
+    private final EnemyController controller;
+    private final PlayScreen screen;
     private Array<TextureRegion> frames;
-    private TextureRegion spikes;
-    private TextureRegion noSpikes;
-    private Animation<TextureRegion> spikesInAnimation;
-    private Animation<TextureRegion> spikesOutAnimation;
+    private final TextureRegion spikes;
+    private final TextureRegion noSpikes;
+    private final Animation<TextureRegion> spikesInAnimation;
+    private final Animation<TextureRegion> spikesOutAnimation;
     private float time;
-    
-    public TurtleViewImpl(PlayScreen screen, float x,float y, EnemyControllerImpl enemyControllerImpl) {
+    public TurtleViewImpl(final PlayScreen screen, final float x, final float y, final EnemyControllerImpl enemyControllerImpl) {
         this.controller = enemyControllerImpl;
         this.screen = screen;
-        setPosition(x,y);
-        frames = new Array<TextureRegion>();
-        for(int i=0; i<8;i++) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"),i*44,98,44,27));
+        setPosition(x, y);
+        frames = new Array<>();
+        for (int i = 0; i < 8; i++) {
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), i * 44, 98, 44, 27));
         }
-        spikesInAnimation = new Animation<TextureRegion>(0.1f, frames);
+        spikesInAnimation = new Animation<>(0.1f, frames);
         frames.clear();
-        frames = new Array<TextureRegion>();
-        for(int i=7; i>=0; i--) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"),i*44,98,44,27));
-            
+        frames = new Array<>();
+        for (int i = 7; i >= 0; i--) {
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), i * 44, 98, 44, 27));
         }
-        spikesOutAnimation = new Animation<TextureRegion>(0.1f, frames);
-        
-        spikes = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"),7*44,98,44,27);
-        
-        noSpikes = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"),0,98,44,27);
-        
-        setBounds(getX(),getY(),25/GameConst.PPM,17/GameConst.PPM);
-        
+        spikesOutAnimation = new Animation<>(0.1f, frames);
+        spikes = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), 7 * 44, 98, 44, 27);
+        noSpikes = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), 0, 98, 44, 27);
+        setBounds(getX(), getY(), 25 / GameConst.PPM, 17 / GameConst.PPM);
         this.currentState = TurtleState.NO_SPIKES;
     }
 
     @Override
-    public void update(Body body, float dt) {
+    public final void update(final Body body, final float dt) {
         // TODO Auto-generated method stub
-        setPosition(body.getPosition().x - getWidth()/2, body.getPosition().y - getHeight()/2);
-        setRegion(getFrame(body,dt));
+        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+        setRegion(getFrame(body, dt));
     }
 
     @Override
-    public void draw(Batch batch) {
-        if(!controller.isDestroyed(this) || controller.getStateTime(this) < 0.5) {
+    public final void draw(final Batch batch) {
+        if (!controller.isDestroyed(this) || controller.getStateTime(this) < 0.5) {
             super.draw(batch);
         }
     }
 
-    private TextureRegion getFrame(Body body, float dt) {
+    private TextureRegion getFrame(final Body body, final float dt) {
         currentState = getState(dt);
         TextureRegion region;
-        switch(currentState) {
+        switch (currentState) {
         case SPIKES_IN:
             region = this.spikesInAnimation.getKeyFrame(time);
             break;
@@ -86,40 +79,39 @@ public class TurtleViewImpl extends Sprite implements TurtleView{
         return region;
     }
 
-    private TurtleState getState(float dt) {
-        if(this.currentState == TurtleState.NO_SPIKES || this.currentState == TurtleState.SPIKES) {
-            if(this.time > 1) {
-                if(this.currentState == TurtleState.NO_SPIKES) {
+    private TurtleState getState(final float dt) {
+        if (this.currentState == TurtleState.NO_SPIKES || this.currentState == TurtleState.SPIKES) {
+            if (this.time > 1) {
+                if (this.currentState == TurtleState.NO_SPIKES) {
                     this.time = 0;
                     return TurtleState.SPIKES_IN;
-                }else {
+                } else {
                     this.time = 0;
                     return TurtleState.SPIKES_OUT;
                 }
-            }else {
+            } else {
                 return this.currentState;
                 }
-            }else {
-               if( this.time > 2) {
-                   if(this.currentState == TurtleState.SPIKES_IN) {
+            } else {
+               if (this.time > 2) {
+                   if (this.currentState == TurtleState.SPIKES_IN) {
                         this.time = 0 ;
                         return TurtleState.SPIKES;
-                    }else {
+                    } else {
                         this.time = 0;
                     return TurtleState.NO_SPIKES;
                     }
-            }else {
+            } else {
                 return this.currentState;
             }
         }
     }
-    public void setDesthRegion() {
-          setRegion(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"),440,98,45,27));
+    public final void setDesthRegion() {
+          setRegion(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), 440, 98, 45, 27));
     }
-    
     @Override
-    public boolean hasSpike() {
-        if(this.currentState == TurtleState.SPIKES || this.currentState == TurtleState.SPIKES_IN || this.currentState == TurtleState.SPIKES_OUT) {
+    public final boolean hasSpike() {
+        if (this.currentState == TurtleState.SPIKES || this.currentState == TurtleState.SPIKES_IN || this.currentState == TurtleState.SPIKES_OUT) {
             return true;
         }
         return false;
