@@ -81,7 +81,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
 
     private TurtleState getState(final float dt) {
         if (this.currentState == TurtleState.NO_SPIKES || this.currentState == TurtleState.SPIKES) {
-            if (this.time > 1) {
+            if (this.time > 2) {
                 if (this.currentState == TurtleState.NO_SPIKES) {
                     this.time = 0;
                     return TurtleState.SPIKES_IN;
@@ -111,7 +111,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
     }
     @Override
     public final boolean hasSpike() {
-        if (this.currentState == TurtleState.SPIKES || this.currentState == TurtleState.SPIKES_IN || this.currentState == TurtleState.SPIKES_OUT) {
+        if (this.currentState == TurtleState.SPIKES || this.currentState == TurtleState.SPIKES_IN) {
             return true;
         }
         return false;
