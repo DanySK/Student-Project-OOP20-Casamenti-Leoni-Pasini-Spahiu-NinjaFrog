@@ -19,8 +19,8 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private static final float FRUIT_RADIUS = 6 / GameConst.PPM;
     private static final float BOUNDS_WIDTH = 16 / GameConst.PPM;
     private static final float BOUNDS_HEIGHT = 12 / GameConst.PPM;
-    private static final float SPEED_X = 0.8f;
-    private static final float SPEED_Y = -1.5f;
+    private static final float SPEED_X = 1f;
+    private static final float SPEED_Y = -2.5f;
     private static final int MELON_SCORE = 150;
     private static final int ORANGE_SCORE = 100;
     private static final int CHERRY_SCORE = 200;
