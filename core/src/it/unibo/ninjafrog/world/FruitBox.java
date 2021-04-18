@@ -3,9 +3,9 @@ package it.unibo.ninjafrog.world;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 
+import it.unibo.ninjafrog.game.utilities.GameConst;
+import it.unibo.ninjafrog.game.utilities.Pair;
 import it.unibo.ninjafrog.screens.PlayScreen;
-import it.unibo.ninjafrog.utilities.GameConst;
-import it.unibo.ninjafrog.utilities.Pair;
 
 /**
  * FruitBox class definition.

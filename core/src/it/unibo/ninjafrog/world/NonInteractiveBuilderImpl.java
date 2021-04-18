@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import com.badlogic.gdx.maps.MapObject;
 
+import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
-import it.unibo.ninjafrog.utilities.GameConst;
 
 /**
  * Definition of a {@link it.unibo.ninjafrog.world.NonInteractiveBuilder NonInteractiveBuilder} implementation.

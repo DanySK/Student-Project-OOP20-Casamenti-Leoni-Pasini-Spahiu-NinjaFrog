@@ -4,8 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import it.unibo.ninjafrog.game.utilities.SoundManagerImpl;
 import it.unibo.ninjafrog.screens.MainMenu;
-import it.unibo.ninjafrog.utilities.SoundManagerImpl;
 /**
  * Definition of the NinjaFrogGame class.
  * Main {@link com.badlogic.gdx.Game Game} class of the application.

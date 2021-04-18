@@ -15,5 +15,6 @@ public interface FrogView {
      * @param batch the batch.
      */
     void draw(Batch batch);
+    boolean isRunningRight();
 
 }

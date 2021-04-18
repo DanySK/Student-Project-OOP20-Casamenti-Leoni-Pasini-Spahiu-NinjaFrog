@@ -15,8 +15,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import it.unibo.ninjafrog.game.NinjaFrogGame;
-import it.unibo.ninjafrog.utilities.GameConst;
-import it.unibo.ninjafrog.utilities.SoundManager;
+import it.unibo.ninjafrog.game.utilities.GameConst;
+import it.unibo.ninjafrog.game.utilities.SoundManager;
 /**
  * Definition of a MainMenu, which is an implementation of Screen.
  * MainMenu is the general menu and the first one that you launch when the game started.

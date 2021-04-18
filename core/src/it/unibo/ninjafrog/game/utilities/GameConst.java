@@ -1,4 +1,4 @@
-package it.unibo.ninjafrog.utilities;
+package it.unibo.ninjafrog.game.utilities;
 
 /**
  * Utility class which contains all the constants of the game.

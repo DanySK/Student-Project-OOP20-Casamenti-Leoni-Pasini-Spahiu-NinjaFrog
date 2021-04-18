@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
 
-import it.unibo.ninjafrog.utilities.Pair;
+import it.unibo.ninjafrog.game.utilities.Pair;
 import it.unibo.ninjafrog.world.Collidable;
 /**
  * Definition of the PlayScreen interface, which extends {@link com.badlogic.gdx.Screen Screen}.
@@ -13,17 +13,17 @@ import it.unibo.ninjafrog.world.Collidable;
 public interface PlayScreen extends Screen {
     /**
      * Method to be called when a new orange has to be created.
-     * @param position A {@link it.unibo.ninjafrog.utilities.Pair Pair} containing X and Y values where the new object will be created.
+     * @param position A {@link it.unibo.ninjafrog.game.utilities.Pair Pair} containing X and Y values where the new object will be created.
      */
     void spawnOrange(Pair<Float, Float> position);
     /**
      * Method to be called when a new melon has to be created.
-     * @param position A {@link it.unibo.ninjafrog.utilities.Pair Pair} containing X and Y values where the new object will be created.
+     * @param position A {@link it.unibo.ninjafrog.game.utilities.Pair Pair} containing X and Y values where the new object will be created.
      */
     void spawnMelon(Pair<Float, Float> position);
     /**
      * Method to be called when a new cherry has to be created.
-     * @param position A {@link it.unibo.ninjafrog.utilities.Pair Pair} containing X and Y values where the new object will be created.
+     * @param position A {@link it.unibo.ninjafrog.game.utilities.Pair Pair} containing X and Y values where the new object will be created.
      */
     void spawnCherry(Pair<Float, Float> position);
     /**

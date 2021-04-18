@@ -1,6 +1,7 @@
 package it.unibo.ninjafrog.frog;
 
 import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -11,13 +12,13 @@ public class FrogControllerImpl implements FrogController {
     private static final  float VEL = 0.1f;
 
     private boolean pause;
-    private PlayScreen screen;
+    private final PlayScreen screen;
     private final FrogModel frog;
     private final FrogView frogView;
 
     public FrogControllerImpl(final PlayScreen screen) {
         this.screen = screen;
-        this.frog = new FrogModelImpl(screen, this);
+        this.frog = new FrogModelImpl(screen);
         this.frogView = new FrogViewImpl(this, screen);
         this.pause = false;
     }
@@ -41,11 +42,7 @@ public class FrogControllerImpl implements FrogController {
     public final void handleInput() {
         if (!this.pause) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-                if (frog.isDoubleJumpActive()) {
-                    frog.doubleJump();
-                } else {
-                    frog.jump();
-                    }
+                frog.jump();
                 }
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 frog.move(VEL);
@@ -87,7 +84,7 @@ public class FrogControllerImpl implements FrogController {
 
     @Override
     public final boolean isRunningRight() {
-        return this.frog.isRunningRight();
+        return this.frogView.isRunningRight();
     }
     @Override
     public final boolean isPaused() {

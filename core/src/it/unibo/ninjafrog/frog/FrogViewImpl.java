@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
+import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
-import it.unibo.ninjafrog.utilities.GameConst;
 
 public class FrogViewImpl extends Sprite implements FrogView {
     private static final int IMAGE_DIM = 32;
@@ -17,9 +17,11 @@ public class FrogViewImpl extends Sprite implements FrogView {
     private static final int DJ_ANIM_INIT = 13;
     private static final int DJ_ANIM_END = 19;
     private static final int RUN_ANIM_END = 13;
+    private static final int FROG_DIM = 18;
 
     private final FrogController frogController;
     private float stateTimer;
+    private boolean runningRight;
     private FrogState prevState;
     private FrogState currentState;
     private final TextureRegion frogJump;
@@ -33,6 +35,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
     public FrogViewImpl(final FrogController frogController, final PlayScreen screen) {
         super(screen.getAtlas().findRegion("ninjaAndEnemies")); 
         this.frogController = frogController;
+        this.runningRight = true;
         this.stateTimer = 0;
         frogJump = new TextureRegion(getTexture(), 420 , 3, IMAGE_DIM, IMAGE_DIM);
         frogStand = new TextureRegion(getTexture(), 4, 3, IMAGE_DIM, IMAGE_DIM);
@@ -58,7 +61,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
         }
         frogBonusDoubleJump = new Animation<>(ANIM_VEL, frames);
         frames.clear();
-        setBounds(0, 0, 18 / GameConst.PPM, 18 / GameConst.PPM);
+        setBounds(0, 0, FROG_DIM / GameConst.PPM, FROG_DIM / GameConst.PPM);
     }
     @Override
     public final void update(final float dt) {
@@ -99,13 +102,19 @@ public class FrogViewImpl extends Sprite implements FrogView {
         }
         if ((frogController.getBody().getLinearVelocity().x < 0 || !frogController.isRunningRight()) && !region.isFlipX()) {
             region.flip(true, false);
+            runningRight = false;
         } else if ((frogController.getBody().getLinearVelocity().x > 0 || frogController.isRunningRight()) && region.isFlipX()) {
             region.flip(true, false);
+            runningRight = true;
         }
         this.stateTimer = currentState == prevState ? stateTimer + dt : 0;
         prevState = currentState;
 
         return region;
+    }
+    @Override
+    public final boolean isRunningRight() {
+        return this.runningRight;
     }
 
 

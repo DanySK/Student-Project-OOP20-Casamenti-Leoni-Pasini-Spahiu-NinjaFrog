@@ -1,4 +1,4 @@
-package it.unibo.ninjafrog.hud;
+package it.unibo.ninjafrog.screens.hud;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -7,14 +7,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import it.unibo.ninjafrog.utilities.GameConst;
+import it.unibo.ninjafrog.game.utilities.GameConst;
 
-public class HudImpl implements Hud {
+public final class HudImpl implements Hud {
     private static final int BONUSTIMER = 10;
     private Stage stage;
     private Viewport viewport;
@@ -48,7 +46,7 @@ public class HudImpl implements Hud {
         table.top();
         table.setFillParent(true);
         this.countdownLabel = new Label(String.format("%02d", 00), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.pointLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        this.pointLabel = new Label(String.format("%06d", this.score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.lifeCounterLabel = new Label(String.format("%02d", life), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.bonusLabel = new Label("BONUS", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         this.scoreLabel = new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -68,7 +66,7 @@ public class HudImpl implements Hud {
     @Override
     public void addScore(final int value) {
         score += value;
-        scoreLabel.setText(String.format("%06d", score));
+        pointLabel.setText(String.format("%06d", this.score));
     }
     @Override
     public Integer getScore() {
@@ -101,7 +99,6 @@ public class HudImpl implements Hud {
             this.canInit = false;
         }
         this.timeCount += dt;
-        this.bonusTimer--;
         if (this.timeCount >= 1) {
             this.bonusTimer--;
             this.countdownLabel.setText(String.format("%02d", this.bonusTimer));

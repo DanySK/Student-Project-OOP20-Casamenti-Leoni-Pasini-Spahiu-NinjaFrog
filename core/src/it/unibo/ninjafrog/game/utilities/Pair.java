@@ -1,4 +1,4 @@
-package it.unibo.ninjafrog.utilities;
+package it.unibo.ninjafrog.game.utilities;
 
 /**
  * A standard generic Pair<X,Y>, with getters, hashCode, equals and toString.

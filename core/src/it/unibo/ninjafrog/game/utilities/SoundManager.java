@@ -1,4 +1,4 @@
-package it.unibo.ninjafrog.utilities;
+package it.unibo.ninjafrog.game.utilities;
 
 public interface SoundManager {
     /**
@@ -18,8 +18,12 @@ public interface SoundManager {
      */
     void playMenuSong();
     /**
-     * play the game song.
+     * play the menu song.
      */
     void playGameSong();
+    /**
+     * stop the game song.
+     */
+    void pauseGameSong();
 }
 

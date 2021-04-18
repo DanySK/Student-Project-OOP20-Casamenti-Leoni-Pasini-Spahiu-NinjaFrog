@@ -1,4 +1,4 @@
-package it.unibo.ninjafrog.utilities;
+package it.unibo.ninjafrog.game.utilities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -64,5 +64,10 @@ public final class SoundManagerImpl implements SoundManager, Disposable {
     @Override
     public boolean getState() {
         return this.state;
+    }
+
+    @Override
+    public void pauseGameSong() {
+        this.musicGame.pause();
     }
 }
