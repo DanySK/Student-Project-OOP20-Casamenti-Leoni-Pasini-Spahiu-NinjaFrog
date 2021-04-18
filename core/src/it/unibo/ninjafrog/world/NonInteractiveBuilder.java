@@ -17,7 +17,7 @@ public interface NonInteractiveBuilder {
      * @param bit The short you want to set as category bit of the object.
      * @return The builder object itself.
      */
-    NonInteractiveBuilder chooseCategoryBit(short bit);
+    NonInteractiveBuilder chooseCategoryBit(Short bit);
     /**
      * Build method to be called when you have set the previous two parameters.
      * @return A new {@link it.unibo.ninjafrog.world.NonInteractiveObject NonInteractiveObject}.

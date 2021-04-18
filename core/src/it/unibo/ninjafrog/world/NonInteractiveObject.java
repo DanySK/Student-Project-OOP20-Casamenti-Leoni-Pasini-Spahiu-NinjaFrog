@@ -19,7 +19,7 @@ public class NonInteractiveObject {
     private static final int HALF = 2;
     private final PlayScreen screen;
     private final Rectangle object;
-    private final short bit;
+    private final Short bit;
 
     /**
      * Public constructor of a NonInteractiveObject object.
@@ -27,7 +27,7 @@ public class NonInteractiveObject {
      * @param object The MapObject object which is going to be defined.
      * @param bit The short to be set as category bit of the object.
      */
-    public NonInteractiveObject(final PlayScreen screen, final MapObject object, final short bit) {
+    public NonInteractiveObject(final PlayScreen screen, final MapObject object, final Short bit) {
         this.screen = screen;
         this.object = ((RectangleMapObject) object).getRectangle();
         this.bit = bit;

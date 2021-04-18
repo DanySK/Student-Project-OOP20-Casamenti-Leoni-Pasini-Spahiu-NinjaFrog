@@ -30,7 +30,7 @@ public final class NonInteractiveBuilderImpl implements NonInteractiveBuilder {
     }
 
     @Override
-    public NonInteractiveBuilder chooseCategoryBit(final short bit) {
+    public NonInteractiveBuilder chooseCategoryBit(final Short bit) {
         this.bit = Optional.of(bit).filter(b -> b.equals(GameConst.GROUND)
                 || b.equals(GameConst.GROUND_OBJECT)
                 || b.equals(GameConst.FINISH));
