@@ -17,18 +17,19 @@ public class FruitPowerUpTest {
 	private static final String FILE_SEPARATOR = System.getProperty("file.separator");
 	private static final String ASSETS_PATH = ".." + FILE_SEPARATOR + "core" + FILE_SEPARATOR + "assets" + FILE_SEPARATOR;
 	/**
-	 * Test for the asset file
+	 * Test for the asset file like .png and .pack .
 	 * Asset file includes cherry, melon and orange Texture.
 	 */
 	@Test
 	public void assetExists() {
 		assertTrue("This test will only pass if the png and tsx files of the asset exist in the assets folder.", 
-				Gdx.files.internal(ASSETS_PATH + "ninjaAndEnemies").exists());
+				Gdx.files.internal(ASSETS_PATH + "ninjaAndEnemies.png").exists());
+		assertTrue(Gdx.files.internal(ASSETS_PATH + "ninjaAndEnemies.pack").exists());
 	}
 	/**
 	 * {@link it.unibo.ninjafrog.fruits.FruitBuilderImpl FruitBuilderImpl} test.
 	 */
-	@Test (expected = IllegalStateException.class)
+	@Test (expected = NullPointerException.class)
 	public void buildThrowsException() {
 		FruitBuilderImpl.newBuilder()
 				.chooseXPosition(0)
