@@ -27,6 +27,8 @@ import it.unibo.ninjafrog.world.NonInteractiveBuilderImpl;
  */
 @RunWith(GdxTestRunner.class)
 public class WorldLevelTests {
+	private static final String FILE_SEPARATOR = System.getProperty("file.separator");
+	private static final String ASSETS_PATH = ".." + FILE_SEPARATOR + "core" + FILE_SEPARATOR + "assets" + FILE_SEPARATOR;
 	private static final int GRAPHICS_LAYER = 1;
 	private static final int GROUND_LAYER = 2;
     private static final int FINISH_TROPHY_LAYER = 6;
@@ -38,7 +40,7 @@ public class WorldLevelTests {
 	public void levelOneExists() {
 		final Level level = new LevelOne();
 		assertTrue("This test will only pass if the tmx file of the Map exists in the assets folder.", Gdx.files
-				.internal("../core/assets/" + level.getMap()).exists());
+				.internal(ASSETS_PATH + level.getMap()).exists());
 	}
 	/**
      * Test for the level two map file.
@@ -47,7 +49,7 @@ public class WorldLevelTests {
 	public void levelTwoExists() {
 		final Level level = new LevelTwo();
 		assertTrue("This test will only pass if the tmx file of the Map exists in the assets folder.", Gdx.files
-				.internal("../core/assets/" + level.getMap()).exists());
+				.internal(ASSETS_PATH + level.getMap()).exists());
 	}
 	/**
      * Test for the background files.
@@ -55,10 +57,10 @@ public class WorldLevelTests {
 	@Test
 	public void backgroundsExist() {
 		assertTrue("This test will only pass if the jpg/png and tsx files of the backgrounds exist in the assets folder.", Gdx.files
-				.internal("../core/assets/Level1background.jpg").exists());
-		assertTrue(Gdx.files.internal("../core/assets/Level2background.png").exists());
-		assertTrue(Gdx.files.internal("../core/assets/Level1background.tsx").exists());
-		assertTrue(Gdx.files.internal("../core/assets/Level2background.tsx").exists());
+				.internal(ASSETS_PATH + "Level1background.jpg").exists());
+		assertTrue(Gdx.files.internal(ASSETS_PATH + "Level2background.png").exists());
+		assertTrue(Gdx.files.internal(ASSETS_PATH + "Level1background.tsx").exists());
+		assertTrue(Gdx.files.internal(ASSETS_PATH + "Level2background.tsx").exists());
 	}
 	/**
      * Test for the asset file.
@@ -66,8 +68,8 @@ public class WorldLevelTests {
 	@Test
 	public void assetExists() {
 		assertTrue("This test will only pass if the png and tsx files of the asset exist in the assets folder.", Gdx.files
-				.internal("../core/assets/NinjaFrogAsset.png").exists());
-		assertTrue(Gdx.files.internal("../core/assets/NinjaFrogAsset.tsx").exists());
+				.internal(ASSETS_PATH + "NinjaFrogAsset.png").exists());
+		assertTrue(Gdx.files.internal(ASSETS_PATH + "NinjaFrogAsset.tsx").exists());
 	}
 	/**
      * Test for the maps graphic layer.
