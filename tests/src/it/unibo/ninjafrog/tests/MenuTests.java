@@ -1,6 +1,11 @@
 package it.unibo.ninjafrog.tests;
 
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import com.badlogic.gdx.Gdx;
 
 /**
  * Automated tests for all menu in the game.
@@ -8,35 +13,37 @@ import org.junit.runner.RunWith;
  */
 @RunWith(GdxTestRunner.class)
 public class MenuTests {
-	
 	/**
-	 * Test for the MainMenu background file.
+	 * Test for the MainMenu background files.
 	 */
-	public void MainMenuExists() {
-		
+	@Test
+	public void FirstMenuExists() {
+		assertTrue("This test will only pass if the jpg/png files of the backgrounds exist in the assets folder.",
+				Gdx.files.internal("../core/assets/Menu1background.png").exists());
 	}
 	/**
-	 * Test for the SettingsMenu background file.
+	 * Test for the SecondaryMenu background files.
+	 * Secondary menu includes SettingsMenu and LevelsMenu.
 	 */
-	public void SettingsMenuExists() {
-		
+	@Test
+	public void SecondaryMenuExists() {
+		assertTrue("This test will only pass if the jpg/png files of the backgrounds exist in the assets folder.",
+				Gdx.files.internal("../core/assets/Menu2background.png").exists());
 	}
 	/**
-	 * Test for the LevelMenu background file.
+	 * Tests for the WinScreen background files.
 	 */
-	public void LevelsMenu() {
-		
-	}
-	/**
-	 * Tests for the WinScreen background file.
-	 */
+	@Test
 	public void WinScreenExists() {
-		
+		assertTrue("This test will only pass if the jpg/png files of the backgrounds exist in the assets folder.",
+				Gdx.files.internal("../core/assets/Win_Screen.png").exists());
 	}
 	/**
-	 * Tests for the GameOverScreen background file.
+	 * Tests for the GameOverScreen background files.
 	 */
+	@Test
 	public void GameOverExists() {
-		
+		assertTrue("This test will only pass if the jpg/png files of the backgrounds exist in the assets folder.",
+				Gdx.files.internal("../core/assets/GameOver_Screen.png").exists());
 	}
 }
