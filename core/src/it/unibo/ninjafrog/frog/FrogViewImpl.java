@@ -39,8 +39,8 @@ public class FrogViewImpl extends Sprite implements FrogView {
         this.stateTimer = 0;
         frogJump = new TextureRegion(getTexture(), 420 , 3, IMAGE_DIM, IMAGE_DIM);
         frogStand = new TextureRegion(getTexture(), 4, 3, IMAGE_DIM, IMAGE_DIM);
-        frogBonusJump = new TextureRegion(getTexture(), 420, 36, IMAGE_DIM, IMAGE_DIM);
-        frogBonusStand = new TextureRegion(getTexture(), 4, 39, IMAGE_DIM, IMAGE_DIM);
+        frogBonusJump = new TextureRegion(getTexture(), 417, 36, IMAGE_DIM, IMAGE_DIM);
+        frogBonusStand = new TextureRegion(getTexture(), 4, 37, IMAGE_DIM, IMAGE_DIM);
 
         final Array<TextureRegion> frames = new Array<>();
         //frogRun animation
@@ -90,6 +90,9 @@ public class FrogViewImpl extends Sprite implements FrogView {
                 region = frogRun.getKeyFrame(stateTimer, true);
                 }
             break;
+        case DOUBLEJUMPING:
+            region = frogBonusDoubleJump.getKeyFrame(stateTimer, true);
+            break;
         case FALLING:
         case STANDING:
             default:
@@ -109,7 +112,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
         }
         this.stateTimer = currentState == prevState ? stateTimer + dt : 0;
         prevState = currentState;
-
+ 
         return region;
     }
     @Override

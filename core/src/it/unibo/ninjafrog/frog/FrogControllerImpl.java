@@ -30,7 +30,7 @@ public class FrogControllerImpl implements FrogController {
     }
     @Override
     public final void update(final float dt) {
-        handleInput();
+       // handleInput();
         frog.update(dt);
         frogView.update(dt);
     }
