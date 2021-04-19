@@ -22,27 +22,36 @@ import it.unibo.ninjafrog.world.FruitBox;
 import it.unibo.ninjafrog.world.NonInteractiveBuilder;
 import it.unibo.ninjafrog.world.NonInteractiveBuilderImpl;
 
+/**
+ * Automated tests for the World and the level maps.
+ */
 @RunWith(GdxTestRunner.class)
 public class WorldLevelTests {
 	private static final int GRAPHICS_LAYER = 1;
 	private static final int GROUND_LAYER = 2;
     private static final int FINISH_TROPHY_LAYER = 6;
     private static final int NOT_A_LAYER = 9;
-
+    /**
+     * Test for the level one map file.
+     */
 	@Test
 	public void levelOneExists() {
 		final Level level = new LevelOne();
 		assertTrue("This test will only pass if the tmx file of the Map exists in the assets folder.", Gdx.files
 				.internal("../core/assets/" + level.getMap()).exists());
 	}
-
+	/**
+     * Test for the level two map file.
+     */
 	@Test
 	public void levelTwoExists() {
 		final Level level = new LevelTwo();
 		assertTrue("This test will only pass if the tmx file of the Map exists in the assets folder.", Gdx.files
 				.internal("../core/assets/" + level.getMap()).exists());
 	}
-
+	/**
+     * Test for the background files.
+     */
 	@Test
 	public void backgroundsExist() {
 		assertTrue("This test will only pass if the jpg/png and tsx files of the backgrounds exist in the assets folder.", Gdx.files
@@ -51,14 +60,18 @@ public class WorldLevelTests {
 		assertTrue(Gdx.files.internal("../core/assets/Level1background.tsx").exists());
 		assertTrue(Gdx.files.internal("../core/assets/Level2background.tsx").exists());
 	}
-
+	/**
+     * Test for the asset file.
+     */
 	@Test
 	public void assetExists() {
 		assertTrue("This test will only pass if the png and tsx files of the asset exist in the assets folder.", Gdx.files
 				.internal("../core/assets/NinjaFrogAsset.png").exists());
 		assertTrue(Gdx.files.internal("../core/assets/NinjaFrogAsset.tsx").exists());
 	}
-	
+	/**
+     * Test for the maps graphic layer.
+     */
 	@Test
 	public void graphicLayerExist() {
 		final TiledMap map1 = new TmxMapLoader().load(new LevelOne().getMap());
@@ -66,7 +79,9 @@ public class WorldLevelTests {
 		assertNotNull(map1.getLayers().get(GRAPHICS_LAYER));
 		assertNotNull(map2.getLayers().get(GRAPHICS_LAYER));
 	}
-	
+	/**
+     * Test for the maps objects layers. Verifies that every layer exists and contains at least one object.
+     */
 	@Test
 	public void layersExistLevels() {
 		final TiledMap map1 = new TmxMapLoader().load(new LevelOne().getMap());
@@ -81,19 +96,25 @@ public class WorldLevelTests {
 			assertFalse(map2.getLayers().get(layer).getObjects().getByType(RectangleMapObject.class).isEmpty());
 		}
 	}
-
+	/**
+     * Test for the level one layers.
+     */
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void indexLayersExceptionLevOne() {
 		final TiledMap map = new TmxMapLoader().load(new LevelOne().getMap());
 		map.getLayers().get(NOT_A_LAYER);
 	}
-
+	/**
+     * Test for the level two layers.
+     */
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void indexLayersExceptionLevTwo() {
 		final TiledMap map = new TmxMapLoader().load(new LevelTwo().getMap());
 		map.getLayers().get(NOT_A_LAYER);
 	}
-	
+	/**
+     * {@link it.unibo.ninjafrog.world.NonInteractiveBuilder NonInteractiveBuilder} test.
+     */
 	@Test(expected = IllegalStateException.class)
 	public void builderThrowsException() {
 		final NonInteractiveBuilder builder = new NonInteractiveBuilderImpl(null);
@@ -101,12 +122,16 @@ public class WorldLevelTests {
 		.selectObject(new MapObject())
 		.build();
 	}
-
+	/**
+	 * {@link it.unibo.ninjafrog.world.FruitBox FruitBox} test.
+	 */
 	@Test(expected = IllegalStateException.class)
 	public void fruitBoxThrowsException() {
 		new FruitBox(null, new MapObject());
 	}
-
+	/**
+	 * {@link it.unibo.ninjafrog.world.Brick Brick} test.
+	 */
 	@Test(expected = IllegalStateException.class)
 	public void BrickThrowsException() {
 		new Brick(null, new MapObject());
