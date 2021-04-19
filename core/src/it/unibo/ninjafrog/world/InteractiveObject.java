@@ -53,6 +53,12 @@ public class InteractiveObject {
      * @param object The MapObject object which is going to be defined.
      */
     public InteractiveObject(final PlayScreen screen, final MapObject object) {
+        if (object == null) {
+            throw new IllegalStateException("Object can't be null.");
+        }
+        if (screen == null) {
+            throw new IllegalStateException("Screen can't be null.");
+        }
         this.screen = screen;
         this.world = screen.getWorld();
         this.map = screen.getMap();
