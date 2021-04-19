@@ -8,8 +8,6 @@ import org.junit.runner.RunWith;
 import com.badlogic.gdx.Gdx;
 
 import it.unibo.ninjafrog.fruits.FruitBuilderImpl;
-import it.unibo.ninjafrog.fruits.FruitPowerUp;
-import it.unibo.ninjafrog.fruits.FruitPowerUpImpl;
 
 /**
  * Automated tests for the FruitPowerUp: cherry, melon, orange. 
@@ -32,8 +30,7 @@ public class FruitPowerUpTest {
 	 */
 	@Test (expected = IllegalStateException.class)
 	public void buildThrowsException() {
-		@SuppressWarnings("unused")
-		final FruitPowerUp fruit = FruitBuilderImpl.newBuilder()
+		FruitBuilderImpl.newBuilder()
 				.chooseXPosition(0)
 				.chooseYPosition(0)
 				.selectScreen(null)

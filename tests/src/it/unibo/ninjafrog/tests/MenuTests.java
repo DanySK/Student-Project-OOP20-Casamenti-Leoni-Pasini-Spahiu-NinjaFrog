@@ -7,6 +7,11 @@ import org.junit.runner.RunWith;
 
 import com.badlogic.gdx.Gdx;
 
+import it.unibo.ninjafrog.screens.LevelsMenu;
+import it.unibo.ninjafrog.screens.MainMenu;
+import it.unibo.ninjafrog.screens.SettingsMenu;
+import it.unibo.ninjafrog.screens.WinScreen;
+
 /**
  * Automated tests for all menu in the game.
  * MenuTests includes WinScreen and GameOverScreen.
@@ -47,5 +52,40 @@ public class MenuTests {
 	public void GameOverExists() {
 		assertTrue("This test will only pass if the jpg/png files of the backgrounds exist in the assets folder.",
 				Gdx.files.internal(ASSETS_PATH + "GameOver_Screen.png").exists());
+	}
+	/**
+	 * {@link it.unibo.ninjafrog.screen.MainMenu MainMenu} test.
+	 */
+	@Test(expected = NullPointerException.class)
+	public void MainMenuException() {
+		new MainMenu(null, null);
+	}
+	/**
+	 * {@link it.unibo.ninjafrog.screen.SettingsMenu SettingsMenu} test.
+	 */
+	@Test(expected = NullPointerException.class)
+	public void SettingsMenuException() {
+		new SettingsMenu(null, null);
+	}
+	/**
+	 * {@link it.unibo.ninjafrog.screen.LevelsMenu LevelsMenu} test.
+	 */
+	@Test(expected = NullPointerException.class)
+	public void LevelsMenuException () {
+		new LevelsMenu(null, null);
+	}
+	/**
+	 * {@link it.unibo.ninjafrog.screen.WinScreen WinScreen} test.
+	 */
+	@Test(expected = NullPointerException.class)
+	public void WinScreenException() {
+		new WinScreen(null, 0, null);
+	}
+	/**
+	 * {@link it.unibo.ninjafrog.screen.GameOverScreen GameOverScreen} test.
+	 */
+	@Test(expected = NullPointerException.class)
+	public void GameOverScreenException() {
+		new WinScreen(null, 0, null);
 	}
 }
