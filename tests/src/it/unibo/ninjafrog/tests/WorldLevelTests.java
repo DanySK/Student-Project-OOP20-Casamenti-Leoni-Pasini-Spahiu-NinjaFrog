@@ -8,13 +8,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
+import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.levels.Level;
 import it.unibo.ninjafrog.screens.levels.LevelOne;
 import it.unibo.ninjafrog.screens.levels.LevelTwo;
+import it.unibo.ninjafrog.world.Brick;
+import it.unibo.ninjafrog.world.FruitBox;
+import it.unibo.ninjafrog.world.NonInteractiveBuilder;
+import it.unibo.ninjafrog.world.NonInteractiveBuilderImpl;
 
 @RunWith(GdxTestRunner.class)
 public class WorldLevelTests {
@@ -86,5 +92,23 @@ public class WorldLevelTests {
 	public void indexLayersExceptionLevTwo() {
 		final TiledMap map = new TmxMapLoader().load(new LevelTwo().getMap());
 		map.getLayers().get(NOT_A_LAYER);
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void builderThrowsException() {
+		final NonInteractiveBuilder builder = new NonInteractiveBuilderImpl(null);
+		builder.chooseCategoryBit(GameConst.GROUND)
+		.selectObject(new MapObject())
+		.build();
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void fruitBoxThrowsException() {
+		new FruitBox(null, new MapObject());
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void BrickThrowsException() {
+		new Brick(null, new MapObject());
 	}
 }
