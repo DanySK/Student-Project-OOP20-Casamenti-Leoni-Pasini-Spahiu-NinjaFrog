@@ -13,13 +13,15 @@ import com.badlogic.gdx.Gdx;
  */
 @RunWith(GdxTestRunner.class)
 public class MenuTests {
+	private static final String FILE_SEPARATOR = System.getProperty("file.separator");
+	private static final String ASSETS_PATH = ".." + FILE_SEPARATOR + "core" + FILE_SEPARATOR + "assets" + FILE_SEPARATOR;
 	/**
 	 * Test for the MainMenu background files.
 	 */
 	@Test
 	public void FirstMenuExists() {
 		assertTrue("This test will only pass if the jpg/png files of the backgrounds exist in the assets folder.",
-				Gdx.files.internal("../core/assets/Menu1background.png").exists());
+				Gdx.files.internal( ASSETS_PATH + "Menu1background.png").exists());
 	}
 	/**
 	 * Test for the SecondaryMenu background files.
@@ -28,7 +30,7 @@ public class MenuTests {
 	@Test
 	public void SecondaryMenuExists() {
 		assertTrue("This test will only pass if the jpg/png files of the backgrounds exist in the assets folder.",
-				Gdx.files.internal("../core/assets/Menu2background.png").exists());
+				Gdx.files.internal(ASSETS_PATH + "Menu2background.png").exists());
 	}
 	/**
 	 * Tests for the WinScreen background files.
@@ -36,7 +38,7 @@ public class MenuTests {
 	@Test
 	public void WinScreenExists() {
 		assertTrue("This test will only pass if the jpg/png files of the backgrounds exist in the assets folder.",
-				Gdx.files.internal("../core/assets/Win_Screen.png").exists());
+				Gdx.files.internal(ASSETS_PATH + "Win_Screen.png").exists());
 	}
 	/**
 	 * Tests for the GameOverScreen background files.
@@ -44,6 +46,6 @@ public class MenuTests {
 	@Test
 	public void GameOverExists() {
 		assertTrue("This test will only pass if the jpg/png files of the backgrounds exist in the assets folder.",
-				Gdx.files.internal("../core/assets/GameOver_Screen.png").exists());
+				Gdx.files.internal(ASSETS_PATH + "GameOver_Screen.png").exists());
 	}
 }
