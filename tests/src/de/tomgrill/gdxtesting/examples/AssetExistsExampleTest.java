@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
 
 import com.badlogic.gdx.Gdx;
 
-import de.tomgrill.gdxtesting.GdxTestRunner;
+import it.unibo.ninjafrog.tests.GdxTestRunner;
 
 @RunWith(GdxTestRunner.class)
 public class AssetExistsExampleTest {
