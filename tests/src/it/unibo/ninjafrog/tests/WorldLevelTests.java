@@ -21,6 +21,7 @@ import it.unibo.ninjafrog.world.Brick;
 import it.unibo.ninjafrog.world.FruitBox;
 import it.unibo.ninjafrog.world.NonInteractiveBuilder;
 import it.unibo.ninjafrog.world.NonInteractiveBuilderImpl;
+import it.unibo.ninjafrog.world.WorldCollisionListener;
 
 /**
  * Automated tests for the World and the level maps.
@@ -88,7 +89,6 @@ public class WorldLevelTests {
 	public void layersExistLevels() {
 		final TiledMap map1 = new TmxMapLoader().load(new LevelOne().getMap());
 		final TiledMap map2 = new TmxMapLoader().load(new LevelTwo().getMap());
-		System.out.println(map1.getLayers().getCount());
 		for (int layer = GROUND_LAYER; layer <= FINISH_TROPHY_LAYER; layer++) {
 			assertTrue(layer < map1.getLayers().getCount());
 			assertTrue(layer < map2.getLayers().getCount());
@@ -137,5 +137,13 @@ public class WorldLevelTests {
 	@Test(expected = IllegalStateException.class)
 	public void BrickThrowsException() {
 		new Brick(null, new MapObject());
+	}
+	/**
+	 * {@link it.unibo.ninjafrog.world.WorldCollisionListener WorldCollisionListener} test.
+	 */
+	@Test
+	public void listenerCreationTest() {
+		final WorldCollisionListener listener = new WorldCollisionListener(null, null);
+		assertNotNull(listener);
 	}
 }

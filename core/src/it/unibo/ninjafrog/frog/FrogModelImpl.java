@@ -18,7 +18,7 @@ public class FrogModelImpl implements FrogModel {
     private static final float VEL_MAX = 2.5f;
     private static final int RADIUS = 7;
     private static final int X_INIT_POS = 240;
-    private static final int Y_INIT_POS = 240;
+    private static final int Y_INIT_POS = 100;
     private static final int HEAD = 2;
 
     private Integer life = 1;
