@@ -21,9 +21,6 @@ You can run `./gradlew tests:test` inside the root project folder after you clon
 
 More information can be found [here](https://github.com/TomGrill/gdx-testing#run-the-tests).
 
-## Credits
-* https://pixelfrog-assets.itch.io
-
 ## LICENSE
 This project is licensed under the [MIT License](https://github.com/marsild/OOP20-NinjaFrog/blob/main/LICENSE)
 
