@@ -16,20 +16,19 @@ public class RinoViewImpl extends Sprite implements RinoView {
     private static final int HEIGHT_IN_THE_PNG = 30;
     private static final int WIDTH_IN_THE_PNG = 50;
     private static final int Y_COORDINATE_IN_THE_PNG = 68;
-    private static final int  NUMBER_OF_FRAMES_= 6;
+    private static final int  NUMBER_OF_FRAME = 6;
     private static final float FRAMES_DURATION = 0.1f;
     private static final int BOUNDS_HEIGHT = 17;
     private static final int BOUNDS_WIDTH = 25;
     private final EnemyControllerImpl controller;
     private final PlayScreen screen;
-    private final Array<TextureRegion> frames;
     private final Animation<TextureRegion> walkAnimation;
     public RinoViewImpl(final PlayScreen screen, final float x, final float y, final EnemyControllerImpl enemyControllerImpl) {
         this.controller = enemyControllerImpl;
         this.screen = screen;
         setPosition(x, y);
-        frames = new Array<>();
-        for (int i = 0; i < NUMBER_OF_FRAMES_; i++) {
+        final Array<TextureRegion> frames = new Array<>();
+        for (int i = 0; i < NUMBER_OF_FRAME; i++) {
             frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), i * X_DISTANCE_FOR_EVERY_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
         }
     walkAnimation = new Animation<>(FRAMES_DURATION, frames);
@@ -38,7 +37,7 @@ public class RinoViewImpl extends Sprite implements RinoView {
     @Override
     public final void update(final Body body, final float dt) {
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-        setRegion(getFrame(body, dt));
+        setRegion(getFrame(body));
     }
 
     @Override
@@ -52,7 +51,7 @@ public class RinoViewImpl extends Sprite implements RinoView {
     public final void setDeathRegion() {
         setRegion(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), X_COORDINATE_FOR_DEATH_REGION, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
     }
-    private TextureRegion getFrame(final Body body, final float dt) {
+    private TextureRegion getFrame(final Body body) {
         TextureRegion region;
         region = walkAnimation.getKeyFrame(controller.getStateTime(this), true);
         if ((body.getLinearVelocity().x < 0 || !controller.isRunningLeft(this)) && region.isFlipX()) {
@@ -60,7 +59,7 @@ public class RinoViewImpl extends Sprite implements RinoView {
             controller.setRunningLeft(this, false);
         } else if ((body.getLinearVelocity().x > 0 || controller.isRunningLeft(this)) && !region.isFlipX()) {
             region.flip(true,  false);
-            controller.setRunningLeft(this, true);  
+            controller.setRunningLeft(this, true);
         }
         return region;
     }

@@ -13,6 +13,12 @@ import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class RinoModelImpl implements RinoModel {
 
+    private static final int HEAD_VERTICE_DOWN_Y = 7;
+    private static final int HEAD_VERTICE_DOWN_X = 5;
+    private static final int HEAD_VERTICE_UP_Y = 10;
+    private static final int HEAD_VERTICE_UP_X = 6;
+    private static final int GRAVITY = -2;
+    private static final int SPEED = -1;
     private static final int DISTANCE_FOR_ACTIVE_ENEMIES = 224;
     private final World world;
     private final PlayScreen screen;
@@ -29,7 +35,7 @@ public class RinoModelImpl implements RinoModel {
         this.world = screen.getWorld();
         this.screen = screen;
         this.controller = controller;
-        velocity = new Vector2(-1, -2);
+        velocity = new Vector2(SPEED, GRAVITY);
         stateTime = 0;
         this.setToDestroy = false;
         this.destroyed = false;
@@ -60,8 +66,7 @@ public class RinoModelImpl implements RinoModel {
             world.destroyBody(body);
             controller.setDeathRegion(this);
             stateTime = 0;
-        }
-        else if (!this.destroyed) {
+        } else if (!this.destroyed) {
             body.setLinearVelocity(velocity);
             controller.upadeView(this, this.body, dt);
         }
@@ -133,10 +138,10 @@ public class RinoModelImpl implements RinoModel {
         body.createFixture(fdef).setUserData(this);
     }
     private void fixtureHeadDefinition(final Vector2[] vertice, final PolygonShape head, final FixtureDef fdef) {
-        vertice[0] = new Vector2(-6, 10).scl(1 / GameConst.PPM);
-        vertice[1] = new Vector2(+6, 10).scl(1 / GameConst.PPM);
-        vertice[2] = new Vector2(-5, 7).scl(1 / GameConst.PPM);
-        vertice[3] = new Vector2(+5, 7).scl(1 / GameConst.PPM);
+        vertice[0] = new Vector2(-HEAD_VERTICE_UP_X, HEAD_VERTICE_UP_Y).scl(1 / GameConst.PPM);
+        vertice[1] = new Vector2(+HEAD_VERTICE_UP_X, HEAD_VERTICE_UP_Y).scl(1 / GameConst.PPM);
+        vertice[2] = new Vector2(-HEAD_VERTICE_DOWN_X, HEAD_VERTICE_DOWN_Y).scl(1 / GameConst.PPM);
+        vertice[3] = new Vector2(+HEAD_VERTICE_DOWN_X, HEAD_VERTICE_DOWN_Y).scl(1 / GameConst.PPM);
         head.set(vertice);
         fdef.shape = head;
         fdef.restitution = 1f;
