@@ -12,6 +12,8 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class TurtleModelImpl implements TurtleModel {
+    private static final int GRAVITY = 0;
+    private static final int SPEED = 0;
     private static final int HEAD_VERICE_DOWN_Y = 7;
     private static final int HEAD_VERICE_DOWN_X = 5;
     private static final int HEAD_VERTICE_UP_Y = 10;
@@ -30,7 +32,7 @@ public class TurtleModelImpl implements TurtleModel {
         this.world = screen.getWorld();
         this.screen = screen;
         this.controller = enemyControllerImpl;
-        velocity = new Vector2(0, 0);
+        velocity = new Vector2(SPEED, GRAVITY);
         stateTime = 0;
         this.destroyed = false;
         this.setToDestroy = false;

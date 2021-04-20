@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 public interface EnemyController {
     /**
      * Method that calls the update method update for every rino and turtle model.
-     * @param  {@link}the delta of the time
+     * @param dt the delta of the time
      */
     void update(float dt);
     /**
@@ -46,7 +46,7 @@ public interface EnemyController {
     float getY(RinoModel rinoModel);
      /**
      *  Method that check if the rinoView is in the rinos map.
-     * @param rinoModel {@link it.unibo.ninjafrog.enemies.RinoModel RinoModel} the model of the enemy rino
+     * @param rinoView {@link it.unibo.ninjafrog.enemies.RinoView RinoView} the view of the enemy rino
      * @return the boolean "destroyed" of the RinoViewImpl
      */
     boolean isDestroyed(RinoView rinoView);
@@ -124,20 +124,20 @@ public interface EnemyController {
     /**
      * Method that check if the turtleView is in the turtles map.
      * @param turtleView {@link it.unibo.ninjafrog.enemies.TurtleView TurtleView} the view part of the enemy turtle
-     * @return the float stateTime of the corrispective rinoModel
+     * @return the float stateTime of the corrispetive rinoModel
     */
 
     double getStateTime(TurtleView turtleView);
     /**
-     * Method that check if the turtleModel is in the turtles map and call the method collid in the TurtleView.
+     * Method that check if the turtleModel is in the turtles map and call the method collide in the TurtleView.
      * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel} the model part of the enemy turtle
      */
 
     void collide(TurtleModel turtleModel, Short bit);
     /**
-     * Method that check if the turtleModel is in the turtles map and call the method collid in the TurtleView.
+     * Method that check if the turtleModel is in the turtles map and call the method collide in the TurtleView.
      * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel} the model part of the enemy turtle
-     * @param bit 
+     * @param bit the part of the body where the main charapter hit the turtle
      * @return the boolean isSetToDestroy in the rinoViewImpl
      */
     boolean isSetToDestroy(TurtleModel turtleModel);

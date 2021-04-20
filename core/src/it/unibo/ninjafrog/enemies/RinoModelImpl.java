@@ -23,7 +23,7 @@ public class RinoModelImpl implements RinoModel {
     private final World world;
     private final PlayScreen screen;
     private Body body;
-    private final  Vector2 velocity;
+    private final Vector2 velocity;
     private static final int CIRCCLE_RADIUS = 7;
     private static final int RINO_SCORE = 150;
     private float stateTime;
@@ -31,6 +31,7 @@ public class RinoModelImpl implements RinoModel {
     private boolean destroyed;
     private boolean runningLeft;
     private final EnemyController controller;
+
     public RinoModelImpl(final PlayScreen screen, final EnemyControllerImpl controller) {
         this.world = screen.getWorld();
         this.screen = screen;
@@ -41,24 +42,26 @@ public class RinoModelImpl implements RinoModel {
         this.destroyed = false;
         this.runningLeft = true;
     }
+
     @Override
     public final void defineEnemy() {
-     final BodyDef bdef = new BodyDef();
-     final FixtureDef fdef = new FixtureDef();
-     final CircleShape shape = new CircleShape();
-     final PolygonShape head = new PolygonShape();
-     final Vector2[] vertice = new Vector2[4];
-     createBody(bdef);
-     fixtureBodyDefinition(fdef, shape);
-     createFixture(fdef);
-    fixtureHeadDefinition(vertice, head, fdef);
-    createFixture(fdef);
+        final BodyDef bdef = new BodyDef();
+        final FixtureDef fdef = new FixtureDef();
+        final CircleShape shape = new CircleShape();
+        final PolygonShape head = new PolygonShape();
+        final Vector2[] vertice = new Vector2[4];
+        createBody(bdef);
+        fixtureBodyDefinition(fdef, shape);
+        createFixture(fdef);
+        fixtureHeadDefinition(vertice, head, fdef);
+        createFixture(fdef);
     }
 
     @Override
     public final void update(final float dt) {
         stateTime += dt;
-        if (!this.destroyed && controller.getX(this) < this.screen.getNinjaXPosition() + DISTANCE_FOR_ACTIVE_ENEMIES / GameConst.PPM) {
+        if (!this.destroyed && controller.getX(this) < this.screen.getNinjaXPosition()
+                + DISTANCE_FOR_ACTIVE_ENEMIES / GameConst.PPM) {
             body.setActive(true);
         }
         if (setToDestroy && !this.destroyed) {
@@ -71,13 +74,14 @@ public class RinoModelImpl implements RinoModel {
             controller.upadeView(this, this.body, dt);
         }
     }
+
     @Override
     public final void reverseVelocity(final boolean x, final boolean y) {
         if (x) {
-                velocity.x = -velocity.x;
+            velocity.x = -velocity.x;
         }
         if (y) {
-                velocity.y = -velocity.y;
+            velocity.y = -velocity.y;
         }
     }
 
@@ -109,34 +113,33 @@ public class RinoModelImpl implements RinoModel {
 
     @Override
     public final void setRunningLeft(final boolean b) {
-            this.runningLeft = b;
+        this.runningLeft = b;
     }
 
     @Override
     public final int getScore() {
         return RINO_SCORE;
     }
+
     private void createBody(final BodyDef bdef) {
         bdef.position.set(controller.getX(this), controller.getY(this));
         bdef.type = BodyDef.BodyType.DynamicBody;
         body = world.createBody(bdef);
         body.setActive(false);
     }
+
     private void fixtureBodyDefinition(final FixtureDef fdef, final CircleShape shape) {
         shape.setRadius(RinoModelImpl.CIRCCLE_RADIUS / GameConst.PPM);
         fdef.filter.categoryBits = GameConst.RINO;
-        fdef.filter.maskBits = GameConst.GROUND
-                                 | GameConst.BRICK
-                                 | GameConst.NINJA
-                                 | GameConst.RINO
-                                 | GameConst.TURTLE
-                                 | GameConst.GROUND_OBJECT
-                                 | GameConst.FRUITBOX;
+        fdef.filter.maskBits = GameConst.GROUND | GameConst.BRICK | GameConst.NINJA | GameConst.RINO | GameConst.TURTLE
+                | GameConst.GROUND_OBJECT | GameConst.FRUITBOX;
         fdef.shape = shape;
     }
+
     private void createFixture(final FixtureDef fdef) {
         body.createFixture(fdef).setUserData(this);
     }
+
     private void fixtureHeadDefinition(final Vector2[] vertice, final PolygonShape head, final FixtureDef fdef) {
         vertice[0] = new Vector2(-HEAD_VERTICE_UP_X, HEAD_VERTICE_UP_Y).scl(1 / GameConst.PPM);
         vertice[1] = new Vector2(+HEAD_VERTICE_UP_X, HEAD_VERTICE_UP_Y).scl(1 / GameConst.PPM);
@@ -146,5 +149,5 @@ public class RinoModelImpl implements RinoModel {
         fdef.shape = head;
         fdef.restitution = 1f;
         fdef.filter.categoryBits = GameConst.RINO_HEAD;
-    } 
+    }
 }
