@@ -13,6 +13,7 @@ import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class RinoModelImpl implements RinoModel {
 
+    private static final int DISTANCE_FOR_ACTIVE_ENEMIES = 224;
     private final World world;
     private final PlayScreen screen;
     private Body body;
@@ -51,7 +52,7 @@ public class RinoModelImpl implements RinoModel {
     @Override
     public final void update(final float dt) {
         stateTime += dt;
-        if (!this.destroyed && controller.getX(this) < this.screen.getNinjaXPosition() + 224 / GameConst.PPM) {
+        if (!this.destroyed && controller.getX(this) < this.screen.getNinjaXPosition() + DISTANCE_FOR_ACTIVE_ENEMIES / GameConst.PPM) {
             body.setActive(true);
         }
         if (setToDestroy && !this.destroyed) {
@@ -59,7 +60,7 @@ public class RinoModelImpl implements RinoModel {
             world.destroyBody(body);
             controller.setDeathRegion(this);
             stateTime = 0;
-        } 
+        }
         else if (!this.destroyed) {
             body.setLinearVelocity(velocity);
             controller.upadeView(this, this.body, dt);

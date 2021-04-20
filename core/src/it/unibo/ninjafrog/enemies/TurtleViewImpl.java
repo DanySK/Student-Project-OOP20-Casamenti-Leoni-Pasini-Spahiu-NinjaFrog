@@ -11,6 +11,16 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class TurtleViewImpl extends Sprite implements TurtleView {
+    private static final int X_COORDINATE_FOR_DEATH_FRAME = 440;
+    private static final int NUMBER_OF_THE_LAST_FAME = 7;
+    private static final int NUMBER_OF_FRAMES = 8;
+    private static final int X_DISTANCE_FROM_FRAMES = 44;
+    private static final int Y_COORDINATE_IN_THE_PNG = 98;
+    private static final int HEIGHT_IN_THE_PNG = 27;
+    private static final int WIDTH_IN_THE_PNG = 44;
+    private static final float FRAME_DURATION = 0.1f;
+    private static final int BOUNDS_HEIGHT = 17;
+    private static final int BOUNDS_WIDTH = 25;
     private TurtleState currentState;
     private TurtleState previousState;
     private final EnemyController controller;
@@ -26,19 +36,19 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
         this.screen = screen;
         setPosition(x, y);
         frames = new Array<>();
-        for (int i = 0; i < 8; i++) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), i * 44, 98, 44, 27));
+        for (int i = 0; i < NUMBER_OF_FRAMES; i++) {
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), i * X_DISTANCE_FROM_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
         }
-        spikesInAnimation = new Animation<>(0.1f, frames);
+        spikesInAnimation = new Animation<>(FRAME_DURATION, frames);
         frames.clear();
         frames = new Array<>();
-        for (int i = 7; i >= 0; i--) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), i * 44, 98, 44, 27));
+        for (int i = NUMBER_OF_THE_LAST_FAME; i >= 0; i--) {
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), i * X_DISTANCE_FROM_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
         }
-        spikesOutAnimation = new Animation<>(0.1f, frames);
-        spikes = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), 7 * 44, 98, 44, 27);
-        noSpikes = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), 0, 98, 44, 27);
-        setBounds(getX(), getY(), 25 / GameConst.PPM, 17 / GameConst.PPM);
+        spikesOutAnimation = new Animation<>(FRAME_DURATION, frames);
+        spikes = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), NUMBER_OF_THE_LAST_FAME * X_DISTANCE_FROM_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG);
+        noSpikes = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), 0, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG);
+        setBounds(getX(), getY(), BOUNDS_WIDTH / GameConst.PPM, BOUNDS_HEIGHT / GameConst.PPM);
         this.currentState = TurtleState.NO_SPIKES;
     }
 
@@ -95,7 +105,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
             } else {
                if (this.time > 2) {
                    if (this.currentState == TurtleState.SPIKES_IN) {
-                        this.time = 0 ;
+                        this.time = 0;
                         return TurtleState.SPIKES;
                     } else {
                         this.time = 0;
@@ -107,7 +117,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
         }
     }
     public final void setDesthRegion() {
-          setRegion(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), 440, 98, 45, 27));
+          setRegion(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), X_COORDINATE_FOR_DEATH_FRAME, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
     }
     @Override
     public final boolean hasSpike() {

@@ -13,93 +13,84 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class EnemyControllerImpl implements EnemyController {
-    
     private static final int RINO_LAYER = 7;
     private static final int TURTLE_LAYER = 8;
-    private HashMap<RinoModel, RinoView > rinos; 
-    private HashMap<TurtleModel,TurtleView> turtles;
-    
-    private PlayScreen screen;
-    
+    private HashMap<RinoModel, RinoView> rinos; 
+    private HashMap<TurtleModel, TurtleView> turtles;
+    private final PlayScreen screen;
     private boolean runningLeft;
-
     private boolean destroyed;
-    
     private float stateTime;
-    
 
-    public EnemyControllerImpl(PlayScreen screen ) {
+    public EnemyControllerImpl(final PlayScreen screen) {
         this.screen = screen;
         this.spawnEnemies();
     }
     private void spawnEnemies() {
-        TiledMap map = this.screen.getMap();
-        rinos = new HashMap<RinoModel, RinoView>();
-        for(MapObject object : map.getLayers().get(RINO_LAYER).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject)object).getRectangle();
-            rinos.put(new RinoModelImpl(screen,this),
-                      new RinoViewImpl(screen ,rect.getX()/GameConst.PPM, rect.getY()/GameConst.PPM,this));
+        final TiledMap map = this.screen.getMap();
+        rinos = new HashMap<>();
+        for (final MapObject object : map.getLayers().get(RINO_LAYER).getObjects().getByType(RectangleMapObject.class)) {
+            final Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            rinos.put(new RinoModelImpl(screen, this),
+                      new RinoViewImpl(screen, rect.getX() / GameConst.PPM, rect.getY() / GameConst.PPM, this));
         }
-        rinos.keySet().forEach(m-> m.defineEnemy());
-        
-        turtles = new HashMap<TurtleModel, TurtleView>();
-        for(MapObject object : map.getLayers().get(TURTLE_LAYER).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject)object).getRectangle();
-            turtles.put(new TurtleModelImpl(screen,this),
-                    new TurtleViewImpl(screen, rect.getX()/GameConst.PPM,rect.getY()/GameConst.PPM,this));
+        rinos.keySet().forEach(m -> m.defineEnemy());
+        turtles = new HashMap<>();
+        for (final MapObject object : map.getLayers().get(TURTLE_LAYER).getObjects().getByType(RectangleMapObject.class)) {
+            final Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            turtles.put(new TurtleModelImpl(screen, this),
+                    new TurtleViewImpl(screen, rect.getX() / GameConst.PPM, rect.getY() / GameConst.PPM, this));
         }
-        turtles.keySet().forEach(m-> m.defineEnemy());
-        
+        turtles.keySet().forEach(m -> m.defineEnemy());
         }
     @Override
-    public void update(float dt) {
-       rinos.forEach((m,v)->m.update(dt)); 
-       turtles.forEach((m,v)->m.update(dt));
-        
+    public final void update(final float dt) {
+       rinos.forEach((m, v) -> m.update(dt)); 
+       turtles.forEach((m, v) -> m.update(dt));
     }
 
     @Override
-    public void draw(SpriteBatch batch) {
-        rinos.forEach((m,v)->v.draw(batch));
-        turtles.forEach((m,v)->v.draw(batch));
+    public final void draw(final SpriteBatch batch) {
+        rinos.forEach((m, v) -> v.draw(batch));
+        turtles.forEach((m, v) -> v.draw(batch));
     }
 
     @Override
-    public void collide(RinoModel rinoModel) {
+    public final void collide(final RinoModel rinoModel) {
         checkRinoModel(rinoModel);
         rinoModel.collide();
     }
 
     @Override
-    public boolean isSetToDestroy(RinoModel rinoModel) {
+    public final boolean isSetToDestroy(final RinoModel rinoModel) {
        checkRinoModel(rinoModel);
         return rinoModel.isSetToDestroy();
 
     }
 
     @Override
-    public void reverseVelocity(RinoModel rinoModel) {
+    public final void reverseVelocity(final RinoModel rinoModel) {
         checkRinoModel(rinoModel);
         rinoModel.reverseVelocity(true, false);
     }
 
     @Override
-    public float getX(RinoModel rinoModel) {
+    public final float getX(final RinoModel rinoModel) {
         checkRinoModel(rinoModel);
         return this.rinos.get(rinoModel).getX();
     }
 
     @Override
-    public float getY(RinoModel rinoModel) {
+    public final float getY(final RinoModel rinoModel) {
        checkRinoModel(rinoModel);
         return this.rinos.get(rinoModel).getY();
     }
 
     @Override
-    public boolean isDestroyed(RinoView rinoView) {
+    public final boolean isDestroyed(final RinoView rinoView) {
         checkRinoView(rinoView);
-        this.rinos.forEach((m,v)->{
-            if(v.equals(rinoView)) {
+        this.rinos.forEach((m, v) -> {
+            if (v.equals(rinoView)) {
                 this.destroyed = m.isDestroyed();
             }
         });
@@ -107,10 +98,10 @@ public class EnemyControllerImpl implements EnemyController {
     }
 
     @Override
-    public float getStateTime(RinoView rinoView) {
+    public final float getStateTime(final RinoView rinoView) {
         checkRinoView(rinoView);
-        this.rinos.forEach((m,v)->{
-            if(v.equals(rinoView)) {
+        this.rinos.forEach((m, v) -> {
+            if (v.equals(rinoView)) {
                 this.stateTime = m.getStateTime();
             }
             });
@@ -118,22 +109,22 @@ public class EnemyControllerImpl implements EnemyController {
     }
 
     @Override
-    public void setDeathRegion(RinoModel rinoModel) {
+    public final void setDeathRegion(final RinoModel rinoModel) {
            checkRinoModel(rinoModel);
            this.rinos.get(rinoModel).setDeathRegion();
     }
 
     @Override
-    public void upadeView(RinoModel rinoModel, Body body, float dt) {
+    public final void upadeView(final RinoModel rinoModel, final Body body, final float dt) {
          checkRinoModel(rinoModel);
          this.rinos.get(rinoModel).update(body, dt);
         }
 
     @Override
-    public boolean isRunningLeft(RinoView rinoView) {
+    public final boolean isRunningLeft(final RinoView rinoView) {
         checkRinoView(rinoView);
-        this.rinos.forEach((m,v)->{
-            if(v.equals(rinoView)) {
+        this.rinos.forEach((m, v) -> {
+            if (v.equals(rinoView)) {
                 this.runningLeft = m.isRunningLeft();
             }
         });
@@ -141,96 +132,88 @@ public class EnemyControllerImpl implements EnemyController {
     }
 
     @Override
-    public void setRunningLeft(RinoView rinoView, boolean b) {
-        checkRinoView (rinoView);
-        this.rinos.forEach((m,v)->{
-            if(v.equals(rinoView)) {
+    public final void setRunningLeft(final RinoView rinoView, final boolean b) {
+        checkRinoView(rinoView);
+        this.rinos.forEach((m, v) -> {
+            if (v.equals(rinoView)) {
                 m.setRunningLeft(b);
             }
         });
     }
-    
-    private void checkRinoModel (RinoModel rinoModel) {
-        if(!this.rinos.keySet().contains(rinoModel)) {
+    private void checkRinoModel(final RinoModel rinoModel) {
+        if (!this.rinos.keySet().contains(rinoModel)) {
             throw new IllegalArgumentException();
         }
     }
-        
-     private void checkRinoView (RinoView rinoView) {
-         if(!this.rinos.values().contains(rinoView)) {
+
+     private void checkRinoView(final RinoView rinoView) {
+         if (!this.rinos.values().contains(rinoView)) {
              throw new IllegalArgumentException();
          }
-         
-         //_________________________________________________________________________________
-
      }
+
     @Override
-    public float getX(TurtleModel turtleModel) {
-        
+    public final float getX(final TurtleModel turtleModel) {
         checkTurtleModel(turtleModel);
         return this.turtles.get(turtleModel).getX();
     }
     @Override
-    public float getY(TurtleModel turtleModel) {
-        
+    public final float getY(final TurtleModel turtleModel) {
         checkTurtleModel(turtleModel);
         return this.turtles.get(turtleModel).getY();
     }
     @Override
-    public void setDeathRegion(TurtleModel turtleModel) {
+    public final void setDeathRegion(final TurtleModel turtleModel) {
         checkTurtleModel(turtleModel);
         this.turtles.get(turtleModel).setDesthRegion();
     }
     @Override
-    public void upadeView(TurtleModel turtleModel, Body body, float dt) {
+    public final void upadeView(final TurtleModel turtleModel, final Body body, final float dt) {
         checkTurtleModel(turtleModel);
         this.turtles.get(turtleModel).update(body, dt);
     }
     @Override
-    public boolean isDestroyed(TurtleView turtleView) {
+    public final boolean isDestroyed(final TurtleView turtleView) {
         checkTurtleView(turtleView);
-         this.turtles.forEach((m,v)->{
-            if(v.equals(turtleView)) {
+         this.turtles.forEach((m, v) -> {
+            if (v.equals(turtleView)) {
                 this.destroyed = m.isDestroyed();
             }
         });
          return this.destroyed;
     }
     @Override
-    public double getStateTime(TurtleView turtleView) {
+    public final double getStateTime(final TurtleView turtleView) {
         checkTurtleView(turtleView);
-        this.turtles.forEach((m,v)->{
-            if(v.equals(turtleView)) {
+        this.turtles.forEach((m, v) -> {
+            if (v.equals(turtleView)) {
                 this.stateTime = m.getSatateTime();
             }
         });
         return this.stateTime;
     }
-    
     @Override
-    public void collide(TurtleModel turtleModel) {
+    public final void collide(final TurtleModel turtleModel) {
         checkTurtleModel(turtleModel);
-            if(this.turtles.get(turtleModel).hasSpike()) {
+            if (this.turtles.get(turtleModel).hasSpike()) {
                 this.screen.removeLife();
-            }else {
+            } else {
                 turtleModel.collide();
             }
     }
 
     @Override
-    public boolean isSetToDestroy(TurtleModel turtleModel) {
+    public final boolean isSetToDestroy(final TurtleModel turtleModel) {
         checkTurtleModel(turtleModel);
         return turtleModel.isSetToDestroy();
     }
-    
-    private void checkTurtleModel (TurtleModel turtleModel) {
-        if(!this.turtles.keySet().contains(turtleModel)) {
+    private void checkTurtleModel(final TurtleModel turtleModel) {
+        if (!this.turtles.keySet().contains(turtleModel)) {
             throw new IllegalStateException();
         }
     }
-    
-    private void checkTurtleView (TurtleView turtleView) {
-        if(!this.turtles.values().contains(turtleView)) {
+    private void checkTurtleView(final TurtleView turtleView) {
+        if (!this.turtles.values().contains(turtleView)) {
             throw new IllegalStateException();
         }
     }

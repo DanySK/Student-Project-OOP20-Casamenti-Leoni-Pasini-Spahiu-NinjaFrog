@@ -11,6 +11,15 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class RinoViewImpl extends Sprite implements RinoView {
+    private static final int X_COORDINATE_FOR_DEATH_REGION = 417;
+    private static final int X_DISTANCE_FOR_EVERY_FRAMES = 52;
+    private static final int HEIGHT_IN_THE_PNG = 30;
+    private static final int WIDTH_IN_THE_PNG = 50;
+    private static final int Y_COORDINATE_IN_THE_PNG = 68;
+    private static final int  NUMBER_OF_FRAMES_= 6;
+    private static final float FRAMES_DURATION = 0.1f;
+    private static final int BOUNDS_HEIGHT = 17;
+    private static final int BOUNDS_WIDTH = 25;
     private final EnemyControllerImpl controller;
     private final PlayScreen screen;
     private final Array<TextureRegion> frames;
@@ -19,12 +28,12 @@ public class RinoViewImpl extends Sprite implements RinoView {
         this.controller = enemyControllerImpl;
         this.screen = screen;
         setPosition(x, y);
-        frames = new Array<>();        
-        for (int i = 0; i < 6; i++) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), i * 52, 68, 50, 30));
+        frames = new Array<>();
+        for (int i = 0; i < NUMBER_OF_FRAMES_; i++) {
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), i * X_DISTANCE_FOR_EVERY_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
         }
-    walkAnimation = new Animation<TextureRegion>(0.1f, frames);
-    setBounds(getX(), getY(), 25 / GameConst.PPM, 17 / GameConst.PPM);  
+    walkAnimation = new Animation<>(FRAMES_DURATION, frames);
+    setBounds(getX(), getY(), BOUNDS_WIDTH / GameConst.PPM, BOUNDS_HEIGHT / GameConst.PPM);
     }
     @Override
     public final void update(final Body body, final float dt) {
@@ -41,7 +50,7 @@ public class RinoViewImpl extends Sprite implements RinoView {
 
     @Override
     public final void setDeathRegion() {
-        setRegion(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), 417, 68, 50, 30));
+        setRegion(new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"), X_COORDINATE_FOR_DEATH_REGION, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
     }
     private TextureRegion getFrame(final Body body, final float dt) {
         TextureRegion region;
