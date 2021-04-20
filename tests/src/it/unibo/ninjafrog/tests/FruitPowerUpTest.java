@@ -28,8 +28,9 @@ public class FruitPowerUpTest {
 	}
 	/**
 	 * {@link it.unibo.ninjafrog.fruits.FruitBuilderImpl FruitBuilderImpl} test.
+	 * Exception test of the builder fruit class. 
 	 */
-	@Test (expected = NullPointerException.class)
+	@Test (expected = IllegalStateException.class)
 	public void buildThrowsException() {
 		FruitBuilderImpl.newBuilder()
 				.chooseXPosition(0)
