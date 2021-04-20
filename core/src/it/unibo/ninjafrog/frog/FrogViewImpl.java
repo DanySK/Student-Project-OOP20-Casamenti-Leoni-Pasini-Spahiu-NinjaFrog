@@ -19,6 +19,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
     private static final float ANIM_VEL = 0.1f;
     private static final int DJ_ANIM_INIT = 13;
     private static final int DJ_ANIM_END = 19;
+    private static final int DJ_ANIM_Y = 34;
     private static final int RUN_ANIM_END = 13;
     private static final int FROG_DIM = 18;
 
@@ -63,7 +64,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
         frames.clear();
         //frogBonusDoubleJump animation
         for (int i = DJ_ANIM_INIT; i < DJ_ANIM_END; i++) {
-            frames.add(new TextureRegion(getTexture(), i * IMAGE_DIM, IMAGE_DIM, IMAGE_DIM, IMAGE_DIM));
+            frames.add(new TextureRegion(getTexture(), i * IMAGE_DIM, DJ_ANIM_Y, IMAGE_DIM, IMAGE_DIM));
         }
         frogBonusDoubleJump = new Animation<>(ANIM_VEL, frames);
         frames.clear();
