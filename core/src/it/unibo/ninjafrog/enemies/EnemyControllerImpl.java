@@ -193,10 +193,13 @@ public class EnemyControllerImpl implements EnemyController {
         return this.stateTime;
     }
     @Override
-    public final void collide(final TurtleModel turtleModel) {
+    public final void collide(final TurtleModel turtleModel, final Short bit) {
         checkTurtleModel(turtleModel);
             if (this.turtles.get(turtleModel).hasSpike()) {
                 this.screen.removeLife();
+            } else if (bit == GameConst.TURTLE){
+                this.screen.removeLife();
+                turtleModel.collide();
             } else {
                 turtleModel.collide();
             }

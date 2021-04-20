@@ -133,7 +133,7 @@ public interface EnemyController {
      * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel} the model part of the enemy turtle
      */
    
-    void collide(TurtleModel turtleModel);
+    void collide(TurtleModel turtleModel,Short bit);
     /**
      * Method that check if the turtleModel is in the turtles map and call the method collid in the TurtleView
      * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel} the model part of the enemy turtle
