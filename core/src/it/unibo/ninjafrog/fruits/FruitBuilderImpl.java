@@ -49,7 +49,13 @@ public final class FruitBuilderImpl implements FruitBuilder {
 
     @Override
     public FruitPowerUp build() {
-        return new FruitPowerUpImpl(screen, x, y, type);
+        if (this.screen == null) {
+            throw new IllegalStateException("Screen can't be null.");
+        }
+        if (this.type == null) {
+            throw new IllegalStateException("Type can't be null."); 
+        }
+        return new FruitPowerUpImpl(this.screen, this.x, this.y, this.type);
     }
 
 }
