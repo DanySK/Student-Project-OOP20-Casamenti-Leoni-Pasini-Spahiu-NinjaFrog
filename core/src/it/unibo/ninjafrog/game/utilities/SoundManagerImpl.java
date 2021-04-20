@@ -62,7 +62,7 @@ public final class SoundManagerImpl implements SoundManager, Disposable {
     }
 
     @Override
-    public boolean getState() {
+    public boolean isState() {
         return this.state;
     }
 

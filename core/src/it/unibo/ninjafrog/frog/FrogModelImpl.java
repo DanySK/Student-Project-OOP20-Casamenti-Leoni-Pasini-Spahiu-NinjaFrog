@@ -14,6 +14,7 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class FrogModelImpl implements FrogModel {
+    private static final int X_VELOCITY = 2;
     private static final float VEL_MAX = 2.5f;
     private static final int RADIUS = 7;
     private static final int X_INIT_POS = 240;
@@ -21,19 +22,25 @@ public class FrogModelImpl implements FrogModel {
     private static final int HEAD = 2;
 
     private Integer life = 1;
-    private boolean isDoubleJump;
+    private boolean isDoubleJumpActive;
+    private boolean isDoubleJumping;
     private final PlayScreen screen;
     private FrogState currentState;
-    private final FrogState prevState;
+    private FrogState prevState;
     private Body body;
     private final World world;
 
+    /**
+     * public constructor of the frog model.
+     * @param screen the playscreen.
+     */
     public FrogModelImpl(final PlayScreen screen) {
         this.screen = screen;
         this.world = screen.getWorld();
         this.prevState = FrogState.STANDING;
         this.currentState = FrogState.STANDING;
-        this.isDoubleJump = false;
+        this.isDoubleJumpActive = false;
+        this.isDoubleJumping = false;
         defineFrog();
     }
     @Override
@@ -48,29 +55,35 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public final FrogState getState() {
-        if (body.getLinearVelocity().y > 0 || (body.getLinearVelocity().y < 0 && prevState == FrogState.DOUBLEJUMPING) && this.isDoubleJump) {
-            return FrogState.DOUBLEJUMPING;
-        } else if (body.getLinearVelocity().y > 0 || (body.getLinearVelocity().y < 0 && prevState == FrogState.JUMPING) && !this.isDoubleJump) {
-            return FrogState.JUMPING;
+        if ((body.getLinearVelocity().y > 0 || body.getLinearVelocity().y < 0 && prevState == FrogState.DOUBLEJUMPING) && this.isDoubleJumping) {
+            this.currentState = FrogState.DOUBLEJUMPING;
+            return this.currentState;
+        } else if ((body.getLinearVelocity().y > 0 || body.getLinearVelocity().y < 0 && prevState == FrogState.JUMPING) && !this.isDoubleJumping) {
+            this.currentState =  FrogState.JUMPING;
+            return this.currentState;
         } else if (body.getLinearVelocity().y < 0) {
-            return FrogState.FALLING;
+            this.currentState = FrogState.FALLING;
+            return this.currentState;
         } else if (body.getLinearVelocity().x != 0) {
-            return FrogState.RUNNING;
+            this.currentState = FrogState.RUNNING;
+            return this.currentState;
         } else {
-            return FrogState.STANDING;
+            this.currentState = FrogState.STANDING;
+            return this.currentState;
         }
     }
 
     @Override
     public final void jump() {
-        if (getState() == FrogState.DOUBLEJUMPING) {
+        if (this.currentState == FrogState.DOUBLEJUMPING) {
+            body.applyLinearImpulse(new Vector2(0, 0), body.getWorldCenter(), true);
 
-    } else if (getState() != FrogState.JUMPING && getState() != FrogState.FALLING) {
+    } else if (this.currentState != FrogState.JUMPING && this.currentState != FrogState.FALLING) {
             body.applyLinearImpulse(new Vector2(0, 4f), body.getWorldCenter(), true);
-        } else if (isDoubleJumpActive() && !isDoubleJump) {
-            isDoubleJump = true;
-            if (body.getLinearVelocity().y < 0) {
-                if (getState() != FrogState.FALLING && this.prevState != FrogState.FALLING) {
+        } else if (isDoubleJumpActive() && !isDoubleJumping) {
+            isDoubleJumping = true;
+            if (body.getLinearVelocity().y <= 0) {
+                if (this.currentState != FrogState.FALLING && this.prevState != FrogState.FALLING) {
                     body.applyLinearImpulse(new Vector2(0, -body.getLinearVelocity().y + 4f), body.getWorldCenter(), true);
                 }
             } else {
@@ -81,11 +94,11 @@ public class FrogModelImpl implements FrogModel {
     @Override
     public final void move(final float direction) {
         if (direction > 0) {
-            if (body.getLinearVelocity().x <= 2) {
+            if (body.getLinearVelocity().x <= X_VELOCITY) {
                 body.applyLinearImpulse(new Vector2(direction, 0), body.getWorldCenter(), true);
             }
         } else {
-            if (body.getLinearVelocity().x >= -2) {
+            if (body.getLinearVelocity().x >= -X_VELOCITY) {
                 body.applyLinearImpulse(new Vector2(direction, 0), body.getWorldCenter(), true);
                 }
             }
@@ -93,12 +106,12 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public final boolean isDoubleJumpActive() {
-        return this.isDoubleJump;
+        return this.isDoubleJumpActive;
     }
 
     @Override
     public final void setDoubleJump(final boolean isDoubleJump) {
-        this.isDoubleJump = isDoubleJump;
+        this.isDoubleJumpActive = isDoubleJump;
     }
     @Override
     public final void addLife() {
@@ -163,5 +176,17 @@ public class FrogModelImpl implements FrogModel {
             }
         }
 
+    }
+    @Override
+    public final  FrogState getPrevState() {
+        return this.prevState;
+    }
+    @Override
+    public final void setPrevState(final FrogState prevState) {
+        this.prevState = prevState;
+    }
+    @Override
+    public final void setDoubleJumping(final boolean b) {
+        this.isDoubleJumping = b;
     }
 }

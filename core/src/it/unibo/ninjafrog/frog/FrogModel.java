@@ -53,6 +53,20 @@ public interface FrogModel {
      * @param dt delta of time.
      */
     void update(float dt);
+    /**
+     * @return the frog's prev state.
+     */
+    FrogState getPrevState();
+    /**
+     * set the prev state.
+     * @param currentState the state to set.
+     */
+    void setPrevState(FrogState currentState);
+    /**
+     * set the double jump frog.
+     * @param b true if the frog is double jumping.
+     */
+    void setDoubleJumping(boolean b);
 
 
 

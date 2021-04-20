@@ -43,5 +43,17 @@ public interface FrogController {
      * @return the frog's state.
      */
     FrogState getState();
+    /**
+     * @return the frog's prev state.
+     */
+    FrogState getPrevState();
+    /**
+     * @param currentState the frog state.
+     */
+    void setPrevState(FrogState currentState);
+    /**
+     * @param b the param.
+     */
+    void setDoubleJumping(boolean b);
 
 }

@@ -14,9 +14,8 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 
 public final class HudImpl implements Hud {
     private static final int BONUSTIMER = 10;
-    private Stage stage;
-    private Viewport viewport;
-
+    private static final String FORMAT = "%02d";
+    private final Stage stage;
     private Integer score;
     private Integer life = 1;
     private Integer bonusTimer;
@@ -26,11 +25,7 @@ public final class HudImpl implements Hud {
 
     private final Label countdownLabel;
     private final Label pointLabel;
-    private final Label bonusLabel;
     private final Label lifeCounterLabel;
-    private final Label lifeLabel;
-    private final Label scoreLabel;
-
 
     public HudImpl(final SpriteBatch sb) {
 
@@ -39,22 +34,24 @@ public final class HudImpl implements Hud {
         this.canInit = true;
         this.timerOn = false;
         this.bonusTimer = BONUSTIMER;
-        this.viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
-        this.stage = new Stage(this.viewport, sb);
+        final Viewport viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
+        this.stage = new Stage(viewport, sb);
 
         final Table table = new Table();
         table.top();
         table.setFillParent(true);
-        this.countdownLabel = new Label(String.format("%02d", 00), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.pointLabel = new Label(String.format("%06d", this.score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.lifeCounterLabel = new Label(String.format("%02d", life), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.bonusLabel = new Label("BONUS", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.scoreLabel = new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.lifeLabel = new Label("LIFE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        table.add(this.scoreLabel).padTop(10);
-        table.add(this.lifeLabel).expandX().padTop(10);
-        table.add(this.bonusLabel).expandX().padTop(10);
+
+        this.countdownLabel = new Label(String.format(FORMAT, 00), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        this.pointLabel = new Label(String.format("%06d", this.score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        this.lifeCounterLabel = new Label(String.format(FORMAT, life), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        final Label bonusLabel = new Label("BONUS", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        final Label scoreLabel = new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        final Label lifeLabel = new Label("LIFE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
+        table.add(scoreLabel).padTop(10);
+        table.add(lifeLabel).expandX().padTop(10);
+        table.add(bonusLabel).expandX().padTop(10);
         table.row();
         table.add(this.pointLabel).expandX();
         table.add(this.lifeCounterLabel).expandX();
@@ -75,13 +72,13 @@ public final class HudImpl implements Hud {
     @Override
     public void addLife() {
         life += 1;
-        lifeCounterLabel.setText(String.format("%02d", life));
+        lifeCounterLabel.setText(String.format(FORMAT, life));
     }
 
     @Override
     public void removeLife() {
         life -= 1;
-        lifeCounterLabel.setText(String.format("%02d", life));
+        lifeCounterLabel.setText(String.format(FORMAT, life));
     }
 
     @Override
@@ -101,7 +98,7 @@ public final class HudImpl implements Hud {
         this.timeCount += dt;
         if (this.timeCount >= 1) {
             this.bonusTimer--;
-            this.countdownLabel.setText(String.format("%02d", this.bonusTimer));
+            this.countdownLabel.setText(String.format(FORMAT, this.bonusTimer));
             this.timeCount = 0;
             if (this.bonusTimer == 0) {
                 this.bonusTimer = BONUSTIMER;

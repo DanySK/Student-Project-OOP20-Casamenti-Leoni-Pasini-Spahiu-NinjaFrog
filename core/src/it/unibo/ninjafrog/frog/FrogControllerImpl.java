@@ -16,6 +16,10 @@ public class FrogControllerImpl implements FrogController {
     private final FrogModel frog;
     private final FrogView frogView;
 
+    /**
+     * public constructor of the frog controller.
+     * @param screen the playscreen.
+     */
     public FrogControllerImpl(final PlayScreen screen) {
         this.screen = screen;
         this.frog = new FrogModelImpl(screen);
@@ -30,7 +34,6 @@ public class FrogControllerImpl implements FrogController {
     }
     @Override
     public final void update(final float dt) {
-       // handleInput();
         frog.update(dt);
         frogView.update(dt);
     }
@@ -57,7 +60,7 @@ public class FrogControllerImpl implements FrogController {
             if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                 this.screen.setMenuScreen();
             }
-            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                 this.pause = !this.pause;
             }
         }
@@ -89,6 +92,23 @@ public class FrogControllerImpl implements FrogController {
     @Override
     public final boolean isPaused() {
         return this.pause;
+    }
+
+    @Override
+    public final FrogState getPrevState() {
+        return this.frog.getPrevState();
+    }
+
+
+    @Override
+    public final void setPrevState(final FrogState prevState) {
+        this.frog.setPrevState(prevState);
+    }
+
+
+    @Override
+    public final void setDoubleJumping(final boolean b) {
+        this.frog.setDoubleJumping(b);
     }
 
 }

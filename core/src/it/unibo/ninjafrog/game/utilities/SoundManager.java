@@ -12,7 +12,7 @@ public interface SoundManager {
     /**
      * @return the state.
      */
-    boolean getState();
+    boolean isState();
     /**
      * play the menu song.
      */

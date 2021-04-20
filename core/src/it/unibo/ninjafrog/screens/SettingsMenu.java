@@ -129,7 +129,7 @@ public final class SettingsMenu implements Screen {
     }
 
     private void updateMusicLabel() {
-        if (sound.getState()) {
+        if (sound.isState()) {
             musicLabel.setText("Music: ON");
         } else {
             musicLabel.setText("Music: OFF"); 
