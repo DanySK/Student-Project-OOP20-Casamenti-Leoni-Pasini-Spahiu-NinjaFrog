@@ -51,13 +51,13 @@ public final class WorldCollisionListener implements ContactListener {
                     if (bitOf(fixtureB) == GameConst.RINO_HEAD) {
                         enemies.collide((RinoModel) fixtureB.getUserData());
                     } else {
-                        enemies.collide((TurtleModel) fixtureB.getUserData());
+                        enemies.collide((TurtleModel) fixtureB.getUserData(), GameConst.TURTLE_HEAD);
                     }
                 } else {
                     if (bitOf(fixtureA) == GameConst.RINO_HEAD) {
                         enemies.collide((RinoModel) fixtureA.getUserData());
                     } else {
-                        enemies.collide((TurtleModel) fixtureA.getUserData());
+                        enemies.collide((TurtleModel) fixtureA.getUserData(), GameConst.TURTLE_HEAD);
                     }
                 }
                 break;
@@ -72,8 +72,7 @@ public final class WorldCollisionListener implements ContactListener {
                         }
                     } else {
                         if (!enemies.isSetToDestroy((TurtleModel) fixtureA.getUserData())) {
-                            this.screen.removeLife();
-                            enemies.collide((TurtleModel) fixtureA.getUserData());
+                            enemies.collide((TurtleModel) fixtureA.getUserData(), GameConst.TURTLE);
                         }
                     }
                 } else {
@@ -84,8 +83,7 @@ public final class WorldCollisionListener implements ContactListener {
                         }
                     } else {
                         if (!enemies.isSetToDestroy((TurtleModel) fixtureB.getUserData())) {
-                            this.screen.removeLife();
-                            enemies.collide((TurtleModel) fixtureB.getUserData());
+                            enemies.collide((TurtleModel) fixtureB.getUserData(), GameConst.TURTLE);
                         }
                     }
                 }
