@@ -118,7 +118,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
             region.flip(true, false);
             runningRight = true;
         }
-        this.stateTimer = currentState == prevState ? stateTimer + dt : 0;
+        this.stateTimer = currentState.equals(prevState)  ? stateTimer + dt : 0;
         this.frogController.setPrevState(currentState);
         if (currentState != FrogState.DOUBLEJUMPING) {
             this.frogController.setDoubleJumping(false);
