@@ -12,6 +12,9 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class FrogViewImpl extends Sprite implements FrogView {
+    private static final int Y_ANIM_BF = 36;
+    private static final int X_ANIM_FBJ = 417;
+    private static final int X_ANIM_FJ = 420;
     private static final int IMAGE_DIM = 32;
     private static final float ANIM_VEL = 0.1f;
     private static final int DJ_ANIM_INIT = 13;
@@ -22,8 +25,6 @@ public class FrogViewImpl extends Sprite implements FrogView {
     private final FrogController frogController;
     private float stateTimer;
     private boolean runningRight;
-    private FrogState prevState;
-    private FrogState currentState;
     private final TextureRegion frogJump;
     private final TextureRegion frogStand;
     private final TextureRegion frogBonusJump;
@@ -32,15 +33,20 @@ public class FrogViewImpl extends Sprite implements FrogView {
     private final Animation<TextureRegion> frogBonusRun;
     private final Animation<TextureRegion> frogBonusDoubleJump;
 
+    /**
+     * public constructor of the frog view.
+     * @param frogController the frog controller.
+     * @param screen the playscreen.
+     */
     public FrogViewImpl(final FrogController frogController, final PlayScreen screen) {
         super(screen.getAtlas().findRegion("ninjaAndEnemies")); 
         this.frogController = frogController;
         this.runningRight = true;
         this.stateTimer = 0;
-        frogJump = new TextureRegion(getTexture(), 420 , 3, IMAGE_DIM, IMAGE_DIM);
+        frogJump = new TextureRegion(getTexture(), X_ANIM_FJ, 3, IMAGE_DIM, IMAGE_DIM);
         frogStand = new TextureRegion(getTexture(), 4, 3, IMAGE_DIM, IMAGE_DIM);
-        frogBonusJump = new TextureRegion(getTexture(), 417, 36, IMAGE_DIM, IMAGE_DIM);
-        frogBonusStand = new TextureRegion(getTexture(), 4, 37, IMAGE_DIM, IMAGE_DIM);
+        frogBonusJump = new TextureRegion(getTexture(), X_ANIM_FBJ, Y_ANIM_BF, IMAGE_DIM, IMAGE_DIM);
+        frogBonusStand = new TextureRegion(getTexture(), 4, Y_ANIM_BF, IMAGE_DIM, IMAGE_DIM);
 
         final Array<TextureRegion> frames = new Array<>();
         //frogRun animation
@@ -51,7 +57,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
         frames.clear();
         //frogBonusRun animation
         for (int i = 1; i < RUN_ANIM_END; i++) {
-            frames.add(new TextureRegion(getTexture(), i * IMAGE_DIM, 36, IMAGE_DIM, IMAGE_DIM ));
+            frames.add(new TextureRegion(getTexture(), i * IMAGE_DIM, Y_ANIM_BF, IMAGE_DIM, IMAGE_DIM));
         }
         frogBonusRun = new Animation<>(ANIM_VEL, frames);
         frames.clear();
@@ -73,7 +79,9 @@ public class FrogViewImpl extends Sprite implements FrogView {
         super.draw(batch);
     }
     private TextureRegion getFrame(final float dt) {
-        currentState = frogController.getState();
+        final FrogState currentState = frogController.getState();
+        final FrogState prevState = frogController.getPrevState();
+
         TextureRegion region = null;
         switch (currentState) {
         case JUMPING:
@@ -111,8 +119,10 @@ public class FrogViewImpl extends Sprite implements FrogView {
             runningRight = true;
         }
         this.stateTimer = currentState == prevState ? stateTimer + dt : 0;
-        prevState = currentState;
- 
+        this.frogController.setPrevState(currentState);
+        if (currentState != FrogState.DOUBLEJUMPING) {
+            this.frogController.setDoubleJumping(false);
+        }
         return region;
     }
     @Override
