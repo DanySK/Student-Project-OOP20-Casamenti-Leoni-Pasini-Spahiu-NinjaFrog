@@ -24,6 +24,9 @@ public class EnemyControllerImpl implements EnemyController {
     private float stateTime;
 
     public EnemyControllerImpl(final PlayScreen screen) {
+        if (screen == null) {
+            throw new IllegalStateException("Screen can't be null.");
+        }
         this.screen = screen;
         this.spawnEnemies();
     }

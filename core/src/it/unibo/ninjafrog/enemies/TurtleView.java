@@ -7,26 +7,26 @@ import com.badlogic.gdx.physics.box2d.Body;
  */
 public interface TurtleView {
     /**
-     * Method that update the view part of the turtle
+     * Method that update the view part of the turtle.
      * @param body the body of the turtle
      * @param dt the delta of the time
      */
 
     void update(Body body, float dt);
     /**
-     * Method that draw the view par of the turtle
+     * Method that draw the view par of the turtle.
      * @param batch the game batch
      */
 
     void draw(Batch batch);
     /**
      * 
-     * @return true if the turtle spikes are out
+     * @return true if the turtle spikes are out.
      */
 
     boolean hasSpike();
     /**
-     * Method that set the texture of turtle with the death animation
+     * Method that set the texture of turtle with the death animation.
      */
  
     void setDesthRegion();
