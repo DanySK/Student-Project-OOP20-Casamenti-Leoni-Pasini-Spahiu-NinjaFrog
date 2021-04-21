@@ -85,7 +85,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
             region = this.spikes;
             break;
         }
-        time = currentState == previousState ? time + dt : 0;
+        time = currentState.equals(previousState) ? time + dt : 0;
         previousState = currentState;
         return region;
     }
@@ -124,7 +124,5 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
     public final boolean hasSpike() {
        return this.currentState == TurtleState.SPIKES || this.currentState == TurtleState.SPIKES_IN;
     }
-
-
 
 }

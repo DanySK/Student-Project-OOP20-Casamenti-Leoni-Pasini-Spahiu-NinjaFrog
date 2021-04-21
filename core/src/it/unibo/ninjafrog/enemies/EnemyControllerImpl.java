@@ -222,7 +222,3 @@ public class EnemyControllerImpl implements EnemyController {
         }
     }
 }
-
-
-
-
