@@ -18,15 +18,15 @@ public class PlayerTests {
 		assertTrue("This test will only pass if the png file of the ninja frog exist in the assets folder.",
 				Gdx.files.internal( ASSETS_PATH + "ninjaAndEnemies.png").exists());
 	}
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = NullPointerException.class)
 	public void FrogViewThrowsException() {
 		new FrogViewImpl(null, null);
 	}
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = NullPointerException.class)
 	public void FrogControllerThrowsException() {
 		new FrogControllerImpl(null);
 	}
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = NullPointerException.class)
 	public void FrogModelThrowException() {
 		new FrogModelImpl(null);
 	}

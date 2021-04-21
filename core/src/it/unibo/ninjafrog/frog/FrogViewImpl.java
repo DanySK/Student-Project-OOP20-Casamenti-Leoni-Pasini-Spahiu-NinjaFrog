@@ -19,7 +19,7 @@ public class FrogViewImpl extends Sprite implements FrogView {
     private static final float ANIM_VEL = 0.1f;
     private static final int DJ_ANIM_INIT = 13;
     private static final int DJ_ANIM_END = 19;
-    private static final int DJ_ANIM_Y = 34;
+    private static final int DJ_ANIM_Y = 33;
     private static final int RUN_ANIM_END = 13;
     private static final int FROG_DIM = 18;
 

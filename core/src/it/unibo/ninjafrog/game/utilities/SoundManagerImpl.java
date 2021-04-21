@@ -23,6 +23,7 @@ public final class SoundManagerImpl implements SoundManager, Disposable {
     public void loadSong() {
         musicMenu = (Music) Gdx.audio.newMusic(Gdx.files.internal("introSong.mp3")); // menu song
         musicGame = (Music) Gdx.audio.newMusic(Gdx.files.internal("playSong.mp3")); // play song
+       // assetManager.load(fileName, Sound.class);
         assetManager.finishLoading();
     }
 

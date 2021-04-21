@@ -116,7 +116,8 @@ public final class SettingsMenu implements Screen {
     }
 
     private void handleInput() {
-        if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.UP)) {
+        if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.UP) 
+                || Gdx.input.isKeyJustPressed(Keys.S) || Gdx.input.isKeyJustPressed(Keys.W)) {
             if (currentLabel == 1) {
                 currentLabel = 2;
             } else {

@@ -44,13 +44,13 @@ public class FrogControllerImpl implements FrogController {
     @Override
     public final void handleInput() {
         if (!this.pause) {
-            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP) || Gdx.input.isKeyJustPressed(Input.Keys.W)) {
                 frog.jump();
                 }
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
                 frog.move(VEL);
             }
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
                 frog.move(-VEL);
             }
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {

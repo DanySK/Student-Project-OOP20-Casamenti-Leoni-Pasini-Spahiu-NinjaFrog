@@ -131,7 +131,7 @@ public final class LevelsMenu implements Screen {
     }
 
     private void handleInput() {
-        if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+        if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.S)) {
             switch (currentLabel) {
             case 1:
                 currentLabel = 2;
@@ -146,7 +146,7 @@ public final class LevelsMenu implements Screen {
                 break;
             }
         }
-        if (Gdx.input.isKeyJustPressed(Keys.UP)) {
+        if (Gdx.input.isKeyJustPressed(Keys.UP) || Gdx.input.isKeyJustPressed(Keys.W)) {
             switch (currentLabel) {
             case 1:
                 currentLabel = 3;
