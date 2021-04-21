@@ -1,6 +1,7 @@
 package it.unibo.ninjafrog.enemies;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapObject;
@@ -15,8 +16,8 @@ import it.unibo.ninjafrog.screens.PlayScreen;
 public class EnemyControllerImpl implements EnemyController {
     private static final int RINO_LAYER = 7;
     private static final int TURTLE_LAYER = 8;
-    private HashMap<RinoModel, RinoView> rinos; 
-    private HashMap<TurtleModel, TurtleView> turtles;
+    private Map<RinoModel, RinoView> rinos; 
+    private Map<TurtleModel, TurtleView> turtles;
     private final PlayScreen screen;
     private boolean runningLeft;
     private boolean destroyed;
@@ -197,7 +198,7 @@ public class EnemyControllerImpl implements EnemyController {
         checkTurtleModel(turtleModel);
             if (this.turtles.get(turtleModel).hasSpike()) {
                 this.screen.removeLife();
-            } else if (bit == GameConst.TURTLE){
+            } else if (bit == GameConst.TURTLE) {
                 this.screen.removeLife();
                 turtleModel.collide();
             } else {
