@@ -13,6 +13,8 @@ import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class RinoModelImpl implements RinoModel {
 
+    private static final float RESTITUTION = 1f;
+    private static final int NUMBER_OF_VERTICE_OF_THE_HEAD = 4;
     private static final int HEAD_VERTICE_DOWN_Y = 7;
     private static final int HEAD_VERTICE_DOWN_X = 5;
     private static final int HEAD_VERTICE_UP_Y = 10;
@@ -49,7 +51,7 @@ public class RinoModelImpl implements RinoModel {
         final FixtureDef fdef = new FixtureDef();
         final CircleShape shape = new CircleShape();
         final PolygonShape head = new PolygonShape();
-        final Vector2[] vertice = new Vector2[4];
+        final Vector2[] vertice = new Vector2[NUMBER_OF_VERTICE_OF_THE_HEAD];
         createBody(bdef);
         fixtureBodyDefinition(fdef, shape);
         createFixture(fdef);
@@ -147,7 +149,7 @@ public class RinoModelImpl implements RinoModel {
         vertice[3] = new Vector2(+HEAD_VERTICE_DOWN_X, HEAD_VERTICE_DOWN_Y).scl(1 / GameConst.PPM);
         head.set(vertice);
         fdef.shape = head;
-        fdef.restitution = 1f;
+        fdef.restitution = RESTITUTION;
         fdef.filter.categoryBits = GameConst.RINO_HEAD;
     }
 }

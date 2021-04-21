@@ -11,8 +11,11 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class TurtleViewImpl extends Sprite implements TurtleView {
+    private static final double ANIMATION_DEAD_TIME = 0.5;
     private static final String ASSET = "ninjaAndEnemies";
     private static final int X_COORDINATE_FOR_DEATH_FRAME = 440;
+    private static final int FULL_SPIKES_AND_NO_SPIKES_DURATION = 2;
+    private static final int SPIKES_IN_AND_SPIKES_OUT_DURATION = 1;
     private static final int NUMBER_OF_THE_LAST_FAME = 7;
     private static final int NUMBER_OF_FRAMES = 8;
     private static final int X_DISTANCE_FROM_FRAMES = 44;
@@ -21,6 +24,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
     private static final int WIDTH_IN_THE_PNG = 44;
     private static final float FRAME_DURATION = 0.1f;
     private static final int BOUNDS_HEIGHT = 17;
+    private static final int HALF = 2;
     private static final int BOUNDS_WIDTH = 25;
     private TurtleState currentState;
     private TurtleState previousState;
@@ -56,13 +60,13 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
     @Override
     public final void update(final Body body, final float dt) {
         // TODO Auto-generated method stub
-        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+        setPosition(body.getPosition().x - getWidth() / HALF, body.getPosition().y - getHeight() / HALF);
         setRegion(getFrame(dt));
     }
 
     @Override
     public final void draw(final Batch batch) {
-        if (!controller.isDestroyed(this) || controller.getStateTime(this) < 0.5) {
+        if (!controller.isDestroyed(this) || controller.getStateTime(this) < ANIMATION_DEAD_TIME) {
             super.draw(batch);
         }
     }
@@ -92,7 +96,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
 
     private TurtleState getState() {
         if (this.currentState == TurtleState.NO_SPIKES || this.currentState == TurtleState.SPIKES) {
-            if (this.time > 2) {
+            if (this.time > FULL_SPIKES_AND_NO_SPIKES_DURATION) {
                 if (this.currentState == TurtleState.NO_SPIKES) {
                     this.time = 0;
                     return TurtleState.SPIKES_IN;
@@ -104,7 +108,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
                 return this.currentState;
                 }
             } else {
-               if (this.time > 2) {
+               if (this.time > SPIKES_IN_AND_SPIKES_OUT_DURATION) {
                    if (this.currentState == TurtleState.SPIKES_IN) {
                         this.time = 0;
                         return TurtleState.SPIKES;

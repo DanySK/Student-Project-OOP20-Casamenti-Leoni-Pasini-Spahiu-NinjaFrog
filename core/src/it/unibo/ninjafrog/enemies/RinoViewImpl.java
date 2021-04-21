@@ -11,7 +11,8 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class RinoViewImpl extends Sprite implements RinoView {
-    private static final int X_COORDINATE_FOR_DEATH_REGION = 417;
+    private static final int X_COORDINATE_FOR_DEATH_REGION = 417; 
+    private static final int HALF = 2;
     private static final int X_DISTANCE_FOR_EVERY_FRAMES = 52;
     private static final int HEIGHT_IN_THE_PNG = 30;
     private static final int WIDTH_IN_THE_PNG = 50;
@@ -36,7 +37,7 @@ public class RinoViewImpl extends Sprite implements RinoView {
     }
     @Override
     public final void update(final Body body, final float dt) {
-        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+        setPosition(body.getPosition().x - getWidth() / HALF, body.getPosition().y - getHeight() / HALF);
         setRegion(getFrame(body));
     }
 
