@@ -40,7 +40,6 @@ import it.unibo.ninjafrog.world.WorldCreatorImpl;
  * Implementation of the {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen}.
  */
 public final class PlayScreenImpl implements PlayScreen {
-    private static final float DEFAULT_VALUE_ACC = 0.25f;
     private static final double BLANK_TIME = 0.5;
     private static final int TEXT_TIME = 1;
     private static final int BG3_X = 135;
@@ -59,14 +58,16 @@ public final class PlayScreenImpl implements PlayScreen {
     private static final int LABEL3_X = 50;
     private static final int LABEL2_X = 105;
     private static final int LABEL1_X = 150;
-    private static final int WORLD_POS_ITER = 2;
-    private static final int WORLD_VEL_ITER = 6;
-    private static final float WORLD_TIME_STEP = 1f / 60f;
     private static final int WORLD_X_GRAVITY = 0;
     private static final int WORLD_Y_GRAVITY = -10;
     private static final int UNIT = 1;
     private static final int CAM_Z_COMPONENT = 0;
     private static final int HALF = 2;
+    private static final int WORLD_POS_ITER = 2;
+    private static final int WORLD_VEL_ITER = 6;
+    private static final float WORLD_TIME_STEP = 1f / 60f;
+    private static final float ACCUMULATOR_DEFAULT = 0.25f;
+    private float accumulator;
     private final TextureAtlas atlas;
     private final NinjaFrogGame game;
     private final SoundManager sound;
@@ -84,7 +85,6 @@ public final class PlayScreenImpl implements PlayScreen {
     private final List<Pair<Float, Float>> orangesToSpawn;
     private float pauseTime;
     private final ShapeRenderer textBackground;
-    private float accumulator;
     /*
      * BOX DEBUGGER IN CASE OF DEBUG.
      * private final Box2DDebugRenderer b2debug;
@@ -158,7 +158,7 @@ public final class PlayScreenImpl implements PlayScreen {
     }
 
     private void stepWorld(final float delta) {
-        this.accumulator += Math.min(delta, DEFAULT_VALUE_ACC);
+        this.accumulator += Math.min(delta, ACCUMULATOR_DEFAULT);
         if (this.accumulator >= WORLD_TIME_STEP) {
             this.accumulator -= WORLD_TIME_STEP;
             this.world.step(WORLD_TIME_STEP, WORLD_VEL_ITER, WORLD_POS_ITER);
