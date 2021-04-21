@@ -21,7 +21,7 @@ public final class DesktopLauncher {
         final Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setTitle("Super Ninja Frog");
         config.setWindowedMode(GAME_WIDTH, GAME_HEIGHT);
-        config.setResizable(false);
+        config.setResizable(true);
         new Lwjgl3Application(new NinjaFrogGame(), config);
     }
 }
