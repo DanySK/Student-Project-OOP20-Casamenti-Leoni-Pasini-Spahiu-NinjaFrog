@@ -1,7 +1,7 @@
 package it.unibo.ninjafrog.desktop;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import it.unibo.ninjafrog.game.NinjaFrogGame;
 
 /**
@@ -18,9 +18,10 @@ public final class DesktopLauncher {
      * @param arg Command line parameters.
      */
     public static void main(final String[] arg) {
-        final LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.width = DesktopLauncher.GAME_WIDTH;
-        config.height = DesktopLauncher.GAME_HEIGHT;
-        new LwjglApplication(new NinjaFrogGame(), config);
+        final Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+        config.setTitle("Super Ninja Frog");
+        config.setWindowedMode(GAME_WIDTH, GAME_HEIGHT);
+        config.setResizable(false);
+        new Lwjgl3Application(new NinjaFrogGame(), config);
     }
 }
