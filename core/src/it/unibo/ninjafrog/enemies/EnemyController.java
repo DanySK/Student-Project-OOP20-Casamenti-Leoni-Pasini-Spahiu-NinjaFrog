@@ -131,13 +131,13 @@ public interface EnemyController {
     /**
      * Method that check if the turtleModel is in the turtles map and call the method collide in the TurtleView.
      * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel} the model part of the enemy turtle
+     * @param bit the part of the body where the main charapter hit the turtle
      */
 
     void collide(TurtleModel turtleModel, Short bit);
     /**
      * Method that check if the turtleModel is in the turtles map and call the method collide in the TurtleView.
      * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel} the model part of the enemy turtle
-     * @param bit the part of the body where the main charapter hit the turtle
      * @return the boolean isSetToDestroy in the rinoViewImpl
      */
     boolean isSetToDestroy(TurtleModel turtleModel);
