@@ -6,9 +6,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import it.unibo.ninjafrog.game.utilities.SoundManagerImpl;
 import it.unibo.ninjafrog.screens.MainMenu;
+
 /**
- * Definition of the NinjaFrogGame class.
- * Main {@link com.badlogic.gdx.Game Game} class of the application.
+ * Definition of the NinjaFrogGame class. Main {@link com.badlogic.gdx.Game
+ * Game} class of the application.
  */
 public final class NinjaFrogGame extends Game {
     private SpriteBatch batch;
@@ -33,9 +34,12 @@ public final class NinjaFrogGame extends Game {
         }
         this.batch.dispose();
     }
+
     /**
      * Getter of the batch.
-     * @return The {@link com.badlogic.gdx.graphics.g2d.SpriteBatch batch} of the {@link NinjaFrogGame}.
+     * 
+     * @return The {@link com.badlogic.gdx.graphics.g2d.SpriteBatch batch} of the
+     *         {@link NinjaFrogGame}.
      */
     public SpriteBatch getBatch() {
         return this.batch;

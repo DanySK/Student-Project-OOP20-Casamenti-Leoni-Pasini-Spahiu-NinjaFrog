@@ -6,8 +6,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
+
 /**
- * Definition of a {@link it.unibo.ninjafrog.world.WorldCreator WorldCreator} implementation.
+ * Definition of a {@link it.unibo.ninjafrog.world.WorldCreator WorldCreator}
+ * implementation.
  */
 public final class WorldCreatorImpl implements WorldCreator {
     private static final int GROUND_LAYER = 2;
@@ -17,10 +19,12 @@ public final class WorldCreatorImpl implements WorldCreator {
     private static final int FINISH_TROPHY_LAYER = 6;
     private final PlayScreen screen;
     private final NonInteractiveBuilder builder;
+
     /**
      * Public constructor of the WorldCreatorImpl.
+     * 
      * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen}
-     * where the world is going to be created.
+     *               where the world is going to be created.
      */
     public WorldCreatorImpl(final PlayScreen screen) {
         this.screen = screen;
@@ -34,19 +38,13 @@ public final class WorldCreatorImpl implements WorldCreator {
             for (final MapObject object : map.getLayers().get(i).getObjects().getByType(RectangleMapObject.class)) {
                 switch (i) {
                 case GROUND_LAYER:
-                    this.builder.selectObject(object)
-                    .chooseCategoryBit(GameConst.GROUND)
-                    .build();
+                    this.builder.selectObject(object).chooseCategoryBit(GameConst.GROUND).build();
                     break;
                 case GROUND_OBJECT_LAYER:
-                    this.builder.selectObject(object)
-                    .chooseCategoryBit(GameConst.GROUND_OBJECT)
-                    .build();
+                    this.builder.selectObject(object).chooseCategoryBit(GameConst.GROUND_OBJECT).build();
                     break;
                 case FINISH_TROPHY_LAYER:
-                    this.builder.selectObject(object)
-                    .chooseCategoryBit(GameConst.FINISH)
-                    .build();
+                    this.builder.selectObject(object).chooseCategoryBit(GameConst.FINISH).build();
                     break;
                 case FRUITBOX_LAYER:
                     new FruitBox(this.screen, object);
@@ -55,7 +53,7 @@ public final class WorldCreatorImpl implements WorldCreator {
                     new Brick(this.screen, object);
                     break;
                 default:
-                    //unused;
+                    // unused;
                     break;
                 }
             }

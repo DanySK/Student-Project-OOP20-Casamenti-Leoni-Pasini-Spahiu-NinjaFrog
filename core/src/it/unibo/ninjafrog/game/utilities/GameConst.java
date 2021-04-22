@@ -6,11 +6,11 @@ package it.unibo.ninjafrog.game.utilities;
 public final class GameConst {
 
     /**
-     *  Virtual screen width value.
+     * Virtual screen width value.
      */
     public static final int WIDTH = 400;
     /**
-     *  Virtual screen height value.
+     * Virtual screen height value.
      */
     public static final int HEIGHT = 208;
 
@@ -20,19 +20,23 @@ public final class GameConst {
     public static final float PPM = 100;
 
     /**
-     * A bit representation of a Ground object, used to define it and what it can collide with.
+     * A bit representation of a Ground object, used to define it and what it can
+     * collide with.
      */
     public static final short GROUND = 1;
     /**
-     * A bit representation of the Ninja, used to define it and what it can collide with.
+     * A bit representation of the Ninja, used to define it and what it can collide
+     * with.
      */
     public static final short NINJA = 2;
     /**
-     * A bit representation of a Brick object, used to define it and what it can collide with.
+     * A bit representation of a Brick object, used to define it and what it can
+     * collide with.
      */
     public static final short BRICK = 4;
     /**
-     * A bit representation of a FruitBox object, used to define it and what it can collide with.
+     * A bit representation of a FruitBox object, used to define it and what it can
+     * collide with.
      */
     public static final short FRUITBOX = 8;
     /**
@@ -40,7 +44,8 @@ public final class GameConst {
      */
     public static final short DESTROYED = 16;
     /**
-     * A bit representation of a Rino object, used to define it and what it can collide with.
+     * A bit representation of a Rino object, used to define it and what it can
+     * collide with.
      */
     public static final short RINO = 32;
     /**
@@ -48,7 +53,8 @@ public final class GameConst {
      */
     public static final short RINO_HEAD = 64;
     /**
-     * A bit representation of a Turtle object, used to define it and what it can collide with.
+     * A bit representation of a Turtle object, used to define it and what it can
+     * collide with.
      */
     public static final short TURTLE = 128;
     /**
@@ -56,7 +62,8 @@ public final class GameConst {
      */
     public static final short TURTLE_HEAD = 256;
     /**
-     * A bit representation of a Ground object, used to define it and what it can collide with.
+     * A bit representation of a Ground object, used to define it and what it can
+     * collide with.
      */
     public static final short GROUND_OBJECT = 512;
     /**
@@ -64,11 +71,13 @@ public final class GameConst {
      */
     public static final short NINJA_HEAD = 1024;
     /**
-     * A bit representation of a Fruit object, used to define it and what it can collide with.
+     * A bit representation of a Fruit object, used to define it and what it can
+     * collide with.
      */
     public static final short FRUIT = 2048;
     /**
-     * A bit representation of a Finish Trophy object, used to define it and what it can collide with.
+     * A bit representation of a Finish Trophy object, used to define it and what it
+     * can collide with.
      */
     public static final short FINISH = 4096;
 

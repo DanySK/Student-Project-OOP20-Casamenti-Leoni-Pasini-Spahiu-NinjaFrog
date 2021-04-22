@@ -17,15 +17,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.game.utilities.SoundManager;
+
 /**
- * Definition of a MainMenu, which is an implementation of Screen.
- * MainMenu is the general menu and the first one that you launch when the game started.
+ * Definition of a MainMenu, which is an implementation of Screen. MainMenu is
+ * the general menu and the first one that you launch when the game started.
  */
 public final class MainMenu implements Screen {
     private static final int SELECTOR_WIDTH = 150;
     private static final int SELECTOR_HEIGHT_FIRST = 115;
     private static final int SELECTOR_HEIGHT_SECOND = 95;
-    private static final int SELECTOR_HEIGHT_THIRD = 70; 
+    private static final int SELECTOR_HEIGHT_THIRD = 70;
     private final NinjaFrogGame game;
     private final Stage stage;
     private final Viewport viewport;
@@ -36,11 +37,13 @@ public final class MainMenu implements Screen {
     private final Texture background;
     private final Texture selector;
     private final SoundManager sound;
-   /**
-    * Public constructor of MainMenu object.
-    * @param game NinjaFrogGame
-    * @param sound SoundManager audio of the game.
-    */
+
+    /**
+     * Public constructor of MainMenu object.
+     * 
+     * @param game  NinjaFrogGame
+     * @param sound SoundManager audio of the game.
+     */
     public MainMenu(final NinjaFrogGame game, final SoundManager sound) {
         this.game = game;
         this.sound = sound;
@@ -94,13 +97,14 @@ public final class MainMenu implements Screen {
             quitLabel.setColor(Color.RED);
             game.getBatch().draw(selector, SELECTOR_WIDTH, SELECTOR_HEIGHT_THIRD);
             break;
-         default:
-             break;
+        default:
+            break;
         }
         game.getBatch().end();
         stage.act();
         stage.draw();
     }
+
     @Override
     public void resize(final int width, final int height) {
         this.viewport.update(width, height);
@@ -113,10 +117,12 @@ public final class MainMenu implements Screen {
     @Override
     public void pause() {
     }
+
     @Override
     public void resume() {
 
     }
+
     @Override
     public void hide() {
     }
@@ -164,19 +170,19 @@ public final class MainMenu implements Screen {
     }
 
     private void setMenu() {
-       switch (currentLabel) {
-       case 1:
-          this.game.setScreen(new LevelsMenu(this.game, this.sound));
-          break;
-       case 2:
-           this.game.setScreen(new SettingsMenu(this.game, this.sound));
-           break;
-       case 3:
-           Gdx.app.exit();
-           break;
-       default:
-           break;
-       }
+        switch (currentLabel) {
+        case 1:
+            this.game.setScreen(new LevelsMenu(this.game, this.sound));
+            break;
+        case 2:
+            this.game.setScreen(new SettingsMenu(this.game, this.sound));
+            break;
+        case 3:
+            Gdx.app.exit();
+            break;
+        default:
+            break;
+        }
 
     }
 }

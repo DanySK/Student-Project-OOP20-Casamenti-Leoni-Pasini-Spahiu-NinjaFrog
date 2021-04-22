@@ -17,9 +17,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import it.unibo.ninjafrog.game.NinjaFrogGame;
 import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.game.utilities.SoundManager;
+
 /**
- *  Definition of a SettingsMenu, which is an implementation of Screen.
- *  SettingsMenu is a menu where you can set the game music. 
+ * Definition of a SettingsMenu, which is an implementation of Screen.
+ * SettingsMenu is a menu where you can set the game music.
  */
 public final class SettingsMenu implements Screen {
     private static final int SELECTOR_WIDTH = 140;
@@ -34,10 +35,12 @@ public final class SettingsMenu implements Screen {
     private final Texture selector;
     private final Texture background;
     private final SoundManager sound;
+
     /**
      * Public constructor of a SettingsMenu object.
-     * @param game NinjaFrogGame
-     * @param sound SoundManager audio of the game. 
+     * 
+     * @param game  NinjaFrogGame
+     * @param sound SoundManager audio of the game.
      */
     public SettingsMenu(final NinjaFrogGame game, final SoundManager sound) {
         this.game = game;
@@ -116,7 +119,7 @@ public final class SettingsMenu implements Screen {
     }
 
     private void handleInput() {
-        if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.UP) 
+        if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.UP)
                 || Gdx.input.isKeyJustPressed(Keys.S) || Gdx.input.isKeyJustPressed(Keys.W)) {
             if (currentLabel == 1) {
                 currentLabel = 2;
@@ -133,9 +136,9 @@ public final class SettingsMenu implements Screen {
         if (sound.isState()) {
             musicLabel.setText("Music: ON");
         } else {
-            musicLabel.setText("Music: OFF"); 
+            musicLabel.setText("Music: OFF");
         }
-     }
+    }
 
     private void setStatus() {
         switch (currentLabel) {
@@ -148,7 +151,7 @@ public final class SettingsMenu implements Screen {
             break;
         default:
             break;
-        } 
+        }
     }
 
 }

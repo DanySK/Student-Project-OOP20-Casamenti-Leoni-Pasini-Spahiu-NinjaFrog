@@ -19,9 +19,10 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.game.utilities.SoundManager;
 import it.unibo.ninjafrog.screens.levels.LevelOne;
 import it.unibo.ninjafrog.screens.levels.LevelTwo;
+
 /**
- * Definition of a LevelsMenu, which is an implementation of Screen.
- * LevelsMenu is a menu where you can choose the level.
+ * Definition of a LevelsMenu, which is an implementation of Screen. LevelsMenu
+ * is a menu where you can choose the level.
  */
 public final class LevelsMenu implements Screen {
     private static final int SELECTOR_WIDTH = 150;
@@ -38,9 +39,11 @@ public final class LevelsMenu implements Screen {
     private final Texture background;
     private final Texture selector;
     private final SoundManager sound;
+
     /**
      * Public constructor of a LevelsMenu object.
-     * @param game NinjaFrogame
+     * 
+     * @param game  NinjaFrogame
      * @param sound SoundManager audio of the game.
      */
     public LevelsMenu(final NinjaFrogGame game, final SoundManager sound) {
@@ -101,7 +104,6 @@ public final class LevelsMenu implements Screen {
         stage.act();
         stage.draw();
     }
-
 
     @Override
     public void show() {
@@ -164,22 +166,22 @@ public final class LevelsMenu implements Screen {
         if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
             setStatus();
         }
-     }
+    }
 
-     private void setStatus() {
-         switch (currentLabel) {
-         case 1:
-             this.game.setScreen(new PlayScreenImpl(this.game, new LevelOne(), this.sound));
-             break;
-         case 2:
-             this.game.setScreen(new PlayScreenImpl(this.game, new LevelTwo(), this.sound));
-             break;
-         case 3:
-             this.game.setScreen(new MainMenu(this.game, this.sound));
-             break;
-         default:
-             break;
-         }
-     }
+    private void setStatus() {
+        switch (currentLabel) {
+        case 1:
+            this.game.setScreen(new PlayScreenImpl(this.game, new LevelOne(), this.sound));
+            break;
+        case 2:
+            this.game.setScreen(new PlayScreenImpl(this.game, new LevelTwo(), this.sound));
+            break;
+        case 3:
+            this.game.setScreen(new MainMenu(this.game, this.sound));
+            break;
+        default:
+            break;
+        }
+    }
 
 }

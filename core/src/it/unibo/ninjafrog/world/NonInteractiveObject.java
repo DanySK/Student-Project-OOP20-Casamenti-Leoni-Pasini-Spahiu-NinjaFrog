@@ -12,8 +12,8 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 /**
- * NonInteractiveObject class definition.
- * Represents an object which has no reaction when you hit it.
+ * NonInteractiveObject class definition. Represents an object which has no
+ * reaction when you hit it.
  */
 public class NonInteractiveObject {
     private static final int HALF = 2;
@@ -23,9 +23,11 @@ public class NonInteractiveObject {
 
     /**
      * Public constructor of a NonInteractiveObject object.
-     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen} which contains the game world.
+     * 
+     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen}
+     *               which contains the game world.
      * @param object The MapObject object which is going to be defined.
-     * @param bit The short to be set as category bit of the object.
+     * @param bit    The short to be set as category bit of the object.
      */
     public NonInteractiveObject(final PlayScreen screen, final MapObject object, final Short bit) {
         this.screen = screen;
@@ -39,7 +41,8 @@ public class NonInteractiveObject {
         final FixtureDef fixdefinition = new FixtureDef();
         final PolygonShape shape = new PolygonShape();
         bodydefinition.type = BodyDef.BodyType.StaticBody;
-        bodydefinition.position.set(scale(object.getX() + halfOf(object.getWidth())), scale(object.getY() + halfOf(object.getHeight())));
+        bodydefinition.position.set(scale(object.getX() + halfOf(object.getWidth())),
+                scale(object.getY() + halfOf(object.getHeight())));
         final Body body = this.screen.getWorld().createBody(bodydefinition);
         shape.setAsBox(scale(halfOf(object.getWidth())), scale(halfOf(object.getHeight())));
         fixdefinition.shape = shape;

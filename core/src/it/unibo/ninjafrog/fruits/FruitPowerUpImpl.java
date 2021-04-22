@@ -12,8 +12,10 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
+
 /**
- * Definition of a {@link it.unibo.ninjafrog.fruits.FruitPowerUp FruitPowerUp} implementation.
+ * Definition of a {@link it.unibo.ninjafrog.fruits.FruitPowerUp FruitPowerUp}
+ * implementation.
  */
 public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private static final float FRUIT_RADIUS = 6 / GameConst.PPM;
@@ -32,39 +34,41 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
     private static final int FRUIT_HEIGHT = 16;
     private final PlayScreen screen;
     private final World world;
-    private final  Body body;
+    private final Body body;
     private boolean toDestroy;
     private boolean destroyed;
     private Vector2 velocity;
     private FruitType type;
     private final BodyDef fruitBody;
     private final TextureRegion region;
+
     /**
      * Public constructor of a FruitPowerUpImpl object.
-     * @param screen PlayScreen of the game. 
-     * @param x float position. 
-     * @param y float position. 
-     * @param type FruitType of fruit.
+     * 
+     * @param screen PlayScreen of the game.
+     * @param x      float position.
+     * @param y      float position.
+     * @param type   FruitType of fruit.
      */
     public FruitPowerUpImpl(final PlayScreen screen, final float x, final float y, final FruitType type) {
-       this.screen = screen;
-       this.world = screen.getWorld();
-       this.type = type;
-       toDestroy = false;
-       destroyed = false;
-       region = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"));
-       setPosition(x, y);
-       setBounds(getX(), getY(), BOUNDS_WIDTH, BOUNDS_HEIGHT);
-       fruitBody = new BodyDef();
-       fruitBody.position.set(getX(), getY());
-       defineItem(this.type);
-       body = world.createBody(fruitBody);
-       final FixtureDef fruitFixture = new FixtureDef();
-       final CircleShape fruitShape = new CircleShape();
-       fruitFixture.shape = fruitShape;
-       fruitShape.setRadius(FRUIT_RADIUS);
-       maskBits(fruitFixture);
-       body.createFixture(fruitFixture).setUserData(this);
+        this.screen = screen;
+        this.world = screen.getWorld();
+        this.type = type;
+        toDestroy = false;
+        destroyed = false;
+        region = new TextureRegion(screen.getAtlas().findRegion("ninjaAndEnemies"));
+        setPosition(x, y);
+        setBounds(getX(), getY(), BOUNDS_WIDTH, BOUNDS_HEIGHT);
+        fruitBody = new BodyDef();
+        fruitBody.position.set(getX(), getY());
+        defineItem(this.type);
+        body = world.createBody(fruitBody);
+        final FixtureDef fruitFixture = new FixtureDef();
+        final CircleShape fruitShape = new CircleShape();
+        fruitFixture.shape = fruitShape;
+        fruitShape.setRadius(FRUIT_RADIUS);
+        maskBits(fruitFixture);
+        body.createFixture(fruitFixture).setUserData(this);
     }
 
     @Override
@@ -126,35 +130,32 @@ public final class FruitPowerUpImpl extends Sprite implements FruitPowerUp {
             fruitBody.type = BodyDef.BodyType.DynamicBody;
             break;
         default:
-             break;
+            break;
         }
-     }
+    }
 
-     private void maskBits(final FixtureDef fruitFixture) {
-         fruitFixture.filter.categoryBits = GameConst.FRUIT;
-         fruitFixture.filter.maskBits = GameConst.NINJA
-                 | GameConst.GROUND
-                 | GameConst.GROUND_OBJECT
-                 | GameConst.BRICK
-                 | GameConst.FRUITBOX;
-     }
+    private void maskBits(final FixtureDef fruitFixture) {
+        fruitFixture.filter.categoryBits = GameConst.FRUIT;
+        fruitFixture.filter.maskBits = GameConst.NINJA | GameConst.GROUND | GameConst.GROUND_OBJECT | GameConst.BRICK
+                | GameConst.FRUITBOX;
+    }
 
-     private void destroy() {
+    private void destroy() {
         toDestroy = true;
-     }
+    }
 
     @Override
     public int getScore() {
         int score = 0;
         switch (type) {
         case MELON:
-            score =  MELON_SCORE;
+            score = MELON_SCORE;
             break;
         case ORANGE:
             score = ORANGE_SCORE;
             break;
         case CHERRY:
-            score =  CHERRY_SCORE;
+            score = CHERRY_SCORE;
             break;
         default:
             throw new IllegalStateException("Illegal FruitType state");

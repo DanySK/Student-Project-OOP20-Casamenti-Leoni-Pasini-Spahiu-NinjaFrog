@@ -14,6 +14,8 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 public class FrogModelImpl implements FrogModel {
+    private static final float WORLD_TIME_STEP = 1f / 60f;
+    private static final float ACC_DEF = 0.25f;
     private static final int X_VELOCITY = 2;
     private static final float VEL_MAX = 2.5f;
     private static final int RADIUS = 7;
@@ -29,6 +31,8 @@ public class FrogModelImpl implements FrogModel {
     private FrogState prevState;
     private Body body;
     private final World world;
+    private float accumulator;
+    private float delta;
 
     /**
      * public constructor of the frog model.
@@ -93,6 +97,9 @@ public class FrogModelImpl implements FrogModel {
     }
     @Override
     public final void move(final float direction) {
+        this.accumulator += Math.min(this.delta, ACC_DEF);
+        if (this.accumulator >= WORLD_TIME_STEP) {
+            this.accumulator -= WORLD_TIME_STEP;
         if (direction > 0) {
             if (body.getLinearVelocity().x <= X_VELOCITY) {
                 body.applyLinearImpulse(new Vector2(direction, 0), body.getWorldCenter(), true);
@@ -102,6 +109,7 @@ public class FrogModelImpl implements FrogModel {
                 body.applyLinearImpulse(new Vector2(direction, 0), body.getWorldCenter(), true);
                 }
             }
+        }
     }
 
     @Override
@@ -162,7 +170,7 @@ public class FrogModelImpl implements FrogModel {
 
     @Override
     public final void update(final float dt) {
-
+        this.delta = dt;
         if (this.body.getLinearVelocity().y < -VEL_MAX) {
            body.setLinearVelocity(body.getLinearVelocity().x, -VEL_MAX);
         }

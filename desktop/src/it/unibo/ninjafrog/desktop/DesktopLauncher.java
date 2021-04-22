@@ -10,18 +10,20 @@ import it.unibo.ninjafrog.game.NinjaFrogGame;
 public final class DesktopLauncher {
     private static final int GAME_WIDTH = 1200;
     private static final int GAME_HEIGHT = 624;
+
     private DesktopLauncher() {
     }
 
     /**
      * Main method of the application.
+     * 
      * @param arg Command line parameters.
      */
     public static void main(final String[] arg) {
         final Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setTitle("Super Ninja Frog");
         config.setWindowedMode(GAME_WIDTH, GAME_HEIGHT);
-        config.setResizable(false);
+        config.setResizable(true);
         new Lwjgl3Application(new NinjaFrogGame(), config);
     }
 }
