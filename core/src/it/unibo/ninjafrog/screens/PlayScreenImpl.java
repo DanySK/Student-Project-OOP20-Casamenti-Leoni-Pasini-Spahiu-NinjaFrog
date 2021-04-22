@@ -159,7 +159,7 @@ public final class PlayScreenImpl implements PlayScreen {
 
     private void stepWorld(final float delta) {
         this.accumulator += Math.min(delta, ACCUMULATOR_DEFAULT);
-        while (this.accumulator >= WORLD_TIME_STEP) {
+        if (this.accumulator >= WORLD_TIME_STEP) {
             this.accumulator -= WORLD_TIME_STEP;
             this.world.step(WORLD_TIME_STEP, WORLD_VEL_ITER, WORLD_POS_ITER);
         }
