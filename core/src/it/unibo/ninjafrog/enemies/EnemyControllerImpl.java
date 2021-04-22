@@ -23,6 +23,12 @@ public class EnemyControllerImpl implements EnemyController {
     private boolean destroyed;
     private float stateTime;
 
+    /**
+     * public constructor of the EnemyController.
+     * 
+     * @param screen the playscreen
+     */
+
     public EnemyControllerImpl(final PlayScreen screen) {
         if (screen == null) {
             throw new IllegalStateException("Screen can't be null.");

@@ -29,10 +29,17 @@ public class TurtleModelImpl implements TurtleModel {
     private boolean destroyed;
     private final EnemyController controller;
 
-    public TurtleModelImpl(final PlayScreen screen, final EnemyControllerImpl enemyControllerImpl) {
+    /**
+     * public constructor of the TurtleModel.
+     * 
+     * @param screen     the playscreen
+     * @param controller the EnemyController
+     */
+
+    public TurtleModelImpl(final PlayScreen screen, final EnemyControllerImpl controller) {
         this.world = screen.getWorld();
         this.screen = screen;
-        this.controller = enemyControllerImpl;
+        this.controller = controller;
         velocity = new Vector2(SPEED, GRAVITY);
         stateTime = 0;
         this.destroyed = false;

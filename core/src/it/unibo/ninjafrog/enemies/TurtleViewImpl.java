@@ -16,7 +16,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
     private static final int X_COORDINATE_FOR_DEATH_FRAME = 440;
     private static final int FULL_SPIKES_AND_NO_SPIKES_DURATION = 2;
     private static final int SPIKES_IN_AND_SPIKES_OUT_DURATION = 1;
-    private static final int NUMBER_OF_THE_LAST_FAME = 7;
+    private static final int NUMBER_OF_THE_LAST_FRAME = 7;
     private static final int NUMBER_OF_FRAMES = 8;
     private static final int X_DISTANCE_FROM_FRAMES = 44;
     private static final int Y_COORDINATE_IN_THE_PNG = 98;
@@ -36,9 +36,17 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
     private final Animation<TextureRegion> spikesOutAnimation;
     private float time;
 
-    public TurtleViewImpl(final PlayScreen screen, final float x, final float y,
-            final EnemyControllerImpl enemyControllerImpl) {
-        this.controller = enemyControllerImpl;
+    /**
+     * public constructor of the TurtleView.
+     * 
+     * @param screen     the playscreen
+     * @param x          the X coordinate of the turtle
+     * @param y          the Y coordinate of the turtle
+     * @param controller the EnemyController
+     */
+
+    public TurtleViewImpl(final PlayScreen screen, final float x, final float y, final EnemyControllerImpl controller) {
+        this.controller = controller;
         this.screen = screen;
         setPosition(x, y);
         Array<TextureRegion> frames = new Array<>();
@@ -49,13 +57,13 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
         spikesInAnimation = new Animation<>(FRAME_DURATION, frames);
         frames.clear();
         frames = new Array<>();
-        for (int i = NUMBER_OF_THE_LAST_FAME; i >= 0; i--) {
+        for (int i = NUMBER_OF_THE_LAST_FRAME; i >= 0; i--) {
             frames.add(new TextureRegion(screen.getAtlas().findRegion(ASSET), i * X_DISTANCE_FROM_FRAMES,
                     Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
         }
         spikesOutAnimation = new Animation<>(FRAME_DURATION, frames);
         spikes = new TextureRegion(screen.getAtlas().findRegion(ASSET),
-                NUMBER_OF_THE_LAST_FAME * X_DISTANCE_FROM_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG,
+                NUMBER_OF_THE_LAST_FRAME * X_DISTANCE_FROM_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG,
                 HEIGHT_IN_THE_PNG);
         noSpikes = new TextureRegion(screen.getAtlas().findRegion(ASSET), 0, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG,
                 HEIGHT_IN_THE_PNG);

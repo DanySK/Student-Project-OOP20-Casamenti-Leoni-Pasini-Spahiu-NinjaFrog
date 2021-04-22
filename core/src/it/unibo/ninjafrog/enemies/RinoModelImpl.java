@@ -34,6 +34,13 @@ public class RinoModelImpl implements RinoModel {
     private boolean runningLeft;
     private final EnemyController controller;
 
+    /**
+     * public constructor of the RinoModel.
+     * 
+     * @param screen     the playscreen
+     * @param controller the EnemyController
+     */
+
     public RinoModelImpl(final PlayScreen screen, final EnemyControllerImpl controller) {
         this.world = screen.getWorld();
         this.screen = screen;

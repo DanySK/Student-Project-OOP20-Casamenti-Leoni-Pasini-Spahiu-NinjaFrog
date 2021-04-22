@@ -25,6 +25,15 @@ public class RinoViewImpl extends Sprite implements RinoView {
     private final PlayScreen screen;
     private final Animation<TextureRegion> walkAnimation;
 
+    /**
+     * public constructor of the RinoViiew.
+     * 
+     * @param screen              the playscreen
+     * @param x                   the X coordinate of the rino
+     * @param y                   the Y coordinate of the rino
+     * @param enemyControllerImpl
+     */
+
     public RinoViewImpl(final PlayScreen screen, final float x, final float y,
             final EnemyControllerImpl enemyControllerImpl) {
         this.controller = enemyControllerImpl;
