@@ -72,7 +72,7 @@ public interface EnemyController {
      *                 of the enemy rino
      * @return the boolean "destroyed" of the RinoViewImpl
      */
-    boolean isDestroyed(RinoView rinoView);
+    boolean isDestroyed(EnemyView rinoView);
 
     /**
      * Method that check if the rinoView is in the rinos map.
@@ -82,7 +82,7 @@ public interface EnemyController {
      * @return the state time of that rino
      */
 
-    float getStateTime(RinoView rinoView);
+    float getStateTime(EnemyView rinoView);
 
     /**
      * Method that check if the rinoModel is in the rinos map and call the method
@@ -114,7 +114,7 @@ public interface EnemyController {
      * @return the result of the method is runningLeft of the RinoModel
      */
 
-    boolean isRunningLeft(RinoView rinoView);
+    boolean isRunningLeft(EnemyView rinoView);
 
     /**
      * Method that check if the rinoView is in the rinos map and set the boolean
@@ -125,7 +125,7 @@ public interface EnemyController {
      * @param b        this is the boolean that will set runningLeft
      */
 
-    void setRunningLeft(RinoView rinoView, boolean b);
+    void setRunningLeft(EnemyView rinoView, boolean b);
 
     /**
      * Method that check if the turtleModel is in the turtles map and return X
@@ -170,26 +170,6 @@ public interface EnemyController {
      */
 
     void upadeView(TurtleModel turtleModel, Body body, float dt);
-
-    /**
-     * Method that check if the turtleView is in the turtles map.
-     * 
-     * @param turtleView {@link it.unibo.ninjafrog.enemies.TurtleView TurtleView}
-     *                   the view part of the enemy turtle
-     * @return the boolean destroyed of the corrispective rinoModel
-     */
-
-    boolean isDestroyed(TurtleView turtleView);
-
-    /**
-     * Method that check if the turtleView is in the turtles map.
-     * 
-     * @param turtleView {@link it.unibo.ninjafrog.enemies.TurtleView TurtleView}
-     *                   the view part of the enemy turtle
-     * @return the float stateTime of the corrispetive rinoModel
-     */
-
-    double getStateTime(TurtleView turtleView);
 
     /**
      * Method that check if the turtleModel is in the turtles map and call the

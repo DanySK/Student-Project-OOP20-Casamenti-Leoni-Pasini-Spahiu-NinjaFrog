@@ -106,7 +106,7 @@ public class TurtleModelImpl implements TurtleModel {
     }
 
     @Override
-    public final float getSatateTime() {
+    public final float getStateTime() {
         return this.stateTime;
     }
 

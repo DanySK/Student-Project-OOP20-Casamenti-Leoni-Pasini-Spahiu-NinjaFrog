@@ -16,8 +16,8 @@ import it.unibo.ninjafrog.screens.PlayScreen;
 public class EnemyControllerImpl implements EnemyController {
     private static final int RINO_LAYER = 7;
     private static final int TURTLE_LAYER = 8;
-    private Map<RinoModel, RinoView> rinos;
-    private Map<TurtleModel, TurtleView> turtles;
+    private Map<RinoModel, EnemyView> rinos;
+    private Map<TurtleModel, EnemyView> turtles;
     private final PlayScreen screen;
     private boolean runningLeft;
     private boolean destroyed;
@@ -101,26 +101,44 @@ public class EnemyControllerImpl implements EnemyController {
     }
 
     @Override
-    public final boolean isDestroyed(final RinoView rinoView) {
-        checkRinoView(rinoView);
+    public final boolean isDestroyed(final EnemyView enemyView) {
+        if (this.rinos.values().contains(enemyView)) {
         this.rinos.forEach((m, v) -> {
-            if (v.equals(rinoView)) {
+            if (v.equals(enemyView)) {
                 this.destroyed = m.isDestroyed();
             }
         });
+        } else if (this.turtles.values().contains(enemyView)) {
+            this.turtles.forEach((m, v) -> {
+                if (v.equals(enemyView)) {
+                    this.destroyed = m.isDestroyed();
+                }
+            }); 
+        } else {
+            throw new IllegalStateException();
+        }
         return this.destroyed;
     }
 
     @Override
-    public final float getStateTime(final RinoView rinoView) {
-        checkRinoView(rinoView);
-        this.rinos.forEach((m, v) -> {
-            if (v.equals(rinoView)) {
-                this.stateTime = m.getStateTime();
+    public final float getStateTime(final EnemyView enemyView) {
+        if (this.rinos.values().contains(enemyView)) {
+            this.rinos.forEach((m, v) -> {
+                if (v.equals(enemyView)) {
+                    this.stateTime = m.getStateTime();
+                }
+            });
+            } else if (this.turtles.values().contains(enemyView)) {
+                this.turtles.forEach((m, v) -> {
+                    if (v.equals(enemyView)) {
+                        this.stateTime = m.getStateTime();
+                    }
+                }); 
+            } else {
+                throw new IllegalStateException();
             }
-        });
         return this.stateTime;
-    }
+        }
 
     @Override
     public final void setDeathRegion(final RinoModel rinoModel) {
@@ -135,8 +153,7 @@ public class EnemyControllerImpl implements EnemyController {
     }
 
     @Override
-    public final boolean isRunningLeft(final RinoView rinoView) {
-        checkRinoView(rinoView);
+    public final boolean isRunningLeft(final EnemyView rinoView) {
         this.rinos.forEach((m, v) -> {
             if (v.equals(rinoView)) {
                 this.runningLeft = m.isRunningLeft();
@@ -146,8 +163,7 @@ public class EnemyControllerImpl implements EnemyController {
     }
 
     @Override
-    public final void setRunningLeft(final RinoView rinoView, final boolean b) {
-        checkRinoView(rinoView);
+    public final void setRunningLeft(final EnemyView rinoView, final boolean b) {
         this.rinos.forEach((m, v) -> {
             if (v.equals(rinoView)) {
                 m.setRunningLeft(b);
@@ -157,12 +173,6 @@ public class EnemyControllerImpl implements EnemyController {
 
     private void checkRinoModel(final RinoModel rinoModel) {
         if (!this.rinos.keySet().contains(rinoModel)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkRinoView(final RinoView rinoView) {
-        if (!this.rinos.values().contains(rinoView)) {
             throw new IllegalArgumentException();
         }
     }
@@ -182,35 +192,13 @@ public class EnemyControllerImpl implements EnemyController {
     @Override
     public final void setDeathRegion(final TurtleModel turtleModel) {
         checkTurtleModel(turtleModel);
-        this.turtles.get(turtleModel).setDesthRegion();
+        this.turtles.get(turtleModel).setDeathRegion();
     }
 
     @Override
     public final void upadeView(final TurtleModel turtleModel, final Body body, final float dt) {
         checkTurtleModel(turtleModel);
         this.turtles.get(turtleModel).update(body, dt);
-    }
-
-    @Override
-    public final boolean isDestroyed(final TurtleView turtleView) {
-        checkTurtleView(turtleView);
-        this.turtles.forEach((m, v) -> {
-            if (v.equals(turtleView)) {
-                this.destroyed = m.isDestroyed();
-            }
-        });
-        return this.destroyed;
-    }
-
-    @Override
-    public final double getStateTime(final TurtleView turtleView) {
-        checkTurtleView(turtleView);
-        this.turtles.forEach((m, v) -> {
-            if (v.equals(turtleView)) {
-                this.stateTime = m.getSatateTime();
-            }
-        });
-        return this.stateTime;
     }
 
     @Override
@@ -237,10 +225,5 @@ public class EnemyControllerImpl implements EnemyController {
             throw new IllegalStateException();
         }
     }
-
-    private void checkTurtleView(final TurtleView turtleView) {
-        if (!this.turtles.values().contains(turtleView)) {
-            throw new IllegalStateException();
-        }
-    }
+ 
 }

@@ -1,8 +1,8 @@
 package it.unibo.ninjafrog.enemies;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
-public class TurtleViewImpl extends Sprite implements TurtleView {
+public class TurtleViewImpl extends Sprite implements EnemyView {
     private static final double ANIMATION_DEAD_TIME = 0.5;
     private static final String ASSET = "ninjaAndEnemies";
     private static final int X_COORDINATE_FOR_DEATH_FRAME = 440;
@@ -79,7 +79,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
     }
 
     @Override
-    public final void draw(final Batch batch) {
+    public final void draw(final SpriteBatch batch) {
         if (!controller.isDestroyed(this) || controller.getStateTime(this) < ANIMATION_DEAD_TIME) {
             super.draw(batch);
         }
@@ -136,7 +136,7 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
         }
     }
 
-    public final void setDesthRegion() {
+    public final void setDeathRegion() {
         setRegion(new TextureRegion(screen.getAtlas().findRegion(ASSET), X_COORDINATE_FOR_DEATH_FRAME,
                 Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
     }
