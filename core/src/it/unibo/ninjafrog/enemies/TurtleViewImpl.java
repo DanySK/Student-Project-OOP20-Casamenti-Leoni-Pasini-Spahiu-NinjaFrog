@@ -36,23 +36,29 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
     private final Animation<TextureRegion> spikesOutAnimation;
     private float time;
 
-    public TurtleViewImpl(final PlayScreen screen, final float x, final float y, final EnemyControllerImpl enemyControllerImpl) {
+    public TurtleViewImpl(final PlayScreen screen, final float x, final float y,
+            final EnemyControllerImpl enemyControllerImpl) {
         this.controller = enemyControllerImpl;
         this.screen = screen;
         setPosition(x, y);
         Array<TextureRegion> frames = new Array<>();
         for (int i = 0; i < NUMBER_OF_FRAMES; i++) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion(ASSET), i * X_DISTANCE_FROM_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
+            frames.add(new TextureRegion(screen.getAtlas().findRegion(ASSET), i * X_DISTANCE_FROM_FRAMES,
+                    Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
         }
         spikesInAnimation = new Animation<>(FRAME_DURATION, frames);
         frames.clear();
         frames = new Array<>();
         for (int i = NUMBER_OF_THE_LAST_FAME; i >= 0; i--) {
-            frames.add(new TextureRegion(screen.getAtlas().findRegion(ASSET), i * X_DISTANCE_FROM_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
+            frames.add(new TextureRegion(screen.getAtlas().findRegion(ASSET), i * X_DISTANCE_FROM_FRAMES,
+                    Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
         }
         spikesOutAnimation = new Animation<>(FRAME_DURATION, frames);
-        spikes = new TextureRegion(screen.getAtlas().findRegion(ASSET), NUMBER_OF_THE_LAST_FAME * X_DISTANCE_FROM_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG);
-        noSpikes = new TextureRegion(screen.getAtlas().findRegion(ASSET), 0, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG);
+        spikes = new TextureRegion(screen.getAtlas().findRegion(ASSET),
+                NUMBER_OF_THE_LAST_FAME * X_DISTANCE_FROM_FRAMES, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG,
+                HEIGHT_IN_THE_PNG);
+        noSpikes = new TextureRegion(screen.getAtlas().findRegion(ASSET), 0, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG,
+                HEIGHT_IN_THE_PNG);
         setBounds(getX(), getY(), BOUNDS_WIDTH / GameConst.PPM, BOUNDS_HEIGHT / GameConst.PPM);
         this.currentState = TurtleState.NO_SPIKES;
     }
@@ -106,27 +112,30 @@ public class TurtleViewImpl extends Sprite implements TurtleView {
                 }
             } else {
                 return this.currentState;
-                }
-            } else {
-               if (this.time > SPIKES_IN_AND_SPIKES_OUT_DURATION) {
-                   if (this.currentState == TurtleState.SPIKES_IN) {
-                        this.time = 0;
-                        return TurtleState.SPIKES;
-                    } else {
-                        this.time = 0;
+            }
+        } else {
+            if (this.time > SPIKES_IN_AND_SPIKES_OUT_DURATION) {
+                if (this.currentState == TurtleState.SPIKES_IN) {
+                    this.time = 0;
+                    return TurtleState.SPIKES;
+                } else {
+                    this.time = 0;
                     return TurtleState.NO_SPIKES;
-                    }
+                }
             } else {
                 return this.currentState;
             }
         }
     }
+
     public final void setDesthRegion() {
-          setRegion(new TextureRegion(screen.getAtlas().findRegion(ASSET), X_COORDINATE_FOR_DEATH_FRAME, Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
+        setRegion(new TextureRegion(screen.getAtlas().findRegion(ASSET), X_COORDINATE_FOR_DEATH_FRAME,
+                Y_COORDINATE_IN_THE_PNG, WIDTH_IN_THE_PNG, HEIGHT_IN_THE_PNG));
     }
+
     @Override
-    public final boolean hasSpike() {
-       return this.currentState == TurtleState.SPIKES || this.currentState == TurtleState.SPIKES_IN;
+    public final boolean isKillable() {
+        return this.currentState == TurtleState.SPIKES || this.currentState == TurtleState.SPIKES_IN;
     }
 
 }

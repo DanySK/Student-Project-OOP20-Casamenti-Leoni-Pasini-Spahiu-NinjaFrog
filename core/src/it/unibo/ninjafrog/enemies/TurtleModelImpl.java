@@ -28,6 +28,7 @@ public class TurtleModelImpl implements TurtleModel {
     private boolean setToDestroy;
     private boolean destroyed;
     private final EnemyController controller;
+
     public TurtleModelImpl(final PlayScreen screen, final EnemyControllerImpl enemyControllerImpl) {
         this.world = screen.getWorld();
         this.screen = screen;
@@ -71,13 +72,8 @@ public class TurtleModelImpl implements TurtleModel {
     private void fixtureBodyDefinition(final FixtureDef fdef, final CircleShape shape) {
         shape.setRadius(TurtleModelImpl.CIRCLE_RADIUS / GameConst.PPM);
         fdef.filter.categoryBits = GameConst.TURTLE;
-        fdef.filter.maskBits = GameConst.GROUND
-                                | GameConst.BRICK
-                                | GameConst.RINO
-                                | GameConst.TURTLE
-                                | GameConst.GROUND_OBJECT
-                                | GameConst.NINJA
-                                | GameConst.FRUITBOX;
+        fdef.filter.maskBits = GameConst.GROUND | GameConst.BRICK | GameConst.RINO | GameConst.TURTLE
+                | GameConst.GROUND_OBJECT | GameConst.NINJA | GameConst.FRUITBOX;
         fdef.shape = shape;
     }
 
@@ -127,6 +123,5 @@ public class TurtleModelImpl implements TurtleModel {
     public final int getScore() {
         return TURTLE_SCORE;
     }
-
 
 }

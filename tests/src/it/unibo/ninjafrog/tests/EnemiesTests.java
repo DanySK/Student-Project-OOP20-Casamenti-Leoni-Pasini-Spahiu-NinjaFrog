@@ -39,8 +39,8 @@ public class EnemiesTests {
 	}
 
 	/**
-	 * Test for the rino layer. Verifies that the layer exists and
-	 * contains at least one object.
+	 * Test for the rino layer. Verifies that the layer exists and contains at least
+	 * one object.
 	 */
 	@Test
 	public void rinoLayerExists() {
@@ -56,8 +56,8 @@ public class EnemiesTests {
 	}
 
 	/**
-	 * Test for the turtle layer. Verifies that the layer exists and
-	 * contains at least one object.
+	 * Test for the turtle layer. Verifies that the layer exists and contains at
+	 * least one object.
 	 */
 	@Test
 	public void turtleLayerExists() {
@@ -70,27 +70,32 @@ public class EnemiesTests {
 		assertFalse(map1.getLayers().get(TURTLE_LAYER).getObjects().getByType(RectangleMapObject.class).isEmpty());
 		assertFalse(map2.getLayers().get(TURTLE_LAYER).getObjects().getByType(RectangleMapObject.class).isEmpty());
 	}
+
 	/**
-	 * {@link it.unibo.ninjafrog.enemies.EnemyControllerImpl EnemyControllerImpl} test.
+	 * {@link it.unibo.ninjafrog.enemies.EnemyControllerImpl EnemyControllerImpl}
+	 * test.
 	 */
 	@Test(expected = IllegalStateException.class)
 	public void enemyControllerThrowsException() {
 		new EnemyControllerImpl(null);
 	}
+
 	/**
 	 * {@link it.unibo.ninjafrog.enemies.RinoModelImpl RinoModelImpl} test.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void RinoModelImplThrowsException() {
-		new RinoModelImpl(null,null);
+		new RinoModelImpl(null, null);
 	}
+
 	/**
 	 * {@link it.unibo.ninjafrog.enemies.RinoViewImpl RinoViewImpl} test.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void RinoViewImplThrowException() {
-		new RinoViewImpl(null,0, 0, null);
+		new RinoViewImpl(null, 0, 0, null);
 	}
+
 	/**
 	 * {@link it.unibo.ninjafrog.enemies.TurtleModelImpl TurtleModelImpl} test.
 	 */
@@ -98,6 +103,7 @@ public class EnemiesTests {
 	public void TurtleModelImplThrowException() {
 		new TurtleModelImpl(null, null);
 	}
+
 	/**
 	 * {@link it.unibo.ninjafrog.enemies.TurtleViewImpl TurtleViewImpl} test.
 	 */
