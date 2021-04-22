@@ -72,7 +72,11 @@ public class EnemyControllerImpl implements EnemyController {
     @Override
     public final void collide(final RinoModel rinoModel) {
         checkRinoModel(rinoModel);
+        if (rinos.get(rinoModel).isKillable()) {
         rinoModel.collide();
+        } else {
+            screen.removeLife();
+        }
     }
 
     @Override
