@@ -1,22 +1,19 @@
 package it.unibo.ninjafrog.fruits;
+
 /**
- * Definition of FruitType enum.
- * Enumeration that define various type of fruit.
+ * Definition of FruitType enum. Enumeration that define various type of fruit.
  */
 public enum FruitType {
     /**
-     * FruitType: 
-     * orange fruit.
+     * FruitType: orange fruit.
      */
     ORANGE,
     /**
-     * FruitType:
-     *  melon fruit.
+     * FruitType: melon fruit.
      */
-    MELON, 
+    MELON,
     /**
-     * FruitType:
-     *  cherry fruit.
+     * FruitType: cherry fruit.
      */
     CHERRY
 }

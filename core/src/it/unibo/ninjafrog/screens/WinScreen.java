@@ -19,8 +19,8 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.game.utilities.SoundManager;
 
 /**
- * Definition of a WinScreen, which is an implementation of Screen.
- * WinScreen is launched when you finish the level, without dying.
+ * Definition of a WinScreen, which is an implementation of Screen. WinScreen is
+ * launched when you finish the level, without dying.
  */
 public final class WinScreen implements Screen {
     private final Stage stage;
@@ -28,9 +28,11 @@ public final class WinScreen implements Screen {
     private final Viewport viewport;
     private final Texture background;
     private final SoundManager sound;
+
     /**
      * Public constructor of a WinScreen object.
-     * @param game NinjaFruitGame
+     * 
+     * @param game  NinjaFruitGame
      * @param score Integer score of the game.
      * @param sound SoundManager audio of the game.
      */
@@ -40,7 +42,7 @@ public final class WinScreen implements Screen {
         sound.playMenuSong();
         viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
-        stage  = new Stage(viewport, game.getBatch());
+        stage = new Stage(viewport, game.getBatch());
         final Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         background = new Texture("Win_Screen.png");
         final Label scoreLabel = new Label("SCORE:" + score, font);
@@ -53,6 +55,7 @@ public final class WinScreen implements Screen {
         table.add(exitLabel);
         stage.addActor(table);
     }
+
     @Override
     public void show() {
     }
