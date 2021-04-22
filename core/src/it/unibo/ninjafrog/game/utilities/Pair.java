@@ -25,6 +25,7 @@ public final class Pair<X, Y> {
 
     /**
      * First parameter getter.
+     * 
      * @return the first component of the pair.
      */
     public X getX() {
@@ -33,6 +34,7 @@ public final class Pair<X, Y> {
 
     /**
      * Second parameter getter.
+     * 
      * @return the second component of the pair.
      */
     public Y getY() {
@@ -74,7 +76,7 @@ public final class Pair<X, Y> {
             }
         } else if (!y.equals(other.y)) {
             return false;
-        } 
+        }
         return true;
     }
 

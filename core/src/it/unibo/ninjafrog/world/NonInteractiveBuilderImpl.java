@@ -8,7 +8,8 @@ import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
 /**
- * Definition of a {@link it.unibo.ninjafrog.world.NonInteractiveBuilder NonInteractiveBuilder} implementation.
+ * Definition of a {@link it.unibo.ninjafrog.world.NonInteractiveBuilder
+ * NonInteractiveBuilder} implementation.
  */
 public final class NonInteractiveBuilderImpl implements NonInteractiveBuilder {
     private MapObject object;
@@ -17,7 +18,9 @@ public final class NonInteractiveBuilderImpl implements NonInteractiveBuilder {
 
     /**
      * Public constructor of a NonInteractiveBuilderImpl.
-     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen} which contains the game world.
+     * 
+     * @param screen The {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen}
+     *               which contains the game world.
      */
     public NonInteractiveBuilderImpl(final PlayScreen screen) {
         this.screen = screen;
@@ -31,9 +34,8 @@ public final class NonInteractiveBuilderImpl implements NonInteractiveBuilder {
 
     @Override
     public NonInteractiveBuilder chooseCategoryBit(final Short bit) {
-        this.bit = Optional.of(bit).filter(b -> b.equals(GameConst.GROUND)
-                || b.equals(GameConst.GROUND_OBJECT)
-                || b.equals(GameConst.FINISH));
+        this.bit = Optional.of(bit).filter(
+                b -> b.equals(GameConst.GROUND) || b.equals(GameConst.GROUND_OBJECT) || b.equals(GameConst.FINISH));
         return this;
     }
 

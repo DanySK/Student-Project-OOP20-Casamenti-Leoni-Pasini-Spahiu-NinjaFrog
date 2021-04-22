@@ -36,8 +36,10 @@ import it.unibo.ninjafrog.world.Collidable;
 import it.unibo.ninjafrog.world.WorldCollisionListener;
 import it.unibo.ninjafrog.world.WorldCreator;
 import it.unibo.ninjafrog.world.WorldCreatorImpl;
+
 /**
- * Implementation of the {@link it.unibo.ninjafrog.screens.PlayScreen PlayScreen}.
+ * Implementation of the {@link it.unibo.ninjafrog.screens.PlayScreen
+ * PlayScreen}.
  */
 public final class PlayScreenImpl implements PlayScreen {
     private static final double BLANK_TIME = 0.5;
@@ -77,7 +79,7 @@ public final class PlayScreenImpl implements PlayScreen {
     private final Viewport viewport;
     private final OrthogonalTiledMapRenderer mapRenderer;
     private final World world;
-    private final FrogController playerController; 
+    private final FrogController playerController;
     private final EnemyController enemies;
     private final List<FruitPowerUp> fruits;
     private final List<Pair<Float, Float>> cherriesToSpawn;
@@ -85,15 +87,18 @@ public final class PlayScreenImpl implements PlayScreen {
     private final List<Pair<Float, Float>> orangesToSpawn;
     private float pauseTime;
     private final ShapeRenderer textBackground;
+
     /*
-     * BOX DEBUGGER IN CASE OF DEBUG.
-     * private final Box2DDebugRenderer b2debug;
+     * BOX DEBUGGER IN CASE OF DEBUG. private final Box2DDebugRenderer b2debug;
      */
     /**
      * Public constructor of the PlayScreenImpl.
-     * @param game The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
-     * @param level The {@link it.unibo.ninjafrog.screens.levels.Level level} selected.
-     * @param sound The {@link it.unibo.ninjafrog.game.utilities.SoundManager SoundManager}.
+     * 
+     * @param game  The {@link it.unibo.ninjafrog.game.NinjaFrogGame game} class.
+     * @param level The {@link it.unibo.ninjafrog.screens.levels.Level level}
+     *              selected.
+     * @param sound The {@link it.unibo.ninjafrog.game.utilities.SoundManager
+     *              SoundManager}.
      */
     public PlayScreenImpl(final NinjaFrogGame game, final Level level, final SoundManager sound) {
         this.game = game;
@@ -102,17 +107,13 @@ public final class PlayScreenImpl implements PlayScreen {
         this.atlas = new TextureAtlas("ninjaAndEnemies.pack");
         this.map = new TmxMapLoader().load(level.getMap());
         this.cam = new OrthographicCamera();
-        this.viewport = new FitViewport(this.scale(GameConst.WIDTH),
-                this.scale(GameConst.HEIGHT),
-                this.cam);
-        this.cam.position.set(this.halfOf(this.viewport.getWorldWidth()),
-                this.halfOf(this.viewport.getWorldHeight()),
+        this.viewport = new FitViewport(this.scale(GameConst.WIDTH), this.scale(GameConst.HEIGHT), this.cam);
+        this.cam.position.set(this.halfOf(this.viewport.getWorldWidth()), this.halfOf(this.viewport.getWorldHeight()),
                 CAM_Z_COMPONENT);
         this.mapRenderer = new OrthogonalTiledMapRenderer(this.map, this.scale(UNIT));
         this.world = new World(new Vector2(WORLD_X_GRAVITY, WORLD_Y_GRAVITY), true);
         /*
-         * BOX DEBUGGER IN CASE OF DEBUG.
-         * this.b2debug = new Box2DDebugRenderer();
+         * BOX DEBUGGER IN CASE OF DEBUG. this.b2debug = new Box2DDebugRenderer();
          */
         this.hud = new HudImpl(this.game.getBatch());
         final WorldCreator worldCreator = new WorldCreatorImpl(this);
@@ -142,7 +143,7 @@ public final class PlayScreenImpl implements PlayScreen {
             this.stepWorld(dt);
             this.playerController.update(dt);
             this.enemies.update(dt);
-            for (final FruitPowerUp fruit: this.fruits) {
+            for (final FruitPowerUp fruit : this.fruits) {
                 fruit.update(dt);
             }
             if (this.playerController.isDoubleJumpActive()) {
@@ -172,8 +173,8 @@ public final class PlayScreenImpl implements PlayScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.mapRenderer.render();
         /*
-         * BOX DEBUGGER IN CASE OF DEBUG.
-         * this.b2debug.render(this.world, this.cam.combined);
+         * BOX DEBUGGER IN CASE OF DEBUG. this.b2debug.render(this.world,
+         * this.cam.combined);
          */
         this.game.getBatch().setProjectionMatrix(this.hud.getStage().getCamera().combined);
         this.game.getBatch().setProjectionMatrix(this.cam.combined);
@@ -209,7 +210,7 @@ public final class PlayScreenImpl implements PlayScreen {
     }
 
     private void drawBackground(final float x, final float y, final float width, final float height) {
-        this.textBackground.begin(ShapeRenderer.ShapeType.Filled); 
+        this.textBackground.begin(ShapeRenderer.ShapeType.Filled);
         this.textBackground.setColor(0, 0, 0, 1);
         this.textBackground.rect(x, y, width, height);
         this.textBackground.end();
@@ -222,8 +223,7 @@ public final class PlayScreenImpl implements PlayScreen {
         this.world.dispose();
         this.hud.getStage().dispose();
         /*
-         * BOX DEBUGGER IN CASE OF DEBUG.
-         * this.b2debug.dispose();
+         * BOX DEBUGGER IN CASE OF DEBUG. this.b2debug.dispose();
          */
     }
 
@@ -250,30 +250,18 @@ public final class PlayScreenImpl implements PlayScreen {
     private void handleSpawningFruit() {
         if (!this.orangesToSpawn.isEmpty()) {
             final Pair<Float, Float> position = this.orangesToSpawn.remove(0);
-            this.fruits.add(FruitBuilderImpl.newBuilder()
-                    .selectFruitType(FruitType.ORANGE)
-                    .chooseXPosition(position.getX())
-                    .chooseYPosition(position.getY())
-                    .selectScreen(this)
-                    .build());
+            this.fruits.add(FruitBuilderImpl.newBuilder().selectFruitType(FruitType.ORANGE)
+                    .chooseXPosition(position.getX()).chooseYPosition(position.getY()).selectScreen(this).build());
         }
         if (!this.cherriesToSpawn.isEmpty()) {
             final Pair<Float, Float> position = this.cherriesToSpawn.remove(0);
-            this.fruits.add(FruitBuilderImpl.newBuilder()
-                    .selectFruitType(FruitType.CHERRY)
-                    .chooseXPosition(position.getX())
-                    .chooseYPosition(position.getY())
-                    .selectScreen(this)
-                    .build());
+            this.fruits.add(FruitBuilderImpl.newBuilder().selectFruitType(FruitType.CHERRY)
+                    .chooseXPosition(position.getX()).chooseYPosition(position.getY()).selectScreen(this).build());
         }
         if (!this.melonsToSpawn.isEmpty()) {
             final Pair<Float, Float> position = this.melonsToSpawn.remove(0);
-            this.fruits.add(FruitBuilderImpl.newBuilder()
-                    .selectFruitType(FruitType.MELON)
-                    .chooseXPosition(position.getX())
-                    .chooseYPosition(position.getY())
-                    .selectScreen(this)
-                    .build());
+            this.fruits.add(FruitBuilderImpl.newBuilder().selectFruitType(FruitType.MELON)
+                    .chooseXPosition(position.getX()).chooseYPosition(position.getY()).selectScreen(this).build());
         }
     }
 
@@ -336,21 +324,21 @@ public final class PlayScreenImpl implements PlayScreen {
 
     @Override
     public void show() {
-        //unused
+        // unused
     }
 
     @Override
     public void pause() {
-        //unused
+        // unused
     }
 
     @Override
     public void resume() {
-        //unused
+        // unused
     }
 
     @Override
     public void hide() {
-        //unused
+        // unused
     }
 }
