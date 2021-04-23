@@ -7,8 +7,8 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import it.unibo.ninjafrog.enemies.EnemyController;
-import it.unibo.ninjafrog.enemies.RinoModel;
-import it.unibo.ninjafrog.enemies.TurtleModel;
+import it.unibo.ninjafrog.enemies.DynamicEnemyModel;
+import it.unibo.ninjafrog.enemies.StaticEnemyModel;
 import it.unibo.ninjafrog.fruits.FruitPowerUp;
 import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
@@ -56,15 +56,15 @@ public final class WorldCollisionListener implements ContactListener {
         case GameConst.NINJA | GameConst.TURTLE_HEAD:
             if (bitOf(fixtureA) == GameConst.NINJA) {
                 if (bitOf(fixtureB) == GameConst.RINO_HEAD) {
-                    enemies.collide((RinoModel) fixtureB.getUserData());
+                    enemies.collide((DynamicEnemyModel) fixtureB.getUserData());
                 } else {
-                    enemies.collide((TurtleModel) fixtureB.getUserData(), GameConst.TURTLE_HEAD);
+                    enemies.collide((StaticEnemyModel) fixtureB.getUserData(), GameConst.TURTLE_HEAD);
                 }
             } else {
                 if (bitOf(fixtureA) == GameConst.RINO_HEAD) {
-                    enemies.collide((RinoModel) fixtureA.getUserData());
+                    enemies.collide((DynamicEnemyModel) fixtureA.getUserData());
                 } else {
-                    enemies.collide((TurtleModel) fixtureA.getUserData(), GameConst.TURTLE_HEAD);
+                    enemies.collide((StaticEnemyModel) fixtureA.getUserData(), GameConst.TURTLE_HEAD);
                 }
             }
             break;
@@ -72,24 +72,24 @@ public final class WorldCollisionListener implements ContactListener {
         case GameConst.NINJA | GameConst.TURTLE:
             if (bitOf(fixtureA) == GameConst.RINO || bitOf(fixtureA) == GameConst.TURTLE) {
                 if (bitOf(fixtureA) == GameConst.RINO) {
-                    if (!enemies.isSetToDestroy((RinoModel) fixtureA.getUserData())) {
+                    if (!enemies.isSetToDestroy((DynamicEnemyModel) fixtureA.getUserData())) {
                         this.screen.removeLife();
-                        enemies.collide((RinoModel) fixtureA.getUserData());
+                        enemies.collide((DynamicEnemyModel) fixtureA.getUserData());
                     }
                 } else {
-                    if (!enemies.isSetToDestroy((TurtleModel) fixtureA.getUserData())) {
-                        enemies.collide((TurtleModel) fixtureA.getUserData(), GameConst.TURTLE);
+                    if (!enemies.isSetToDestroy((StaticEnemyModel) fixtureA.getUserData())) {
+                        enemies.collide((StaticEnemyModel) fixtureA.getUserData(), GameConst.TURTLE);
                     }
                 }
             } else {
                 if (bitOf(fixtureB) == GameConst.RINO) {
-                    if (!enemies.isSetToDestroy((RinoModel) fixtureB.getUserData())) {
+                    if (!enemies.isSetToDestroy((DynamicEnemyModel) fixtureB.getUserData())) {
                         this.screen.removeLife();
-                        enemies.collide((RinoModel) fixtureB.getUserData());
+                        enemies.collide((DynamicEnemyModel) fixtureB.getUserData());
                     }
                 } else {
-                    if (!enemies.isSetToDestroy((TurtleModel) fixtureB.getUserData())) {
-                        enemies.collide((TurtleModel) fixtureB.getUserData(), GameConst.TURTLE);
+                    if (!enemies.isSetToDestroy((StaticEnemyModel) fixtureB.getUserData())) {
+                        enemies.collide((StaticEnemyModel) fixtureB.getUserData(), GameConst.TURTLE);
                     }
                 }
             }
@@ -97,14 +97,14 @@ public final class WorldCollisionListener implements ContactListener {
         case GameConst.RINO | GameConst.TURTLE:
         case GameConst.RINO | GameConst.GROUND_OBJECT:
             if (bitOf(fixtureA) == GameConst.RINO) {
-                enemies.reverseVelocity((RinoModel) fixtureA.getUserData());
+                enemies.reverseVelocity((DynamicEnemyModel) fixtureA.getUserData());
             } else {
-                enemies.reverseVelocity((RinoModel) fixtureB.getUserData());
+                enemies.reverseVelocity((DynamicEnemyModel) fixtureB.getUserData());
             }
             break;
         case GameConst.RINO | GameConst.RINO:
-            enemies.reverseVelocity((RinoModel) fixtureA.getUserData());
-            enemies.reverseVelocity((RinoModel) fixtureB.getUserData());
+            enemies.reverseVelocity((DynamicEnemyModel) fixtureA.getUserData());
+            enemies.reverseVelocity((DynamicEnemyModel) fixtureB.getUserData());
             break;
         case GameConst.FRUIT | GameConst.GROUND_OBJECT:
             if (bitOf(fixtureA) == GameConst.FRUIT) {

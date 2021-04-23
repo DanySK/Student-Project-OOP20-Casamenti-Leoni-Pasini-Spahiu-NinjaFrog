@@ -22,175 +22,185 @@ public interface EnemyController {
     void draw(SpriteBatch batch);
 
     /**
-     * Method that call the collide method in the rinoModel.
+     * Method that check if the dynamicEnemyModel is in rinos and if can be killed
+     * and call the collide method in the dynamicEnemyModel.
      * 
-     * @param rinoModel the model interface of the rino A
-     *                  {@link it.unibo.ninjafrog.enemies.RinoModel RinoModel}
+     * @param dynamicEnemyModel the model interface of the dynamicEnemy A
+     *                          {@link it.unibo.ninjafrog.enemies.DynamicEnemyModel
+     *                          DynamicEnemyModel}
      */
-    void collide(RinoModel rinoModel);
+    void collide(DynamicEnemyModel dynamicEnemyModel);
+
+    /**
+     * Method that check if the dynamicEnemyModel is in the rinos map.
+     * 
+     * @param dynamicEnemyModel A
+     *                          {@link it.unibo.ninjafrog.enemies.DynamicEnemyModel
+     *                          DynamicEnemyModel} the model interface of the
+     *                          dynamic enemy
+     * @return the method isSetToDestroy of the dynamicEnemyModel
+     */
+    boolean isSetToDestroy(DynamicEnemyModel dynamicEnemyModel);
+
+    /**
+     * Method that check if the dynamicEnemyModel is in the rinos map and call the
+     * method reverseVelocity in the DynamicEnemyModel.
+     * 
+     * @param dynamicEnemyModel A
+     *                          {@link it.unibo.ninjafrog.enemies.DynamicEnemyModel
+     *                          DynamicEnemyModel} the model interface of the
+     *                          dynamic enemy
+     */
+    void reverseVelocity(DynamicEnemyModel dynamicEnemyModel);
+
+    /**
+     * Method that check if the dynamicEnemyModel is in the rinos map.
+     * 
+     * @param dynamicEnemyModel {@link it.unibo.ninjafrog.enemies.DynamicEnemyModel
+     *                          DynamicEnemyModel} the model interface of the
+     *                          dynamic enemy
+     * @return the method getX of the corresponding view part
+     */
+    float getX(DynamicEnemyModel dynamicEnemyModel);
 
     /**
      * Method that check if the rinoModel is in the rinos map.
      * 
-     * @param rinoModel A {@link it.unibo.ninjafrog.enemies.RinoModel RinoModel} the
-     *                  model interface of the rino
-     * @return the method isSetToDestroy of the RinoModel
+     * @param dynamicEnemyModel {@link it.unibo.ninjafrog.enemies.DynamicEnemyModel
+     *                          DynamicEnemyModel} the model of the enemy dynamic
+     *                          enemy
+     * @return the method getX of the corresponding view part
      */
-    boolean isSetToDestroy(RinoModel rinoModel);
+    float getY(DynamicEnemyModel dynamicEnemyModel);
 
     /**
-     * Method that check if the rinoModel is in the rinos map and call the method
-     * reverseVelocity in the RinoModel.
+     * Method that check if the view is in rinos map or in the turtles map.
      * 
-     * @param rinoModel A {@link it.unibo.ninjafrog.enemies.RinoModel RinoModel} the
-     *                  model interface of the rino
+     * @param enemyView {@link it.unibo.ninjafrog.enemies.EnemyView EnemyView} the
+     *                  view of the enemy
+     * @return the boolean "destroyed" of the corresponding modelImpl
      */
-    void reverseVelocity(RinoModel rinoModel);
+    boolean isDestroyed(EnemyView enemyView);
 
     /**
-     * Method that check if the rinoModel is in the rinos map.
+     * Method that check if the view is in rinos map or in the turtles map.
      * 
-     * @param rinoModel {@link it.unibo.ninjafrog.enemies.RinoModel RinoModel} the
-     *                  model interface of the rino
-     * @return the method getX of the RinoModel
+     * @param enemyView {@link it.unibo.ninjafrog.enemies.EnemyView EnemyView} the
+     *                  view of the enemy
+     * @return the state time of the corresponding modelImpl
      */
-    float getX(RinoModel rinoModel);
+
+    float getStateTime(EnemyView enemyView);
 
     /**
-     * Method that check if the rinoModel is in the rinos map.
+     * Method that check if the dynamicEnemyModel is in the rinos map and call the
+     * method setDeathRegion of the corresponding view part.
      * 
-     * @param rinoModel {@link it.unibo.ninjafrog.enemies.RinoModel RinoModel} the
-     *                  model of the enemy rino
-     * @return the method getX of the RinoModel
+     * @param dynamicEnemyModel {@link it.unibo.ninjafrog.enemies.DynamicEnemyModel
+     *                          DynamicEnemyModel} the model of the enemy dynamic
+     *                          enemy
      */
-    float getY(RinoModel rinoModel);
+
+    void setDeathRegion(DynamicEnemyModel dynamicEnemyModel);
 
     /**
-     * Method that check if the rinoView is in the rinos map.
+     * Method that check if the dynamicEnemyModel is in the rinos map and call the
+     * method update in the corresponding view part.
      * 
-     * @param rinoView {@link it.unibo.ninjafrog.enemies.RinoView RinoView} the view
-     *                 of the enemy rino
-     * @return the boolean "destroyed" of the RinoViewImpl
+     * @param dynamicEnemyModel {@link it.unibo.ninjafrog.enemies.DynamicEnemyModel
+     *                          DynamicEnemyModel} the model of the enemy dynamic
+     *                          enemy
+     * @param body              the body of the enemies
+     * @param dt                the delta of the time
      */
-    boolean isDestroyed(EnemyView rinoView);
+
+    void updateView(DynamicEnemyModel dynamicEnemyModel, Body body, float dt);
 
     /**
-     * Method that check if the rinoView is in the rinos map.
+     * Method that check if the enemyView is in the rinos map.
      * 
-     * @param rinoView {@link it.unibo.ninjafrog.enemies.RinoView RinoView} the view
-     *                 of the enemy rino
-     * @return the state time of that rino
+     * @param enemyView {@link it.unibo.ninjafrog.enemies.EnemyView EnemyView} the
+     *                  view of the enemy
+     * @return the result of the method is runningLeft of the DynamicEnemyModel
      */
 
-    float getStateTime(EnemyView rinoView);
+    boolean isRunningLeft(EnemyView enemyView);
 
     /**
-     * Method that check if the rinoModel is in the rinos map and call the method
-     * setDeathRegion of the RinoModel.
-     * 
-     * @param rinoModel {@link it.unibo.ninjafrog.enemies.RinoModel RinoModel} the
-     *                  model of the enemy rino
-     */
-
-    void setDeathRegion(RinoModel rinoModel);
-
-    /**
-     * Method that check if the rinoModel is in the rinos map and call the method
-     * update in the view part of the enemi rino.
-     * 
-     * @param rinoModel {@link it.unibo.ninjafrog.enemies.RinoModel RinoModel} the
-     *                  model of the enemy rino
-     * @param body      the body of the enemies
-     * @param dt        the delta of the time
-     */
-
-    void upadeView(RinoModel rinoModel, Body body, float dt);
-
-    /**
-     * Method that check if the rinoView is in the rinos map.
-     * 
-     * @param rinoView {@link it.unibo.ninjafrog.enemies.RinoView RinoView} the view
-     *                 of the enemy rino
-     * @return the result of the method is runningLeft of the RinoModel
-     */
-
-    boolean isRunningLeft(EnemyView rinoView);
-
-    /**
-     * Method that check if the rinoView is in the rinos map and set the boolean
+     * Method that check if the enemyView is in the rinos map and set the boolean
      * runningLeft of the rinoModelImpl.
      * 
-     * @param rinoView {@link it.unibo.ninjafrog.enemies.RinoView RinoView} the view
-     *                 of the enemy rino
-     * @param b        this is the boolean that will set runningLeft
+     * @param enemyView {@link it.unibo.ninjafrog.enemies.EnemyView EnemyView} the
+     *                  view of the enemy
+     * @param b         this is the boolean that will set runningLeft
      */
 
-    void setRunningLeft(EnemyView rinoView, boolean b);
+    void setRunningLeft(EnemyView enemyView, boolean b);
 
     /**
-     * Method that check if the turtleModel is in the turtles map and return X
+     * Method that check if the staticEnemyModel is in the turtles map and return X
      * position of the turtle.
      * 
-     * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel}
-     *                    the model part of the enemy turtle
-     * @return X coordinate of the turtle in the map
+     * @param staticEnemyModel {@link it.unibo.ninjafrog.enemies.StaticEnemyModel
+     *                         StaticEnemyModel} the model part of the enemy turtle
+     * @return the method getX of the corresponding of the view part
      */
 
-    float getX(TurtleModel turtleModel);
+    float getX(StaticEnemyModel staticEnemyModel);
 
     /**
-     * Method that check if the turtleModel is in the turtles map and return Y
+     * Method that check if the StaticEnemyModel is in the turtles map and return Y
      * position of the turtle.
      * 
-     * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel}
-     *                    the model part of the enemy turtle
-     * @return Y coordinate of the turtle in the map
+     * @param staticEnemyModel {@link it.unibo.ninjafrog.enemies.StaticEnemyModel
+     *                         StaticEnemyModel} the model part of the enemy turtle
+     * @return the method getY of the corresponding of the view part
      */
 
-    float getY(TurtleModel turtleModel);
+    float getY(StaticEnemyModel staticEnemyModel);
 
     /**
-     * Method that check if the turtleModel is in the turtles map and call the
+     * Method that check if the StaticEnemyModel is in the turtles map and call the
      * method setDeathRegion in the TurtleView.
      * 
-     * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel}
-     *                    the model part of the enemy turtle
+     * @param staticEnemyModel {@link it.unibo.ninjafrog.enemies.StaticEnemyModel
+     *                         StaticEnemyModel} the model part of the enemy turtle
      */
 
-    void setDeathRegion(TurtleModel turtleModel);
+    void setDeathRegion(StaticEnemyModel staticEnemyModel);
 
     /**
-     * Method that check if the turtleModel is in the turtles map and call the
+     * Method that check if the StaticEnemyModel is in the turtles map and call the
      * method setDeathRegion in the TurtleView.
      * 
-     * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel}
-     *                    the model part of the enemy turtle
-     * @param body        the body of the enemy turtle
-     * @param dt          the delta of the time
+     * @param staticEnemyModel {@link it.unibo.ninjafrog.enemies.StaticEnemyModel
+     *                         StaticEnemyModel} the model part of the enemy turtle
+     * @param body             the body of the enemy turtle
+     * @param dt               the delta of the time
      */
 
-    void upadeView(TurtleModel turtleModel, Body body, float dt);
+    void updateView(StaticEnemyModel staticEnemyModel, Body body, float dt);
 
     /**
-     * Method that check if the turtleModel is in the turtles map and call the
+     * Method that check if the StaticEnemyModel is in the turtles map and call the
      * method collide in the TurtleView.
      * 
-     * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel}
-     *                    the model part of the enemy turtle
-     * @param bit         the part of the body where the main charapter hit the
-     *                    turtle
+     * @param staticEnemyModel {@link it.unibo.ninjafrog.enemies.StaticEnemyModel
+     *                         StaticEnemyModel} the model part of the enemy turtle
+     * @param bit              the part of the body where the main chapter hit the
+     *                         turtle
      */
 
-    void collide(TurtleModel turtleModel, Short bit);
+    void collide(StaticEnemyModel staticEnemyModel, Short bit);
 
     /**
-     * Method that check if the turtleModel is in the turtles map and call the
+     * Method that check if the StaticEnemyModel is in the turtles map and call the
      * method collide in the TurtleView.
      * 
-     * @param turtleModel {@link it.unibo.ninjafrog.enemies.TurtleModel TurtleModel}
-     *                    the model part of the enemy turtle
+     * @param staticEnemyModel {@link it.unibo.ninjafrog.enemies.StaticEnemyModel
+     *                         StaticEnemyModel} the model part of the enemy turtle
      * @return the boolean isSetToDestroy in the rinoViewImpl
      */
-    boolean isSetToDestroy(TurtleModel turtleModel);
+    boolean isSetToDestroy(StaticEnemyModel staticEnemyModel);
 
 }

@@ -4,20 +4,20 @@ import it.unibo.ninjafrog.world.Collidable;
 
 /**
  * 
- * Interface that the TurtleModelImpl has to implement.
+ * Interface that every static enemy has to implement.
  *
  */
 
-public interface TurtleModel extends Collidable {
+public interface StaticEnemyModel extends Collidable {
     /**
      * Method that call other private method for create the body and the head of the
-     * turtle.
+     * static enemy.
      */
 
     void defineEnemy();
 
     /**
-     * Method that update the turtle body.
+     * Method that update the static enemy body.
      * 
      * @param dt the delta of the time
      */
@@ -26,21 +26,21 @@ public interface TurtleModel extends Collidable {
 
     /**
      * 
-     * @return the float stateTime of the turtle
+     * @return the float stateTime of the static enemy
      */
 
     float getStateTime();
 
     /**
      * 
-     * @return the boolean setToDestroy of the turtle
+     * @return the boolean setToDestroy of the static enemy
      */
 
     boolean isSetToDestroy();
 
     /**
      * 
-     * @return the boolean destroyed of the turtle
+     * @return the boolean destroyed of the static enemy
      */
 
     boolean isDestroyed();

@@ -26,7 +26,7 @@ public class RinoViewImpl extends Sprite implements EnemyView {
     private final Animation<TextureRegion> walkAnimation;
 
     /**
-     * public constructor of the RinoViiew.
+     * public constructor of the EnemyView.
      * 
      * @param screen              the playscreen
      * @param x                   the X coordinate of the rino

@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
-public class RinoModelImpl implements RinoModel {
+public class RinoModelImpl implements DynamicEnemyModel {
 
     private static final float RESTITUTION = 1f;
     private static final int NUMBER_OF_VERTICE_OF_THE_HEAD = 4;
@@ -80,7 +80,7 @@ public class RinoModelImpl implements RinoModel {
             stateTime = 0;
         } else if (!this.destroyed) {
             body.setLinearVelocity(velocity);
-            controller.upadeView(this, this.body, dt);
+            controller.updateView(this, this.body, dt);
         }
     }
 

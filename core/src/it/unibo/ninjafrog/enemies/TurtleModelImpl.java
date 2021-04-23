@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
-public class TurtleModelImpl implements TurtleModel {
+public class TurtleModelImpl implements StaticEnemyModel {
     private static final int GRAVITY = 0;
     private static final int SPEED = 0;
     private static final int HEAD_VERICE_DOWN_Y = 7;
@@ -101,7 +101,7 @@ public class TurtleModelImpl implements TurtleModel {
             stateTime = 0;
         } else if (!this.destroyed) {
             body.setLinearVelocity(velocity);
-            controller.upadeView(this, this.body, dt);
+            controller.updateView(this, this.body, dt);
         }
     }
 
