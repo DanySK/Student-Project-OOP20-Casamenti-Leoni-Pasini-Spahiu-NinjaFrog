@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 public final class SoundManagerImpl implements SoundManager, Disposable {
 
+    private static final float MUSIC_VOL = 0.7f;
     private Music musicMenu;
     private Music musicGame;
     private boolean state;
@@ -40,6 +41,7 @@ public final class SoundManagerImpl implements SoundManager, Disposable {
     public void playMenuSong() {
         if (state) {
             musicGame.stop();
+            musicMenu.setVolume(MUSIC_VOL);
             musicMenu.play();
             musicMenu.setLooping(true);
         }
@@ -49,6 +51,7 @@ public final class SoundManagerImpl implements SoundManager, Disposable {
     public void playGameSong() {
         if (state) {
             musicMenu.stop();
+            musicGame.setVolume(MUSIC_VOL);
             musicGame.play();
             musicGame.setLooping(true);
         }
