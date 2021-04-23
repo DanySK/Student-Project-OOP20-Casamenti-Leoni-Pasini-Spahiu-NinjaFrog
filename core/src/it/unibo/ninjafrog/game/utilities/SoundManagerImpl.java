@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 public final class SoundManagerImpl implements SoundManager, Disposable {
 
-    private static final float MUSIC_VOL = 0.7f;
+    private static final float MUSIC_VOL = 0.1f;
     private Music musicMenu;
     private Music musicGame;
     private boolean state;
