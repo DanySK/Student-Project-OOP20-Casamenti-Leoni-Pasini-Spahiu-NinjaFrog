@@ -1,30 +1,28 @@
 package it.unibo.ninjafrog.game.utilities;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.utils.Disposable;
 
 
 public final class SoundManagerImpl implements SoundManager, Disposable {
 
-    private final AssetManager assetManager;
     private Music musicMenu;
     private Music musicGame;
     private boolean state;
 
+    /**
+     * public constructor of the sound manager.
+     */
     public SoundManagerImpl() {
         this.state = true;
-        assetManager = new AssetManager();
         loadSong();
     }
 
     @Override
     public void loadSong() {
-        musicMenu = (Music) Gdx.audio.newMusic(Gdx.files.internal("introSong.mp3")); // menu song
-        musicGame = (Music) Gdx.audio.newMusic(Gdx.files.internal("playSong.mp3")); // play song
-       // assetManager.load(fileName, Sound.class);
-        assetManager.finishLoading();
+        musicMenu = (Music) Gdx.audio.newMusic(Gdx.files.internal("introSong.mp3"));
+        musicGame = (Music) Gdx.audio.newMusic(Gdx.files.internal("playSong.mp3")); 
     }
 
     @Override
