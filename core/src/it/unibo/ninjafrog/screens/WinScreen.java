@@ -39,7 +39,7 @@ public final class WinScreen implements Screen {
     public WinScreen(final NinjaFrogGame game, final Integer score, final SoundManager sound) {
         this.game = game;
         this.sound = sound;
-        sound.playMenuSong();
+       // sound.playMenuSong();
         viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
         stage = new Stage(viewport, game.getBatch());
