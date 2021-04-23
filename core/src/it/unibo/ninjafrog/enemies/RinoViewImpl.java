@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import it.unibo.ninjafrog.game.utilities.GameConst;
 import it.unibo.ninjafrog.screens.PlayScreen;
 
-public class RinoViewImpl extends Sprite implements RinoView {
+public class RinoViewImpl extends Sprite implements EnemyView {
     private static final int X_COORDINATE_FOR_DEATH_REGION = 417;
     private static final int HALF = 2;
     private static final int X_DISTANCE_FOR_EVERY_FRAMES = 52;
@@ -24,6 +24,15 @@ public class RinoViewImpl extends Sprite implements RinoView {
     private final EnemyControllerImpl controller;
     private final PlayScreen screen;
     private final Animation<TextureRegion> walkAnimation;
+
+    /**
+     * public constructor of the RinoViiew.
+     * 
+     * @param screen              the playscreen
+     * @param x                   the X coordinate of the rino
+     * @param y                   the Y coordinate of the rino
+     * @param enemyControllerImpl
+     */
 
     public RinoViewImpl(final PlayScreen screen, final float x, final float y,
             final EnemyControllerImpl enemyControllerImpl) {
@@ -71,4 +80,9 @@ public class RinoViewImpl extends Sprite implements RinoView {
         return region;
     }
 
+    @Override
+    public final boolean isKillable() {
+        // TODO Auto-generated method stub
+        return true;
+    }
 }

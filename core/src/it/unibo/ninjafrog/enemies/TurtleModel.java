@@ -29,7 +29,7 @@ public interface TurtleModel extends Collidable {
      * @return the float stateTime of the turtle
      */
 
-    float getSatateTime();
+    float getStateTime();
 
     /**
      * 
