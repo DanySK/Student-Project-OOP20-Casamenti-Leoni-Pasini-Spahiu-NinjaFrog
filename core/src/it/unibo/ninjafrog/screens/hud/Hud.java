@@ -4,14 +4,17 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public interface Hud {
     /**
-     *  add points to the hud.
-     *  @param value ,the points to add
+     * add points to the hud.
+     * 
+     * @param value ,the points to add
      */
     void addScore(int value);
+
     /**
      * @return the game's score.
      */
     Integer getScore();
+
     /**
      * add one life to the hud.
      */
@@ -31,6 +34,7 @@ public interface Hud {
      * @return true if the timer is over
      */
     boolean isTimerOn();
+
     /**
      * @param dt delta of time;
      */

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.utils.Disposable;
 
-
 public final class SoundManagerImpl implements SoundManager, Disposable {
 
     private static final float MUSIC_VOL = 0.7f;
@@ -23,7 +22,7 @@ public final class SoundManagerImpl implements SoundManager, Disposable {
     @Override
     public void loadSong() {
         musicMenu = (Music) Gdx.audio.newMusic(Gdx.files.internal("introSong.mp3"));
-        musicGame = (Music) Gdx.audio.newMusic(Gdx.files.internal("playSong.mp3")); 
+        musicGame = (Music) Gdx.audio.newMusic(Gdx.files.internal("playSong.mp3"));
     }
 
     @Override
@@ -37,6 +36,7 @@ public final class SoundManagerImpl implements SoundManager, Disposable {
             playMenuSong();
         }
     }
+
     @Override
     public void playMenuSong() {
         if (state) {

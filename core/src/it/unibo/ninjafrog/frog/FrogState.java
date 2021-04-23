@@ -8,7 +8,7 @@ public enum FrogState {
     /**
      * the frog is running.
      */
-    RUNNING, 
+    RUNNING,
     /**
      * the frog is jumping.
      */
@@ -16,11 +16,11 @@ public enum FrogState {
     /**
      * the frog is doublejumping.
      */
-    DOUBLEJUMPING, 
+    DOUBLEJUMPING,
     /**
-     * the frog is falling. 
+     * the frog is falling.
      */
-    FALLING, 
+    FALLING,
     /**
      * the frog is dead.
      */

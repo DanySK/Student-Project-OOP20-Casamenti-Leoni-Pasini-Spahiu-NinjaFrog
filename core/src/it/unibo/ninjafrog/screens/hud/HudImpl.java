@@ -27,6 +27,11 @@ public final class HudImpl implements Hud {
     private final Label pointLabel;
     private final Label lifeCounterLabel;
 
+    /**
+     * public constructor for the Hud.
+     * 
+     * @param sb the spriteBatch.
+     */
     public HudImpl(final SpriteBatch sb) {
 
         this.timeCount = 0;
@@ -41,10 +46,11 @@ public final class HudImpl implements Hud {
         table.top();
         table.setFillParent(true);
 
-
         this.countdownLabel = new Label(String.format(FORMAT, 00), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.pointLabel = new Label(String.format("%06d", this.score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        this.lifeCounterLabel = new Label(String.format(FORMAT, life), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        this.pointLabel = new Label(String.format("%06d", this.score),
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        this.lifeCounterLabel = new Label(String.format(FORMAT, life),
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         final Label bonusLabel = new Label("BONUS", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         final Label scoreLabel = new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         final Label lifeLabel = new Label("LIFE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -65,10 +71,12 @@ public final class HudImpl implements Hud {
         score += value;
         pointLabel.setText(String.format("%06d", this.score));
     }
+
     @Override
     public Integer getScore() {
         return this.score;
     }
+
     @Override
     public void addLife() {
         life += 1;
@@ -85,10 +93,12 @@ public final class HudImpl implements Hud {
     public Stage getStage() {
         return this.stage;
     }
+
     @Override
     public boolean isTimerOn() {
         return this.timerOn;
     }
+
     @Override
     public void update(final float dt) {
         if (this.canInit) {
@@ -109,6 +119,5 @@ public final class HudImpl implements Hud {
         }
         this.timerOn = true;
     }
-
 
 }
