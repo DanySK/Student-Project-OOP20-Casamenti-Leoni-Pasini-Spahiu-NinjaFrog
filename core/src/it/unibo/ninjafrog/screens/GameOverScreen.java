@@ -39,7 +39,6 @@ public final class GameOverScreen implements Screen {
     public GameOverScreen(final NinjaFrogGame game, final Integer score, final SoundManager sound) {
         this.game = game;
         this.sound = sound;
-        sound.playMenuSong();
         viewport = new FitViewport(GameConst.WIDTH, GameConst.HEIGHT, new OrthographicCamera());
         viewport.apply();
         stage = new Stage(viewport, game.getBatch());
