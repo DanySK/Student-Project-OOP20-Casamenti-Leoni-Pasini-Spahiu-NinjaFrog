@@ -82,7 +82,6 @@ public class RinoViewImpl extends Sprite implements EnemyView {
 
     @Override
     public final boolean isKillable() {
-        // TODO Auto-generated method stub
         return true;
     }
 }
