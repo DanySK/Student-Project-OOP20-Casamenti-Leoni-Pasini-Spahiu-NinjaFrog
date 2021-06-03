@@ -50,7 +50,6 @@ public final class Pair<X, Y> {
         return result;
     }
 
-    @SuppressWarnings("rawtypes")
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
